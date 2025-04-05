@@ -90,6 +90,7 @@ func _convert_shape_to_concave(points):
 
 func _physics_process(delta):
 	pass
+	$DebugPolygon.position = Vector2.ZERO
 	# if dragged:
 	# 	var force = get_global_mouse_position() + drag_offset - global_transform.origin
 	# 	apply_central_force(drag_spring_force * force * delta)
@@ -126,8 +127,6 @@ func split(pos: Vector2, direction: Vector2):
 		pos + direction * 20000 - tangent,
 		pos + direction * 20000 + tangent,
 	]
-
-	$DebugPolygon.polygon = PackedVector2Array(knife_shape)
 
 	var polygons = Geometry2D.clip_polygons(
 		PackedVector2Array(shape), PackedVector2Array(knife_shape)
@@ -200,9 +199,27 @@ func generate_type(_mineral_type: MineralType):
 
 	_generate_shape()
 
+func update_polygons():
+	polygon.polygon = shape
+	collision_shape.polygon = shape
 
 func set_polygon(points):
 	shape = points
+	update_polygons()
+	recenter()
 
-	polygon.polygon = points
-	collision_shape.polygon = points
+func get_point_average(shape: PackedVector2Array):
+	var sum = Vector2.ZERO
+
+	for p in shape:
+		sum += p
+
+	return sum / shape.size()	
+
+func recenter():
+	var relative_center = get_point_average(shape)
+	
+	for i in range(shape.size()):
+		shape[i] -= relative_center
+
+	update_polygons()
