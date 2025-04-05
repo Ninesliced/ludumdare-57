@@ -58,7 +58,7 @@ color = Color(0.14902, 0.168627, 0.266667, 1)
 [node name="BurrowParticle" type="CPUParticles2D" parent="StateMachine/Burrowed"]
 unique_name_in_owner = true
 emitting = false
-amount = 64
+amount = 32
 texture = ExtResource("5_ovg4i")
 lifetime = 0.5
 direction = Vector2(0, 0)

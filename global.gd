@@ -4,6 +4,7 @@ var can_pause = true
 var paused: bool = false
 
 var menu_manager: MenuManager
+var inventory: Inventory = Inventory.new()
 
 var minerals_icon = {
 	Inventory.Minerals.RUBY: preload("res://assets/images/particle/ruby.png"),
