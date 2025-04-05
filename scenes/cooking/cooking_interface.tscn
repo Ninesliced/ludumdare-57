@@ -1,26 +1,31 @@
 [gd_scene load_steps=6 format=3 uid="uid://dx003ew6fg7xm"]
 
-[ext_resource type="PackedScene" uid="uid://bm14q84sjqj0r" path="res://scenes/cooking/ingredient.tscn" id="1_6bwup"]
 [ext_resource type="PackedScene" uid="uid://82om1usnpvey" path="res://scenes/cooking/mouse_attractor.tscn" id="1_rtpj6"]
 [ext_resource type="Script" uid="uid://fu6rqmskchs3" path="res://scenes/cooking/cooking_interface.gd" id="1_vpk3n"]
+[ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="3_vpk3n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6bwup"]
 friction = 0.85
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vpk3n"]
+distance = 5.99991
 
 [node name="CookingInterface" type="Node2D"]
 script = ExtResource("1_vpk3n")
+
+[node name="IngredientSpawnLoc" type="Marker2D" parent="."]
+position = Vector2(193, 32)
 
 [node name="MouseAttractor" parent="." instance=ExtResource("1_rtpj6")]
 
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(161, 176)
 physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(160, 177)
+position = Vector2(1, 1)
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
@@ -33,7 +38,7 @@ rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
-position = Vector2(-6, 96)
+position = Vector2(76, 80)
 rotation = 1.57079
 physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
@@ -51,29 +56,41 @@ position = Vector2(13, 0)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
-[node name="Ingredient" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 74.0
+offset_bottom = 102.0
 
-[node name="Ingredient3" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(161, 121)
+[node name="AddRuby" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = "Add Ruby
+"
 
-[node name="Ingredient4" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(42, 28)
+[node name="AddEmerald" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = "Add Emerald"
 
-[node name="Ingredient5" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(142, 51)
+[node name="AddTopaz" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = "Add Topaz"
 
-[node name="Ingredient6" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(95, 123)
+[node name="AddDiamond" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = "Add Diamond
+"
 
-[node name="Ingredient7" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(173, 77)
+[node name="AddAmethyst" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = "Add Amethyst"
 
-[node name="Ingredient8" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(49, 63)
-
-[node name="Ingredient9" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(106, 78)
-
-[node name="Ingredient2" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(206, 49)
+[connection signal="pressed" from="VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
+[connection signal="pressed" from="VBoxContainer/AddEmerald" to="." method="_on_add_emerald_pressed"]
+[connection signal="pressed" from="VBoxContainer/AddTopaz" to="." method="_on_add_topaz_pressed"]
+[connection signal="pressed" from="VBoxContainer/AddDiamond" to="." method="_on_add_diamond_pressed"]
+[connection signal="pressed" from="VBoxContainer/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
