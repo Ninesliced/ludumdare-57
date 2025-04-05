@@ -67,13 +67,11 @@ func load_new_layer_old():
 var Map: TileMapLayer;
 
 func load_new_layer():
+	var layerA_ressources
 	if current_depth == 0:
-		var layerA_ressources = load("res://scenes/map/layer/top_layer.tscn")
-		var layerA: Node2D = layerA_ressources.instantiate()
-		current_depth += MAP_SIZE_Y
-		add_child(layerA)
-		return
-	var layerA_ressources = load("res://scenes/map/layer/"+layers.pick_random())
+		layerA_ressources = load("res://scenes/map/layer/top_layer.tscn")
+	else:
+		layerA_ressources = load("res://scenes/map/layer/"+layers.pick_random())
 	var layerA: Node2D = layerA_ressources.instantiate()
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
 	var mapMap: TileMapLayer = layerA.get_node("Map")
@@ -105,3 +103,9 @@ func _process(delta):
 		var posy = player.position.y
 		if posy > (current_depth-MAP_SIZE_Y)*16:
 			load_new_layer()
+
+func reset_map():
+	%GlobalTileMap.clear()
+	%Ores.clear()
+	current_depth = 0
+	print("TODO")
