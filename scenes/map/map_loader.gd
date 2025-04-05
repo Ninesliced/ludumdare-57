@@ -37,10 +37,17 @@ func get_random_ore():
 			return proba_val
 	return null
 
+var top_layer = "top_layer.tscn"
 var layers = ["LayerA.tscn"]
 var rng = RandomNumberGenerator.new();
 
 func load_new_layer():
+	if current_depth == 0:
+		var layerA_ressources = load("res://scenes/map/layer/top_layer.tscn")
+		var layerA: Node2D = layerA_ressources.instantiate()
+		current_depth += MAP_SIZE_Y
+		add_child(layerA)
+		return
 	var layerA_ressources = load("res://scenes/map/layer/"+layers.pick_random())
 	var layerA: Node2D = layerA_ressources.instantiate()
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
