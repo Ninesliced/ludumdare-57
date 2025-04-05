@@ -1,9 +1,13 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://c5w2totwpyqw6"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://c5w2totwpyqw6"]
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_eslq1"]
 [ext_resource type="Texture2D" uid="uid://dus7hibpj57fc" path="res://assets/images/cave_tileset.png" id="2_ki5qi"]
 [ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="3_b4n3o"]
-[ext_resource type="PackedScene" uid="uid://bxxstwqcgeiia" path="res://scenes/entities/ores/ruby.tscn" id="4_u6000"]
+[ext_resource type="PackedScene" uid="uid://bxxstwqcgeiia" path="res://scenes/entities/ores/ruby.tscn" id="4_sryw2"]
+[ext_resource type="PackedScene" uid="uid://c7w5wlsuf7xcr" path="res://scenes/entities/ores/emerald.tscn" id="5_prmj7"]
+[ext_resource type="PackedScene" uid="uid://bbe6dqn736h27" path="res://scenes/entities/ores/topaz.tscn" id="6_dixdc"]
+[ext_resource type="PackedScene" uid="uid://d20x2f4u441ix" path="res://scenes/entities/ores/diamond.tscn" id="7_581ag"]
+[ext_resource type="PackedScene" uid="uid://qwgw7vunncci" path="res://scenes/entities/ores/amethyst.tscn" id="8_uic34"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e5f0g"]
 texture = ExtResource("1_eslq1")
@@ -696,7 +700,11 @@ texture = ExtResource("3_b4n3o")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_b4n3o"]
 resource_name = "ores"
-scenes/1/scene = ExtResource("4_u6000")
+scenes/1/scene = ExtResource("4_sryw2")
+scenes/2/scene = ExtResource("5_prmj7")
+scenes/3/scene = ExtResource("6_dixdc")
+scenes/4/scene = ExtResource("7_581ag")
+scenes/5/scene = ExtResource("8_uic34")
 
 [resource]
 physics_layer_0/collision_layer = 1
