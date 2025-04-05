@@ -7,8 +7,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6bwup"]
 friction = 0.85
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_raq7g"]
-size = Vector2(320, 20)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vpk3n"]
 
 [node name="CookingInterface" type="Node2D"]
 script = ExtResource("1_vpk3n")
@@ -22,7 +21,7 @@ physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(160, 177)
-shape = SubResource("RectangleShape2D_raq7g")
+shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
 position = Vector2(-4, -181)
@@ -30,7 +29,8 @@ physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
 position = Vector2(160, 177)
-shape = SubResource("RectangleShape2D_raq7g")
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
 position = Vector2(-6, 96)
@@ -39,7 +39,7 @@ physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
 position = Vector2(13, 0)
-shape = SubResource("RectangleShape2D_raq7g")
+shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
 position = Vector2(320, 81)
@@ -48,31 +48,32 @@ physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
 position = Vector2(13, 0)
-shape = SubResource("RectangleShape2D_raq7g")
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="Ingredient" parent="." instance=ExtResource("1_6bwup")]
 position = Vector2(92, 36)
 
 [node name="Ingredient3" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(161, 121)
 
 [node name="Ingredient4" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(42, 28)
 
 [node name="Ingredient5" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(142, 51)
 
 [node name="Ingredient6" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(95, 123)
 
 [node name="Ingredient7" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(173, 77)
 
 [node name="Ingredient8" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(49, 63)
 
 [node name="Ingredient9" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(92, 36)
+position = Vector2(106, 78)
 
 [node name="Ingredient2" parent="." instance=ExtResource("1_6bwup")]
-position = Vector2(181, 59)
+position = Vector2(206, 49)

@@ -4,7 +4,7 @@
 
 [node name="MouseAttractor" type="PinJoint2D"]
 node_a = NodePath("DummyBody")
-softness = 1.29
+bias = 0.9
 script = ExtResource("1_5vqb6")
 
 [node name="DummyBody" type="StaticBody2D" parent="."]
