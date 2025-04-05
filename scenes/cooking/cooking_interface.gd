@@ -6,7 +6,7 @@ class_name CookingInterface
 var ingredient_prefab: PackedScene = preload("res://scenes/cooking/ingredient.tscn")
 
 var bounds: Rect2
-const SELECTION_PADDING = 10
+const SELECTION_PADDING = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
