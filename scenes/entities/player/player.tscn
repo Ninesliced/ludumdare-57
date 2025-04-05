@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
-[ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
+[ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/state_machine/state_machine.tscn" id="4_bj7e2"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
 [ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
@@ -21,6 +21,7 @@ size = Vector2(20, 17)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_58kc7")
+hold_to_burrow = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
