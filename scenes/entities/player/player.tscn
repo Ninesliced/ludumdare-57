@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
-[ext_resource type="Script" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
+[ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(16, 16)
