@@ -16,12 +16,12 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	sprite.hide()
 	print(sprite.global_position)
 	var int_position = Vector2i(sprite.global_position)/16
+	var cells = []
 	for dx in range(-BOMB_RADUIS, BOMB_RADUIS):
 		for dy in range(-BOMB_RADUIS, BOMB_RADUIS):
 			if dx*dx +dy*dy <= BOMB_RADUIS*BOMB_RADUIS:
-				# globalMap.set_cells_terrain_connect([int_position+Vector2i(dx, dy)], -1, -1)
-				globalMap.set_cell(int_position+Vector2i(dx, dy), -1)
-				print(globalMap)
-								
+				cells.append(int_position+Vector2i(dx, dy))
+	globalMap.set_cells_terrain_connect(cells, 0,-1)
+				# globalMap.set_cell(int_position+Vector2i(dx, dy), -1)
 	print("explode")
 	queue_free()
