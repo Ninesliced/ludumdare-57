@@ -5,7 +5,7 @@ var paused: bool = false
 
 var menu_manager: MenuManager
 
-@onready var menu_manager_scene = preload("res://scenes/ui/menu_manager.tscn")
+@onready var menu_manager_scene = preload("res://scenes/ui/menu/menu_manager.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
