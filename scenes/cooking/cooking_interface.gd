@@ -50,7 +50,6 @@ func add_ingredient_node(ingredient: Ingredient):
 	add_child(ingredient)
 	_connect_ingredient(ingredient)
 
-	
 
 func add_ingredient(mineral_type: Ingredient.MineralType):
 	var ingredient: Ingredient = ingredient_prefab.instantiate()
