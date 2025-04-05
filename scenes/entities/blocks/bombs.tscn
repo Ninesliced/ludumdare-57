@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyf4p8357feok"]
+[gd_scene load_steps=8 format=3 uid="uid://cyf4p8357feok"]
 
 [ext_resource type="Script" uid="uid://cfetm6r1nvown" path="res://scenes/entities/blocks/bombs.gd" id="1_4xhm3"]
+[ext_resource type="PackedScene" uid="uid://brv2beyy5ire" path="res://addons/one_shot_particle.tscn" id="2_efhrf"]
 [ext_resource type="Texture2D" uid="uid://b3kaxomb4dr1f" path="res://scenes/entities/blocks/48x48 - LargeBombDetonateFrame1.png" id="2_r3arf"]
+[ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="3_r3arf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vsk3"]
 resource_local_to_scene = true
@@ -15,6 +17,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_r3arf"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.196532, -200), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ggmv"]
 radius = 9.05539
 
@@ -25,6 +32,37 @@ script = ExtResource("1_4xhm3")
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_3vsk3")
 animation = &"0"
+
+[node name="OneShotParticle" parent="." instance=ExtResource("2_efhrf")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="OneShotParticle"]
+emitting = false
+texture = ExtResource("3_r3arf")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.79
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+linear_accel_curve = SubResource("Curve_r3arf")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="OneShotParticle"]
+emitting = false
+texture = ExtResource("3_r3arf")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.79
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+linear_accel_curve = SubResource("Curve_r3arf")
+color = Color(1, 0.651946, 0.301865, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

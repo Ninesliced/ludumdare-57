@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://dryb05mb4edge"]
+[gd_scene load_steps=4 format=4 uid="uid://dryb05mb4edge"]
 
 [ext_resource type="PackedScene" uid="uid://tagu2jmfaknx" path="res://scenes/entities/player/player.tscn" id="1_413f7"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="1_clggo"]
+[ext_resource type="PackedScene" uid="uid://cyf4p8357feok" path="res://scenes/entities/blocks/bombs.tscn" id="3_yoc0d"]
 
 [node name="GoyoScene" type="Node2D"]
 
@@ -12,3 +13,6 @@ tile_set = ExtResource("1_clggo")
 
 [node name="Player" parent="." instance=ExtResource("1_413f7")]
 position = Vector2(51, 23)
+
+[node name="Bombs" parent="." instance=ExtResource("3_yoc0d")]
+position = Vector2(96, 48)

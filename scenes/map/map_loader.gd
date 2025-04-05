@@ -1,28 +1,28 @@
 extends Node2D
 
-var MAP_SIZE_X = 20;
+var MAP_SIZE_X = 22;
 var MAP_SIZE_Y = 12;
 var current_depth = 0;
 
 const proba_ore = {
 	"Ruby": {
-		"proba": 0.1,
+		"proba": 0.05,
 		"tile_id": 1
 	},
 	"Emerald": {
-		"proba": 0.1,
+		"proba": 0.02,
 		"tile_id": 2
 	},
 	"Topaz": {
-		"proba": 0.1,
+		"proba": 0.01,
 		"tile_id": 3
 	},
 	"Diamond": {
-		"proba": 0.1,
+		"proba": 0.005,
 		"tile_id": 4
 	},
 	"Amethyst": {
-		"proba": 0.1,
+		"proba": 0.002,
 		"tile_id": 5
 	}
 }
@@ -52,7 +52,7 @@ func load_new_layer_old():
 	var layerA: Node2D = layerA_ressources.instantiate()
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
 	var mapMap: TileMapLayer = layerA.get_node("Map")
-	for pixelx in range(MAP_SIZE_X):
+	for pixelx in range(-1, MAP_SIZE_X):
 		for pixely in range(MAP_SIZE_Y):
 			var mapcell = mapMap.get_cell_tile_data(Vector2i(pixelx, pixely))
 			if(is_instance_of(mapcell, TileData)):
@@ -76,7 +76,7 @@ func load_new_layer():
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
 	var mapMap: TileMapLayer = layerA.get_node("Map")
 	
-	for pixelx in range(MAP_SIZE_X):
+	for pixelx in range(-1,MAP_SIZE_X):
 		for pixely in range(MAP_SIZE_Y):
 			var relative_coords = Vector2i(pixelx, pixely)
 			var mapcell = mapMap.get_cell_tile_data(relative_coords)

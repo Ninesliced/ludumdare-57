@@ -8,7 +8,6 @@
 friction = 0.85
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vpk3n"]
-distance = 5.99991
 
 [node name="CookingInterface" type="Node2D"]
 script = ExtResource("1_vpk3n")
@@ -24,36 +23,27 @@ position = Vector2(193, 32)
 position = Vector2(161, 176)
 physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(1, 1)
-shape = SubResource("WorldBoundaryShape2D_vpk3n")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
-position = Vector2(-4, -181)
-physics_material_override = SubResource("PhysicsMaterial_6bwup")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
-position = Vector2(160, 177)
+[node name="CollisionShapeTop" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+unique_name_in_owner = true
+position = Vector2(32, -176)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
-position = Vector2(76, 80)
-rotation = 1.57079
-physics_material_override = SubResource("PhysicsMaterial_6bwup")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
-position = Vector2(13, 0)
+[node name="CollisionShapeBottom" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+unique_name_in_owner = true
+position = Vector2(44, 4)
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
-position = Vector2(320, 81)
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+unique_name_in_owner = true
+position = Vector2(-67, -83)
 rotation = 1.57079
-physics_material_override = SubResource("PhysicsMaterial_6bwup")
+shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
-position = Vector2(13, 0)
-rotation = -3.14159
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+unique_name_in_owner = true
+position = Vector2(159, -82)
+rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

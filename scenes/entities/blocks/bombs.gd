@@ -24,4 +24,5 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	globalMap.set_cells_terrain_connect(cells, 0,-1)
 				# globalMap.set_cell(int_position+Vector2i(dx, dy), -1)
 	print("explode")
+	$OneShotParticle.play()
 	queue_free()
