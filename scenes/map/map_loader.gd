@@ -2,7 +2,6 @@ extends Node2D
 
 var MAP_SIZE_X = 20;
 var MAP_SIZE_Y = 12;
-const NB_MINERAL = 5
 var current_depth = 0;
 
 const proba_ore = {
@@ -38,10 +37,17 @@ func get_random_ore():
 			return proba_val
 	return null
 
+var top_layer = "top_layer.tscn"
 var layers = ["LayerA.tscn"]
 var rng = RandomNumberGenerator.new();
 
 func load_new_layer():
+	if current_depth == 0:
+		var layerA_ressources = load("res://scenes/map/layer/top_layer.tscn")
+		var layerA: Node2D = layerA_ressources.instantiate()
+		current_depth += MAP_SIZE_Y
+		add_child(layerA)
+		return
 	var layerA_ressources = load("res://scenes/map/layer/"+layers.pick_random())
 	var layerA: Node2D = layerA_ressources.instantiate()
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
@@ -60,5 +66,10 @@ func load_new_layer():
 	
 func _ready():
 	load_new_layer()
-	print(current_depth)
 	
+func _process(delta):
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if(is_instance_of(player, Player)):
+		var posy = player.position.y
+		if posy > (current_depth-MAP_SIZE_Y)*16:
+			load_new_layer()
