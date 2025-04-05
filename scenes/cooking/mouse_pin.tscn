@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://82om1usnpvey"]
+
+[ext_resource type="Script" uid="uid://c6g1xnj68fsru" path="res://scenes/cooking/mouse_pin.gd" id="1_5vqb6"]
+
+[node name="MousePin" type="PinJoint2D"]
+node_a = NodePath("DummyBody")
+script = ExtResource("1_5vqb6")
+
+[node name="DummyBody" type="StaticBody2D" parent="."]
