@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=5 format=3 uid="uid://tagu2jmfaknx"]
+
+[ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_1hmtu"]
+[ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
+[ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_movement_component.tscn" id="2_635qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_58kc7")
+
+[node name="FrostSpritesheet16Globs" type="Sprite2D" parent="."]
+texture = ExtResource("1_1hmtu")
+hframes = 10
+vframes = 10
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1hmtu")
+
+[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_635qg")]
+player = NodePath("..")
