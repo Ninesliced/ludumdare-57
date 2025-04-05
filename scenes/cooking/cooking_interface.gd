@@ -1,7 +1,7 @@
 extends Node2D
 class_name CookingInterface
 
-@onready var mouse_pin: PinJoint2D = $MousePin
+@onready var mouse_pin: PinJoint2D = $MouseAttractor
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
