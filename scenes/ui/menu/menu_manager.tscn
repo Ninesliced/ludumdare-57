@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://8lw7bps1tiip"]
 
-[ext_resource type="Script" uid="uid://bbvqpksdsxx7o" path="res://scenes/ui/menu_manager.gd" id="1_o1m80"]
-[ext_resource type="PackedScene" uid="uid://cki8vecc8s8t7" path="res://scenes/ui/menu.tscn" id="2_bg225"]
+[ext_resource type="Script" uid="uid://bbvqpksdsxx7o" path="res://scenes/ui/menu/menu_manager.gd" id="1_o1m80"]
+[ext_resource type="PackedScene" uid="uid://cki8vecc8s8t7" path="res://scenes/ui/menu/menu.tscn" id="2_bg225"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bms1h"]
 random_pitch = 1.1
