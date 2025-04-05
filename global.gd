@@ -5,7 +5,15 @@ var paused: bool = false
 
 var menu_manager: MenuManager
 
-@onready var menu_manager_scene = preload("res://scenes/ui/menu_manager.tscn")
+var minerals_icon = {
+	Inventory.Minerals.RUBY: preload("res://assets/images/particle/ruby.png"),
+	Inventory.Minerals.EMERALD: preload("res:///assets/images/particle/emerald.png"),
+	Inventory.Minerals.TOPAZ: preload("res:///assets/images/particle/topaz.png"),
+	Inventory.Minerals.DIAMOND: preload("res:///assets/images/particle/diamond.png"),
+	Inventory.Minerals.AMETHYST: preload("res:///assets/images/particle/amethyst.png")
+}
+
+@onready var menu_manager_scene = preload("res://scenes/ui/menu/menu_manager.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

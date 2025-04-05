@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var grounded_detector: GroundedDetector = %GroundedDetector
+@export var inventory: Inventory = null
 
 var jump_requested: bool = false
 var coyote_timer: Timer = null
