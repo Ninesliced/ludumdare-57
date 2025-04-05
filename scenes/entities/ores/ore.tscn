@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6874b7ohinnk"]
+
+[ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="1_3ggmv"]
+[ext_resource type="Script" uid="uid://cc23kcypv2dy8" path="res://scenes/entities/ores/ore.gd" id="1_goj4l"]
+[ext_resource type="Texture2D" uid="uid://cvdjvpknre0yu" path="res://assets/images/particle/ruby.png" id="3_3vsk3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goj4l"]
+atlas = ExtResource("1_3ggmv")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vsk3"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goj4l")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ggmv"]
+radius = 9.05539
+
+[node name="Ore" type="Node2D"]
+script = ExtResource("1_goj4l")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3vsk3")
+animation = &"0"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 23
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3ggmv")
+
+[node name="DestroyParticle" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 4
+texture = ExtResource("3_3vsk3")
+one_shot = true
+speed_scale = 4.0
+explosiveness = 0.85
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = 15.0
+angular_velocity_max = 200.0
+angle_max = 197.3
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

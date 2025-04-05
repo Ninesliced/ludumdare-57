@@ -84,6 +84,7 @@ left_click={
 
 2d_physics/layer_1="Burrowable"
 2d_physics/layer_2="Wall"
+2d_physics/layer_5="Player"
 
 [rendering]
 

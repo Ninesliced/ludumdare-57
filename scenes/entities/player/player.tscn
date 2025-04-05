@@ -14,8 +14,10 @@
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sj0x"]
+size = Vector2(20, 17)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 17
 collision_mask = 3
 script = ExtResource("1_58kc7")
 
@@ -68,11 +70,13 @@ script = ExtResource("9_5sj0x")
 shape = SubResource("RectangleShape2D_5sj0x")
 debug_color = Color(0.616123, 0.525215, 0.30918, 0.42)
 
-[node name="FrostSpritesheet16Globs" type="Sprite2D" parent="."]
+[node name="FrostSpritesheet16Globs" type="Sprite2D" parent="GroundedDetector"]
 texture = ExtResource("1_1hmtu")
 hframes = 10
 vframes = 10
 frame = 4
+
+[node name="Camera" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
