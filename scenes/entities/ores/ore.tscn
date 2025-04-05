@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6874b7ohinnk"]
+[gd_scene load_steps=8 format=3 uid="uid://c6874b7ohinnk"]
 
 [ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="1_3ggmv"]
 [ext_resource type="Script" uid="uid://cc23kcypv2dy8" path="res://scenes/entities/ores/ore.gd" id="1_goj4l"]
@@ -23,6 +23,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ggmv"]
 radius = 9.05539
 
+[sub_resource type="Curve" id="Curve_3vsk3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.250358), -1.1831, 0.0, 0, 0]
+point_count = 2
+
 [node name="Ore" type="Node2D"]
 script = ExtResource("1_goj4l")
 
@@ -39,9 +43,11 @@ shape = SubResource("CircleShape2D_3ggmv")
 
 [node name="DestroyParticle" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 emitting = false
 amount = 4
 texture = ExtResource("3_3vsk3")
+lifetime = 1.4
 one_shot = true
 speed_scale = 4.0
 explosiveness = 0.85
@@ -52,5 +58,6 @@ initial_velocity_max = 10.0
 angular_velocity_min = 15.0
 angular_velocity_max = 200.0
 angle_max = 197.3
+scale_amount_curve = SubResource("Curve_3vsk3")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
