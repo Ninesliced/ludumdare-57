@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7w5wlsuf7xcr"]
+[gd_scene load_steps=4 format=3 uid="uid://c7w5wlsuf7xcr"]
 
 [ext_resource type="PackedScene" uid="uid://c6874b7ohinnk" path="res://scenes/entities/ores/ore.tscn" id="1_3b5yp"]
 [ext_resource type="SpriteFrames" uid="uid://boh4k6axpjakx" path="res://assets/tres/ore.tres" id="2_kd4us"]
+[ext_resource type="Texture2D" uid="uid://jmacgn175a4d" path="res://assets/images/particle/emerald.png" id="3_3j3i4"]
 
 [node name="Ore" instance=ExtResource("1_3b5yp")]
 
@@ -12,3 +13,6 @@ animation = &"emerald"
 
 [node name="Area2D" parent="." index="1"]
 collision_mask = 16
+
+[node name="DestroyParticle" parent="." index="2"]
+texture = ExtResource("3_3j3i4")
