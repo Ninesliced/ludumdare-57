@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl50tcx701p1m"
-path="res://.godot/imported/circle_16.png-29a56ff3fc0a425d4cac8c8c1c4c37b3.ctex"
+uid="uid://crcd6kok7q35s"
+path="res://.godot/imported/ruby_texture.png-af8c7d6108bd23129b6be94beae6b285.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/particle/form/circle_16.png"
-dest_files=["res://.godot/imported/circle_16.png-29a56ff3fc0a425d4cac8c8c1c4c37b3.ctex"]
+source_file="res://assets/images/textures/ruby_texture.png"
+dest_files=["res://.godot/imported/ruby_texture.png-af8c7d6108bd23129b6be94beae6b285.ctex"]
 
 [params]
 

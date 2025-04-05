@@ -11,6 +11,8 @@ var burrow_requested: bool = false
 var burrow_timer: Timer = null
 @export var burrow_time: float = 0.1
 
+@export var hold_to_burrow: bool = false
+
 var velocity_before_collision : Vector2 = Vector2.ZERO
 
 func _ready():
@@ -19,6 +21,12 @@ func _ready():
 	pass
 
 func _process(delta):
+	if Input.is_action_just_pressed("burrow"):
+		request_burrow()
+		return
+	if Input.is_action_just_released("burrow"):
+		unrequest_burrow()
+		return
 	pass
 
 func _physics_process(delta):
@@ -43,11 +51,23 @@ func _set_burrow_buffer():
 
 func request_burrow() -> void:
 	burrow_requested = true
+	print("request_burrow")
+	if hold_to_burrow:
+		return
 	if not burrow_timer.is_stopped():
 		burrow_timer.start()
 	else:
 		burrow_timer.stop()
 		burrow_timer.start()
+
+func unrequest_burrow() -> void:
+	if hold_to_burrow:
+		burrow_requested = false
+		print("unrequest_burrow")
+		return
+	# if burrow_timer.is_stopped():
+	# 	burrow_timer.stop()
+	# 	burrow_timer.start()
 
 func _disable_burrow():
 	burrow_timer.stop()

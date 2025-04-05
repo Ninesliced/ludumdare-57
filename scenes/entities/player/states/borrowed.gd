@@ -11,13 +11,12 @@ var direction: Vector2 = Vector2.ZERO
 
 func enter():
 	if !entity is Player:
-		print("error: entity is not a Player")
 		return
 	var player = entity as Player
 
 	apply_direction(player)
 	burrowParticle.emitting = true
-	player.collision_mask = 2
+	player.collision_mask = 1
 	player.velocity = player.velocity_before_collision.normalized() * playerBurrowedComponent.move_speed
 	
 	pass

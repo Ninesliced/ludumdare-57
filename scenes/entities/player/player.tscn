@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=13 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/state_machine/state_machine.tscn" id="4_bj7e2"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
+[ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
 [ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
@@ -17,9 +18,10 @@ size = Vector2(16, 16)
 size = Vector2(20, 17)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 17
+collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_58kc7")
+hold_to_burrow = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -34,6 +36,19 @@ script = ExtResource("6_5sj0x")
 playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
 collisionShape = NodePath("../../CollisionShape2D")
 groundedDetector = NodePath("../../GroundedDetector")
+
+[node name="BurrowParticleTest" type="CPUParticles2D" parent="StateMachine/Burrowed"]
+unique_name_in_owner = true
+visible = false
+amount = 32
+texture = ExtResource("5_ovg4i")
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+color = Color(0.14902, 0.168627, 0.266667, 1)
 
 [node name="BurrowParticle" type="CPUParticles2D" parent="StateMachine/Burrowed"]
 unique_name_in_owner = true
@@ -63,6 +78,7 @@ player = NodePath("../../..")
 
 [node name="GroundedDetector" type="Area2D" parent="."]
 unique_name_in_owner = true
+collision_layer = 0
 collision_mask = 3
 script = ExtResource("9_5sj0x")
 
