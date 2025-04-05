@@ -1,34 +1,75 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var grounded_detector: GroundedDetector = %GroundedDetector
+
 var jump_requested: bool = false
 var coyote_timer: Timer = null
 @export var coyote_time: float = 0.1
 
+var burrow_requested: bool = false
+var burrow_timer: Timer = null
+@export var burrow_time: float = 0.1
+
+var velocity_before_collision : Vector2 = Vector2.ZERO
+
 func _ready():
-    coyote_timer = Timer.new()
-    coyote_timer.wait_time = coyote_time
-    coyote_timer.one_shot = true
-    coyote_timer.timeout.connect(disable_coyote)
-    add_child(coyote_timer)
-    pass
+	_set_coyote()
+	_set_burrow_buffer()
+	pass
 
 func _process(delta):
-    pass
+	pass
 
 func _physics_process(delta):
-    move_and_slide()
-    pass
+	if !is_colliding():
+		velocity_before_collision = velocity
+	move_and_slide()
 
+	pass
+
+func is_colliding() -> bool: ## TEMPORARY
+	var grounded_detector_collisioned = grounded_detector.is_grounded()
+	var player_collisioned = (is_on_floor() or is_on_wall() or is_on_ceiling())
+	return player_collisioned or grounded_detector_collisioned
+
+
+func _set_burrow_buffer():
+	burrow_timer = Timer.new()
+	burrow_timer.wait_time = burrow_time
+	burrow_timer.one_shot = true
+	burrow_timer.timeout.connect(_disable_burrow)
+	add_child(burrow_timer)
+
+func request_burrow() -> void:
+	burrow_requested = true
+	if not burrow_timer.is_stopped():
+		burrow_timer.start()
+	else:
+		burrow_timer.stop()
+		burrow_timer.start()
+
+func _disable_burrow():
+	burrow_timer.stop()
+	burrow_requested = false
+
+#### JUMP
+
+func _set_coyote():
+	coyote_timer = Timer.new()
+	coyote_timer.wait_time = coyote_time
+	coyote_timer.one_shot = true
+	coyote_timer.timeout.connect(_disable_coyote)
+	add_child(coyote_timer)
 
 func request_jump() -> void:
-    jump_requested = true
-    if not coyote_timer.is_stopped():
-        coyote_timer.start()
-    else:
-        coyote_timer.stop()
-        coyote_timer.start()
+	jump_requested = true
+	if not coyote_timer.is_stopped():
+		coyote_timer.start()
+	else:
+		coyote_timer.stop()
+		coyote_timer.start()
 
-func disable_coyote():
-    coyote_timer.stop()
-    jump_requested = false
+func _disable_coyote():
+	coyote_timer.stop()
+	jump_requested = false

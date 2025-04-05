@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cftaabj0iyqv5"]
+
+[ext_resource type="Script" uid="uid://dju6jetuf4m8v" path="res://scenes/entities/player/components/player_burrowed_component.gd" id="1_dknm6"]
+
+[node name="PlayerBurrowedComponent" type="Node"]
+script = ExtResource("1_dknm6")

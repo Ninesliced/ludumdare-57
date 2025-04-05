@@ -1,17 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=12 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/state_machine/state_machine.tscn" id="4_bj7e2"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
+[ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
+[ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5sj0x"]
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_58kc7")
 
 [node name="FrostSpritesheet16Globs" type="Sprite2D" parent="."]
@@ -21,14 +26,22 @@ vframes = 10
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_1hmtu")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state", "entity") instance=ExtResource("4_bj7e2")]
 initial_state = NodePath("Grounded")
 entity = NodePath("..")
 
-[node name="Borrowed" parent="StateMachine" instance=ExtResource("5_1murt")]
+[node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector") instance=ExtResource("5_1murt")]
 script = ExtResource("6_5sj0x")
+playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
+collisionShape = NodePath("../../CollisionShape2D")
+groundedDetector = NodePath("../../GroundedDetector")
+
+[node name="PlayerBurrowedComponent" parent="StateMachine/Burrowed" node_paths=PackedStringArray("player") instance=ExtResource("6_1murt")]
+move_speed = 100.0
+player = NodePath("../../..")
 
 [node name="Grounded" parent="StateMachine" node_paths=PackedStringArray("player", "playerGroundMovement") instance=ExtResource("5_1murt")]
 script = ExtResource("7_ovg4i")
@@ -37,3 +50,15 @@ playerGroundMovement = NodePath("PlayerGroundMovementComponent")
 
 [node name="PlayerGroundMovementComponent" parent="StateMachine/Grounded" node_paths=PackedStringArray("player") instance=ExtResource("2_635qg")]
 player = NodePath("../../..")
+
+[node name="GroundedDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 3
+script = ExtResource("9_5sj0x")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="GroundedDetector"]
+shape = SubResource("RectangleShape2D_5sj0x")
+debug_color = Color(0.616123, 0.525215, 0.30918, 0.42)
+
+[connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
+[connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
