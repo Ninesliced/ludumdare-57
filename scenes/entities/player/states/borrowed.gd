@@ -4,6 +4,9 @@ extends State
 @export var collisionShape: CollisionShape2D = null
 @export var groundedDetector : GroundedDetector = null
 
+@onready var burrowParticle : CPUParticles2D = %BurrowParticle
+
+
 var direction: Vector2 = Vector2.ZERO
 
 func enter():
@@ -11,20 +14,12 @@ func enter():
 		print("error: entity is not a Player")
 		return
 	var player = entity as Player
-	direction = player.velocity
-	direction = direction.normalized()
 
-	var angle = rad_to_deg(direction.angle())
-	var roundedAngle = round(angle / 45) * 45
-	angle = deg_to_rad(roundedAngle)
-	direction = Vector2(cos(angle), sin(angle))
-
-	playerBurrowedComponent.last_input_vector = direction
-
+	apply_direction(player)
+	burrowParticle.emitting = true
 	player.collision_mask = 2
-	print("keep keep_velocity")
 	player.velocity = player.velocity_before_collision
-	print(player.velocity)
+	
 	pass
 
 
@@ -34,3 +29,18 @@ func physic_process(delta: float) -> void:
 		emit_signal("state_finished", self, "grounded")
 		return
 	pass
+
+func exit():
+	burrowParticle.emitting = false
+	pass
+
+func apply_direction(player):
+	direction = player.velocity
+	direction = direction.normalized()
+
+	var angle = rad_to_deg(direction.angle())
+	var roundedAngle = round(angle / 45) * 45
+	angle = deg_to_rad(roundedAngle)
+	direction = Vector2(cos(angle), sin(angle))
+
+	playerBurrowedComponent.last_input_vector = direction
