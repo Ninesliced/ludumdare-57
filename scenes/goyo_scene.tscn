@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dryb05mb4edge"]
+
+[ext_resource type="PackedScene" uid="uid://tagu2jmfaknx" path="res://scenes/entities/player/player.tscn" id="1_413f7"]
+
+[node name="GoyoScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_413f7")]
+position = Vector2(288, 283)

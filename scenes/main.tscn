@@ -7,3 +7,5 @@
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(432, 271)
 texture = ExtResource("1_o5qli")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
