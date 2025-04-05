@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxxstwqcgeiia"]
+
+[ext_resource type="PackedScene" uid="uid://c6874b7ohinnk" path="res://scenes/entities/ores/ore.tscn" id="1_e117v"]
+
+[node name="Ore" instance=ExtResource("1_e117v")]

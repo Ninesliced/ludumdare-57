@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name StateMachine
 #TO DO , add player as init for all states
 @export var initial_state : State
