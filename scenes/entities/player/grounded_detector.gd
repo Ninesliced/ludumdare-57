@@ -11,6 +11,7 @@ func is_grounded() -> bool:
 
 func _on_body_entered(body:Node2D) -> void:
     number_grounded += 1
+    print("number_grounded: ", number_grounded)
     if number_grounded > 0:
         _is_grounded = true
     pass # Replace with function body.
@@ -18,6 +19,7 @@ func _on_body_entered(body:Node2D) -> void:
 
 func _on_body_exited(body:Node2D) -> void:
     number_grounded -= 1
+    print("number_grounded: ", number_grounded)
     if number_grounded <= 0:
         _is_grounded = false
     pass # Replace with function body.
