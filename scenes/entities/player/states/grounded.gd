@@ -18,7 +18,6 @@ func physic_process(delta: float) -> void:
         player.request_burrow()
         return
     if player.burrow_requested and player.is_colliding():
-        print("burrowed")
         emit_signal("state_finished", self, "burrowed")
         return
     pass

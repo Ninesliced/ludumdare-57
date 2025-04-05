@@ -52,7 +52,6 @@ func load_new_layer():
 			if(is_instance_of(mapcell, TileData)):
 				var random = get_random_ore()
 				if(random != null):
-					print(random.tile_id)
 					oresMap.set_cell(Vector2i(pixelx, pixely) ,3 ,Vector2i(0,0), random.tile_id)#, Vector2(random.tile_y, 4))
 	
 	layerA.position.y = current_depth*16

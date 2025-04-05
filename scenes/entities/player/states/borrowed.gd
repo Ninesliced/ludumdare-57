@@ -11,7 +11,6 @@ var direction: Vector2 = Vector2.ZERO
 
 func enter():
 	if !entity is Player:
-		print("error: entity is not a Player")
 		return
 	var player = entity as Player
 
