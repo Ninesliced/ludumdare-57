@@ -31,9 +31,13 @@ window/vsync/vsync_mode=0
 
 [global_group]
 
-player=""
 ingredient=""
 globalTileMap=""
+player=""
+
+[gui]
+
+theme/custom_font="uid://cjejukuqaeamy"
 
 [input]
 
@@ -94,10 +98,6 @@ restart={
 2d_physics/layer_1="Wall"
 2d_physics/layer_2="Burrowable"
 2d_physics/layer_5="Player"
-
-[physics]
-
-2d/solver/solver_iterations=32
 
 [rendering]
 

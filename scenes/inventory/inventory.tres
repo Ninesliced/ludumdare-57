@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=2 format=3 uid="uid://cx8ev761d6518"]
+
+[ext_resource type="Script" uid="uid://bakdc0bewx1nh" path="res://scenes/inventory/inventory.gd" id="1_mq1hf"]
+
+[resource]
+script = ExtResource("1_mq1hf")
+minerals = Dictionary[int, int]({
+0: 0,
+1: 0,
+2: 0,
+3: 0,
+4: 0
+})
+metadata/_custom_type_script = "uid://bakdc0bewx1nh"
