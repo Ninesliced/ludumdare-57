@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brv2beyy5ire"]
+
+[ext_resource type="Script" uid="uid://cxr5b308da2mx" path="res://addons/temp_particle.tscn.gd" id="1_fjltd"]
+
+[node name="OneShotParticle" type="Node2D"]
+script = ExtResource("1_fjltd")
