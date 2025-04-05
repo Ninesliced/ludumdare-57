@@ -72,8 +72,6 @@ func _get_random_shape():
 
 func _generate_shape():
 	var points = _get_random_shape()
-	shape = points
-
 	set_polygon(points)
 
 
@@ -138,17 +136,19 @@ func split(pos: Vector2, direction: Vector2):
 	
 	for poly in polygons:
 		var new_ingredient: Ingredient = ingredient_scene.instantiate()
-		new_ingredient.global_transform.origin = global_position
+		new_ingredient.global_transform = global_transform
 		get_parent().add_ingredient_node(new_ingredient)
 
-		new_ingredient.set_texture_from_type(mineral_type)
+		new_ingredient.set_mineral_type(mineral_type)
 		new_ingredient.set_polygon(poly)
 	
 	queue_free()
 
 
 
-func set_texture_from_type(_mineral_type: MineralType):
+func set_mineral_type(_mineral_type: MineralType):
+	mineral_type = _mineral_type
+
 	if _mineral_type == MineralType.RUBY:
 		texture = texture_ruby
 
@@ -166,8 +166,7 @@ func set_texture_from_type(_mineral_type: MineralType):
 
 
 func generate_type(_mineral_type: MineralType):
-	mineral_type = _mineral_type
-	set_texture_from_type(mineral_type)
+	set_mineral_type(_mineral_type)
 
 	if _mineral_type == MineralType.RUBY:
 		min_angle_step = TAU/8 - 0.03	
@@ -203,5 +202,7 @@ func generate_type(_mineral_type: MineralType):
 
 
 func set_polygon(points):
+	shape = points
+
 	polygon.polygon = points
 	collision_shape.polygon = points

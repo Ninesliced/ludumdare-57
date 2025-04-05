@@ -13,12 +13,18 @@ var burrow_timer: Timer = null
 @export var burrow_time: float = 0.1
 
 @export var hold_to_burrow: bool = false
-
+const MAX_LIFE = 1
+var life = MAX_LIFE:
+	set(value):
+		life = value
+		life_update()
 var velocity_before_collision : Vector2 = Vector2.ZERO
+var inital_position;
 
 func _ready():
 	_set_coyote()
 	_set_burrow_buffer()
+	inital_position = global_position
 	pass
 
 func _process(delta):
@@ -94,3 +100,18 @@ func request_jump() -> void:
 func _disable_coyote():
 	coyote_timer.stop()
 	jump_requested = false
+	
+	
+	
+#### Les points de vies
+
+func remove_live():
+	life -= 1
+	
+func life_update():
+	if (life <= 0):
+		life = MAX_LIFE
+		global_position = inital_position
+		var MapLoader = get_tree().get_first_node_in_group("MapLoader")
+		if(MapLoader):
+			MapLoader.reset_map()
