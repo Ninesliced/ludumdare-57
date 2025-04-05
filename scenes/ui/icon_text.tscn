@@ -1,28 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://3x037kudxk1e"]
+[gd_scene load_steps=4 format=3 uid="uid://3x037kudxk1e"]
 
 [ext_resource type="Texture2D" uid="uid://ccs8xg63h2p2y" path="res://assets/images/particle/topaz.png" id="1_bsp1p"]
+[ext_resource type="Script" uid="uid://dt2yx8d6swe5v" path="res://scenes/ui/icon_text.gd" id="1_m4781"]
 [ext_resource type="Theme" uid="uid://bfd2o5adnhq4h" path="res://assets/theme.tres" id="2_q86e8"]
 
 [node name="IconText" type="HBoxContainer"]
 offset_right = 69.0
 offset_bottom = 8.0
-theme_override_constants/separation = 2
+script = ExtResource("1_m4781")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 texture = ExtResource("1_bsp1p")
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Ruby" type="RichTextLabel" parent="."]
+[node name="Label" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 theme = ExtResource("2_q86e8")
-text = "test"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = " test"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
