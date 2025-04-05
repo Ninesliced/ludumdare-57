@@ -1,11 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://kybu6dqvpe2k"]
-
-[ext_resource type="Texture2D" uid="uid://vt5kr7onstc8" path="res://icon.svg" id="1_o5qli"]
+[gd_scene format=3 uid="uid://kybu6dqvpe2k"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(432, 271)
-texture = ExtResource("1_o5qli")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
