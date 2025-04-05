@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://d1l8k2q7wfhpv"]
 
-[ext_resource type="Script" path="res://scenes/arkan_scene.gd" id="1_mdyiy"]
+[ext_resource type="Script" uid="uid://b74u2i16e5s8u" path="res://scenes/arkan_scene.gd" id="1_mdyiy"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="2_cnoql"]
 
 [node name="ArkanScene" type="Node2D"]
