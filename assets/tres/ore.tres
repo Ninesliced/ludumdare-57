@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://boh4k6axpjakx"]
+
+[ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="1_i8krv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oma7g"]
+atlas = ExtResource("1_i8krv")
+region = Rect2(64, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvxk6"]
+atlas = ExtResource("1_i8krv")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12uyo"]
+atlas = ExtResource("1_i8krv")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goj4l"]
+atlas = ExtResource("1_i8krv")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmvi6"]
+atlas = ExtResource("1_i8krv")
+region = Rect2(32, 64, 16, 16)
+
+[resource]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oma7g")
+}],
+"loop": true,
+"name": &"amethyst",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvxk6")
+}],
+"loop": true,
+"name": &"diamond",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12uyo")
+}],
+"loop": true,
+"name": &"emerald",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goj4l")
+}],
+"loop": true,
+"name": &"ruby",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmvi6")
+}],
+"loop": true,
+"name": &"topaz",
+"speed": 5.0
+}]

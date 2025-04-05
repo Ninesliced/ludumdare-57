@@ -8,7 +8,8 @@
 atlas = ExtResource("1_3ggmv")
 region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_my07r"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vsk3"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -26,7 +27,7 @@ radius = 13.0384
 script = ExtResource("1_goj4l")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_my07r")
+sprite_frames = SubResource("SpriteFrames_3vsk3")
 animation = &"0"
 
 [node name="Area2D" type="Area2D" parent="."]

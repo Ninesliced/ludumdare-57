@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://qwgw7vunncci"]
+
+[ext_resource type="PackedScene" uid="uid://c6874b7ohinnk" path="res://scenes/entities/ores/ore.tscn" id="1_sfs5j"]
+[ext_resource type="SpriteFrames" uid="uid://boh4k6axpjakx" path="res://assets/tres/ore.tres" id="2_oma7g"]
+
+[node name="Ore" instance=ExtResource("1_sfs5j")]
+
+[node name="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+sprite_frames = ExtResource("2_oma7g")
+animation = &"amethyst"
+
+[node name="Area2D" parent="." index="1"]
+collision_mask = 16

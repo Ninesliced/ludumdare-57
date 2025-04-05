@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d20x2f4u441ix"]
+
+[ext_resource type="PackedScene" uid="uid://c6874b7ohinnk" path="res://scenes/entities/ores/ore.tscn" id="1_8nmvj"]
+[ext_resource type="SpriteFrames" uid="uid://boh4k6axpjakx" path="res://assets/tres/ore.tres" id="2_7lg8x"]
+
+[node name="Ore" instance=ExtResource("1_8nmvj")]
+
+[node name="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+sprite_frames = ExtResource("2_7lg8x")
+animation = &"diamond"
+
+[node name="Area2D" parent="." index="1"]
+collision_mask = 16

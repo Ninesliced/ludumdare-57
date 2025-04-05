@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_eslq1"]
 [ext_resource type="Texture2D" uid="uid://dus7hibpj57fc" path="res://assets/images/cave_tileset.png" id="2_ki5qi"]
 [ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="3_b4n3o"]
-[ext_resource type="PackedScene" uid="uid://bxxstwqcgeiia" path="res://scenes/entities/ores/orange.tscn" id="4_u6000"]
+[ext_resource type="PackedScene" uid="uid://bxxstwqcgeiia" path="res://scenes/entities/ores/ruby.tscn" id="4_u6000"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e5f0g"]
 texture = ExtResource("1_eslq1")
