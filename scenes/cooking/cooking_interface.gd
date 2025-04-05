@@ -6,7 +6,7 @@ class_name CookingInterface
 var ingredient_prefab: PackedScene = preload("res://scenes/cooking/ingredient.tscn")
 
 var bounds: Rect2
-const SELECTION_PADDING = 16
+const SELECTION_PADDING = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +19,6 @@ func _ready():
 	var y1 = %CollisionShapeTop.global_position.y
 	var y2 = %CollisionShapeBottom.global_position.y
 	bounds = Rect2(x1, y1, x2-x1, y2-y1)
-	print(bounds)
 
 
 func _connect_ingredient(ingredient: Ingredient):
@@ -47,15 +46,19 @@ func _physics_process(delta):
 	# padded_rect. 
 
 
+func add_ingredient_node(ingredient: Ingredient):
+	add_child(ingredient)
+	_connect_ingredient(ingredient)
+
+	
+
 func add_ingredient(mineral_type: Ingredient.MineralType):
 	var ingredient: Ingredient = ingredient_prefab.instantiate()
 	ingredient.global_transform.origin = $IngredientSpawnLoc.global_position
-	
-	add_child(ingredient)
+
+	add_ingredient_node(ingredient)	
 
 	ingredient.generate_type(mineral_type)
-	_connect_ingredient(ingredient)
-	
 
 
 func _on_add_ruby_pressed():
