@@ -2,7 +2,6 @@ extends Node2D
 
 var MAP_SIZE_X = 20;
 var MAP_SIZE_Y = 12;
-const NB_MINERAL = 5
 var current_depth = 0;
 
 const proba_ore = {
@@ -65,5 +64,5 @@ func _process(delta):
 	var player: Player = get_tree().get_first_node_in_group("player")
 	if(is_instance_of(player, Player)):
 		var posy = player.position.y
-		if posy > current_depth*16:
+		if posy > (current_depth-MAP_SIZE_Y)*16:
 			load_new_layer()
