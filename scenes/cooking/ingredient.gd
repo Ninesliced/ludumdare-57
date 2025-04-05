@@ -27,8 +27,12 @@ enum MineralType {
 @onready var polygon: Polygon2D = $Polygon2D
 @onready var collision_shape: CollisionPolygon2D = $CollisionPolygon2D
 
+var mineral_type: MineralType
+
 var dragged := false
 var drag_offset := Vector2.ZERO
+
+var shape: PackedVector2Array
 
 var _rng = RandomNumberGenerator.new()
 
@@ -37,6 +41,8 @@ var texture_emerald = preload("res://assets/images/textures/emerald_texture.png"
 var texture_topaz = preload("res://assets/images/textures/topaz_texture.png")
 var texture_diamond = preload("res://assets/images/textures/diamond_texture.png")
 var texture_amethyst = preload("res://assets/images/textures/amethyst_texture.png")
+
+var ingredient_scene = preload("res://scenes/cooking/ingredient.tscn") as PackedScene
 
 func _ready():
 	if texture:
@@ -62,12 +68,13 @@ func _get_random_shape():
 		var rad = _rng.randf_range(min_radius, max_radius)
 		points.append(Vector2.from_angle(angles[i]) * rad)
 
-	return points
+	return PackedVector2Array(points)
 
 func _generate_shape():
 	var points = _get_random_shape()
-	polygon.polygon = PackedVector2Array(points)
-	collision_shape.polygon = PackedVector2Array(points)
+	shape = points
+
+	set_polygon(points)
 
 
 func _convert_shape_to_concave(points):
@@ -100,49 +107,101 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_released("left_click"):
 			end_drag.emit(self)
+	
+	if event.is_action_pressed("burrow"):
+		split(Vector2.ZERO, Vector2.DOWN)
 
-func _on_start_drag():
+
+func _on_start_drag(_ingredient):
 	dragged = true
 	# freeze = true
 
-func _on_end_drag():
+func _on_end_drag(_ingredient):
 	dragged = false
 	# freeze = false
 
-func generate_type(mineral_type: MineralType):
-	if mineral_type == MineralType.RUBY:
+func split(pos: Vector2, direction: Vector2):
+	var tangent = direction.orthogonal()
+	var knife_shape = [
+		pos - direction * 20000 + tangent, 
+		pos - direction * 20000 - tangent, 
+		pos + direction * 20000 - tangent,
+		pos + direction * 20000 + tangent,
+	]
+
+	$DebugPolygon.polygon = PackedVector2Array(knife_shape)
+
+	var polygons = Geometry2D.clip_polygons(
+		PackedVector2Array(shape), PackedVector2Array(knife_shape)
+	)
+	print("splti ", polygons)
+	
+	for poly in polygons:
+		var new_ingredient: Ingredient = ingredient_scene.instantiate()
+		new_ingredient.global_transform.origin = global_position
+		get_parent().add_ingredient_node(new_ingredient)
+
+		new_ingredient.set_texture_from_type(mineral_type)
+		new_ingredient.set_polygon(poly)
+	
+	queue_free()
+
+
+
+func set_texture_from_type(_mineral_type: MineralType):
+	if _mineral_type == MineralType.RUBY:
 		texture = texture_ruby
+
+	if _mineral_type == MineralType.EMERALD:
+		texture = texture_emerald
+
+	if _mineral_type == MineralType.TOPAZ:
+		texture = texture_topaz
+
+	if _mineral_type == MineralType.DIAMOND:
+		texture = texture_diamond
+
+	if _mineral_type == MineralType.AMETHYST:
+		texture = texture_amethyst
+
+
+func generate_type(_mineral_type: MineralType):
+	mineral_type = _mineral_type
+	set_texture_from_type(mineral_type)
+
+	if _mineral_type == MineralType.RUBY:
 		min_angle_step = TAU/8 - 0.03	
 		max_angle_step = TAU/8 - 0.01
 		min_radius = 20
 		max_radius = 24	
 
-	if mineral_type == MineralType.EMERALD:
-		texture = texture_emerald
+	if _mineral_type == MineralType.EMERALD:
 		min_angle_step = TAU*0.05	
 		max_angle_step = TAU*0.1
 		min_radius = 10
 		max_radius = 20
 
-	if mineral_type == MineralType.TOPAZ:
-		texture = texture_topaz
+	if _mineral_type == MineralType.TOPAZ:
 		min_angle_step = TAU/6-0.01	
 		max_angle_step = TAU/6-0.01
 		min_radius = 15
 		max_radius = 17
 
-	if mineral_type == MineralType.DIAMOND:
-		texture = texture_diamond
+	if _mineral_type == MineralType.DIAMOND:
 		min_angle_step = TAU*0.02	
 		max_angle_step = TAU*0.2
 		min_radius = 10
 		max_radius = 15
 
-	if mineral_type == MineralType.AMETHYST:
-		texture = texture_amethyst
+	if _mineral_type == MineralType.AMETHYST:
 		min_angle_step = TAU*0.01	
 		max_angle_step = TAU*0.2
 		min_radius = 10
 		max_radius = 40
 
 	_generate_shape()
+
+
+func set_polygon(points):
+	polygon.polygon = points
+	collision_shape.polygon = points

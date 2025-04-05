@@ -13,11 +13,17 @@ physics_material_override = SubResource("PhysicsMaterial_hwoxp")
 freeze_mode = 1
 script = ExtResource("1_hwoxp")
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 texture_repeat = 2
 texture = ExtResource("2_6wbjr")
+
+[node name="DebugPolygon" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 2, 0, 1, 1)
 
 [connection signal="end_drag" from="." to="." method="_on_end_drag"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
