@@ -17,6 +17,8 @@ position = Vector2(193, 32)
 
 [node name="MouseAttractor" parent="." instance=ExtResource("1_rtpj6")]
 
+[node name="KnifePreview" type="Line2D" parent="."]
+
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
@@ -25,13 +27,13 @@ physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShapeTop" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(32, -176)
+position = Vector2(32, -168)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeBottom" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(44, 4)
+position = Vector2(44, -5)
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="Walls/StaticBody2D"]
@@ -42,7 +44,7 @@ shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeRight" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(159, -82)
+position = Vector2(150, -83)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
