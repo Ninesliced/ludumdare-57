@@ -34,16 +34,16 @@ func physics_process(delta: float) -> void:
 	var velocity = player.velocity
 
 	
-	velocity.x = handle_movement(velocity, delta)
+	velocity.x = _handle_movement(velocity, delta)
 	if gravity_enabled:
 		velocity.y -= get_gravity(velocity) * delta
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("_jump"):
 		player.request_jump()
 	if player.jump_requested and player.is_on_floor():
-		velocity.y = jump(velocity)
+		velocity.y = _jump(velocity)
 
-	if Input.is_action_just_released("jump") and velocity.y < 0.0:
+	if Input.is_action_just_released("_jump") and velocity.y < 0.0:
 		velocity.y = velocity.y * 0.5
 
 	player.velocity = velocity
@@ -56,13 +56,13 @@ func get_gravity(velocity) -> float:
 
 ## JUMP functionnality
 
-func jump(velocity: Vector2) -> float:
+func _jump(velocity: Vector2) -> float:
 	velocity.y = jump_velocity
 	return velocity.y
 
 	
 
-func handle_movement(velocity: Vector2, delta: float) -> float:
+func _handle_movement(velocity: Vector2, delta: float) -> float:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_axis("left", "right")
 	if input_vector.x != 0:
