@@ -65,7 +65,8 @@ scale_amount_max = 4.0
 color = Color(0.14902, 0.168627, 0.266667, 1)
 
 [node name="PlayerBurrowedComponent" parent="StateMachine/Burrowed" node_paths=PackedStringArray("player") instance=ExtResource("6_1murt")]
-move_speed = 100.0
+rotation_speed = 20.0
+move_speed = 140.0
 player = NodePath("../../..")
 
 [node name="Grounded" parent="StateMachine" node_paths=PackedStringArray("player", "playerGroundMovement") instance=ExtResource("5_1murt")]

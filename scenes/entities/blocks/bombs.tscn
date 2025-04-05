@@ -49,6 +49,21 @@ linear_accel_min = 1.0
 linear_accel_max = 1.0
 linear_accel_curve = SubResource("Curve_r3arf")
 
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="OneShotParticle"]
+emitting = false
+texture = ExtResource("3_r3arf")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.79
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+linear_accel_curve = SubResource("Curve_r3arf")
+color = Color(1, 0.651946, 0.301865, 1)
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 23
