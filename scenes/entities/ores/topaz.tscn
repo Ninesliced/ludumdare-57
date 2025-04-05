@@ -4,6 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://boh4k6axpjakx" path="res://assets/tres/ore.tres" id="2_j7cnw"]
 
 [node name="Ore" instance=ExtResource("1_16am1")]
+mineral = 2
 
 [node name="Sprite2D" parent="." index="0"]
 unique_name_in_owner = true

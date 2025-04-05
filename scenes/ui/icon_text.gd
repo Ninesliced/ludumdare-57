@@ -4,7 +4,10 @@ extends HBoxContainer
 @onready var label: RichTextLabel = %Label
 
 
-func set_icon_text(icon: Texture2D, text: String) -> void:
+func set_icon_text(icon: Texture2D, text) -> void:
+    if text is int:
+        text = str(text)
+    text = " " + text
     texture_rect.texture = icon
     label.text = text
 

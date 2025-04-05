@@ -15,9 +15,9 @@ func update_text_icon():
 	var inventory = player.inventory as Inventory
 	var minerals = inventory.minerals
 
-	%Ruby.set_icon_text(Global.minerals_icon[Inventory.Minerals.RUBY], "0")
-	%Emerald.set_icon_text(Global.minerals_icon[Inventory.Minerals.EMERALD], "0")
-	%Topaz.set_icon_text(Global.minerals_icon[Inventory.Minerals.TOPAZ], "0")
-	%Diamond.set_icon_text(Global.minerals_icon[Inventory.Minerals.DIAMOND], "0")
-	%Amethyst.set_icon_text(Global.minerals_icon[Inventory.Minerals.AMETHYST], "0")
+	%Ruby.set_icon_text(Global.minerals_icon[Inventory.Minerals.RUBY], minerals[Inventory.Minerals.RUBY])
+	%Emerald.set_icon_text(Global.minerals_icon[Inventory.Minerals.EMERALD], minerals[Inventory.Minerals.EMERALD])
+	%Topaz.set_icon_text(Global.minerals_icon[Inventory.Minerals.TOPAZ], minerals[Inventory.Minerals.TOPAZ])
+	%Diamond.set_icon_text(Global.minerals_icon[Inventory.Minerals.DIAMOND], minerals[Inventory.Minerals.DIAMOND])
+	%Amethyst.set_icon_text(Global.minerals_icon[Inventory.Minerals.AMETHYST], minerals[Inventory.Minerals.AMETHYST])
 	

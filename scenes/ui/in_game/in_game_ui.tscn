@@ -16,7 +16,7 @@ grow_vertical = 2
 [node name="Left" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = -2
+theme_override_constants/separation = 0
 
 [node name="Ruby" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
 unique_name_in_owner = true

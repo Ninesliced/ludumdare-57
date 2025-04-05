@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cn4jvfd6cg4ow" path="res://assets/images/particle/amethyst.png" id="3_12uyo"]
 
 [node name="Ore" instance=ExtResource("1_sfs5j")]
+mineral = 4
 
 [node name="Sprite2D" parent="." index="0"]
 unique_name_in_owner = true
