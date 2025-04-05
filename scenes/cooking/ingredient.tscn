@@ -1,21 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm14q84sjqj0r"]
+[gd_scene load_steps=5 format=3 uid="uid://bm14q84sjqj0r"]
 
 [ext_resource type="Script" uid="uid://b5snqwegg5hj8" path="res://scenes/cooking/ingredient.gd" id="1_hwoxp"]
+[ext_resource type="Texture2D" uid="uid://crcd6kok7q35s" path="res://assets/images/textures/ruby_texture.png" id="2_6wbjr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hwoxp"]
 bounce = 0.25
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_hwoxp"]
+resource_local_to_scene = true
 points = PackedVector2Array(3, -24, 25, -11, 24, 16, -5, 25, -31, 4, -19, -16)
 
 [node name="Ingredient" type="RigidBody2D" groups=["ingredient"]]
 input_pickable = true
+mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_hwoxp")
 freeze_mode = 1
 script = ExtResource("1_hwoxp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("ConvexPolygonShape2D_hwoxp")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture = ExtResource("2_6wbjr")
+polygon = PackedVector2Array(41, 18, 33, -16, 101, 94, -11, 29, 17, 15)
 
 [connection signal="end_drag" from="." to="." method="_on_end_drag"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

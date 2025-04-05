@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dx003ew6fg7xm"]
 
 [ext_resource type="PackedScene" uid="uid://bm14q84sjqj0r" path="res://scenes/cooking/ingredient.tscn" id="1_6bwup"]
-[ext_resource type="PackedScene" uid="uid://82om1usnpvey" path="res://scenes/cooking/mouse_pin.tscn" id="1_rtpj6"]
+[ext_resource type="PackedScene" uid="uid://82om1usnpvey" path="res://scenes/cooking/mouse_attractor.tscn" id="1_rtpj6"]
 [ext_resource type="Script" uid="uid://fu6rqmskchs3" path="res://scenes/cooking/cooking_interface.gd" id="1_vpk3n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6bwup"]
@@ -13,7 +13,7 @@ size = Vector2(320, 20)
 [node name="CookingInterface" type="Node2D"]
 script = ExtResource("1_vpk3n")
 
-[node name="MousePin" parent="." instance=ExtResource("1_rtpj6")]
+[node name="MouseAttractor" parent="." instance=ExtResource("1_rtpj6")]
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -51,6 +51,27 @@ position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_raq7g")
 
 [node name="Ingredient" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient3" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient4" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient5" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient6" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient7" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient8" parent="." instance=ExtResource("1_6bwup")]
+position = Vector2(92, 36)
+
+[node name="Ingredient9" parent="." instance=ExtResource("1_6bwup")]
 position = Vector2(92, 36)
 
 [node name="Ingredient2" parent="." instance=ExtResource("1_6bwup")]
