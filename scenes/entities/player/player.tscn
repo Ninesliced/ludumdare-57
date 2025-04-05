@@ -76,5 +76,7 @@ hframes = 10
 vframes = 10
 frame = 4
 
+[node name="Camera" type="Camera2D" parent="."]
+
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
