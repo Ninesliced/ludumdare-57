@@ -1,3 +1,7 @@
-[gd_resource type="Theme" format=3 uid="uid://bfd2o5adnhq4h"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dwpcpa2uaps5o"]
+
+[ext_resource type="FontFile" uid="uid://mfhr8m3o8pcp" path="res://assets/fonts/Varnished.ttf" id="1_5x3i2"]
 
 [resource]
+default_font = ExtResource("1_5x3i2")
+default_font_size = 8
