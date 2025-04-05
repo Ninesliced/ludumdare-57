@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://8lw7bps1tiip"]
+
+[ext_resource type="Script" uid="uid://bbvqpksdsxx7o" path="res://scenes/ui/menu_manager.gd" id="1_o1m80"]
+[ext_resource type="PackedScene" uid="uid://cki8vecc8s8t7" path="res://scenes/ui/menu.tscn" id="2_bg225"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bms1h"]
+random_pitch = 1.1
+streams_count = 4
+
+[node name="MenuManager" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+visible = false
+script = ExtResource("1_o1m80")
+
+[node name="TransitionAudio" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bms1h")
+volume_db = 6.0
+
+[node name="Background" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarkBlackground" type="ColorRect" parent="Background"]
+z_index = -200
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.666667)
+
+[node name="Menus" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" parent="Menus" instance=ExtResource("2_bg225")]
+layout_mode = 1
