@@ -18,7 +18,7 @@ func enter():
 	burrowParticle.emitting = true
 	player.collision_mask = 1
 	player.velocity = player.velocity_before_collision.normalized() * playerBurrowedComponent.move_speed
-	
+	playerBurrowedComponent.set_current_direction(player.velocity.normalized())
 	pass
 
 
