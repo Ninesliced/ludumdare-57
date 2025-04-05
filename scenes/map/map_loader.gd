@@ -6,23 +6,23 @@ var current_depth = 0;
 
 const proba_ore = {
 	"Ruby": {
-		"proba": 0.1,
+		"proba": 0.05,
 		"tile_id": 1
 	},
 	"Emerald": {
-		"proba": 0.1,
+		"proba": 0.02,
 		"tile_id": 2
 	},
 	"Topaz": {
-		"proba": 0.1,
+		"proba": 0.01,
 		"tile_id": 3
 	},
 	"Diamond": {
-		"proba": 0.1,
+		"proba": 0.005,
 		"tile_id": 4
 	},
 	"Amethyst": {
-		"proba": 0.1,
+		"proba": 0.002,
 		"tile_id": 5
 	}
 }
