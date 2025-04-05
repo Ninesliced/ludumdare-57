@@ -94,6 +94,10 @@ restart={
 2d_physics/layer_2="Burrowable"
 2d_physics/layer_5="Player"
 
+[physics]
+
+2d/solver/solver_iterations=32
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
