@@ -84,7 +84,6 @@ func load_new_layer():
 			var source_id = mapMap.get_cell_source_id(relative_coords)
 			var alternative_tile = mapMap.get_cell_alternative_tile(relative_coords)
 			if mapcell && is_instance_of(mapcell, TileData) && Map:
-				print(mapcell.get_collision_polygons_count(1))
 				Map.set_cell(Vector2i(pixelx, pixely+current_depth), source_id, atlas_coords, alternative_tile)
 				var random = get_random_ore()
 				if(random != null) && current_depth != 0 && mapcell.get_collision_polygons_count(1) == 0:
