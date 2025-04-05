@@ -33,6 +33,7 @@ window/vsync/vsync_mode=0
 
 player=""
 ingredient=""
+globalTileMap=""
 
 [input]
 
