@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ms7xkeqtox0t" path="res://scenes/map/layer/main_layer.tscn" id="1_he022"]
 
 [node name="MainLayer" instance=ExtResource("1_he022")]
+
+[node name="Ores" parent="." index="1"]
+tile_map_data = PackedByteArray()
