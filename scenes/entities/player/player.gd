@@ -13,6 +13,7 @@ var burrow_timer: Timer = null
 @export var burrow_time: float = 0.1
 
 @export var hold_to_burrow: bool = false
+
 const MAX_LIFE = 1
 var life = MAX_LIFE:
 	set(value):
@@ -47,8 +48,8 @@ func _physics_process(delta):
 
 func is_colliding() -> bool: ## TEMPORARY
 	var grounded_detector_collisioned = grounded_detector.is_grounded()
-	var player_collisioned = (is_on_floor() or is_on_wall() or is_on_ceiling())
-	return player_collisioned or grounded_detector_collisioned
+	# var player_collisioned = (is_on_floor() or is_on_wall() or is_on_ceiling())
+	return grounded_detector_collisioned
 
 
 func _set_burrow_buffer():
