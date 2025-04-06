@@ -91,9 +91,11 @@ func _convert_shape_to_concave(points):
 
 
 func _physics_process(delta):
-	pass
+	$Label.text = str(get_area())
+
 	$DebugPolygon.position = Vector2.ZERO
-	$DebugPolygon2.position = get_point_average(shape)
+	$DebugPolygon2.position = get_polygon_center_of_mass(shape)
+	$DebugPolygon3.position = get_point_average(shape)
 
 
 func _on_input_event(viewport:Node, event:InputEvent, shape_idx:int):
@@ -211,18 +213,44 @@ func update_polygons():
 func set_polygon(points):
 	shape = points
 	update_polygons()
+
+	mass = get_area()/100
+
 	recenter()
 
-func get_point_average(shape: PackedVector2Array):
+func get_point_average(_shape: PackedVector2Array):
 	var sum = Vector2.ZERO
 
-	for p in shape:
+	for p in _shape:
 		sum += p
 
-	return sum / shape.size()	
+	return sum / _shape.size()	
+
+func get_polygon_center_of_mass(_polygon: PackedVector2Array) -> Vector2:
+	var area = 0.0
+	var centroid = Vector2()
+
+	var n = _polygon.size()
+	if n < 3:
+		return Vector2()  # Not a polygon
+
+	for i in range(n):
+		var current = _polygon[i]
+		var next = _polygon[(i + 1) % n]
+		var cross = current.x * next.y - next.x * current.y
+		area += cross
+		centroid += (current + next) * cross
+
+	area *= 0.5
+	if area == 0.0:
+		return Vector2()  # Degenerate polygon
+
+	centroid /= (6.0 * area)
+	return centroid
+
 
 func recenter():
-	var relative_center = get_point_average(shape)
+	var relative_center = get_polygon_center_of_mass(shape)
 	
 	for i in range(shape.size()):
 		shape[i] -= relative_center
@@ -235,3 +263,7 @@ func recenter():
 	# unfreeze_frame_count = 1
 	# freeze = true
 	transform.origin += relative_center
+
+
+func get_area():
+	return Global.area_of_polygon(shape)

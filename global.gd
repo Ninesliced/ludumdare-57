@@ -28,3 +28,17 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		return
 	pass
+
+func triangle_area(a: Vector2, b: Vector2, c: Vector2) -> float:
+	return abs((a.x * (b.y - c.y) +
+				b.x * (c.y - a.y) +
+				c.x * (a.y - b.y)) / 2.0)
+
+func area_of_polygon(polygon: PackedVector2Array):
+	var triangles = Geometry2D.triangulate_polygon(polygon)
+
+	var area = 0.0
+	for i in range(0, triangles.size(), 3):
+		area += triangle_area(polygon[triangles[i]], polygon[triangles[i+1]], polygon[triangles[i+2]])
+	
+	return area
