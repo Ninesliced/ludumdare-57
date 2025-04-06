@@ -16,6 +16,7 @@ signal stamina_consumed(amount: float)
 
 
 func consume_stamina(amount: float) -> void:
+<<<<<<< HEAD
 	if amount <= 0:
 		return
 	if amount > stamina:
@@ -26,6 +27,18 @@ func consume_stamina(amount: float) -> void:
 		emit_signal("stamina_consumed", amount)
 		emit_signal("stamina_changed", stamina)
 	pass
+=======
+    if amount <= 0:
+        return
+    if amount > stamina:
+        emit_signal("stamina_depleted")
+        stamina = 0
+    else:
+        stamina -= amount
+        emit_signal("stamina_consumed", amount)
+        emit_signal("stamina_changed", stamina)
+    pass
+>>>>>>> 09dc9ee7ad97949494dfd9c3b8940aa2c9b56114
 
 func recover_stamina(amount: float) -> void:
 	if amount <= 0:
