@@ -18,11 +18,9 @@ tile_set = ExtResource("2_bpn34")
 
 [node name="Bombs" parent="." instance=ExtResource("3_pm3rx")]
 position = Vector2(86, 257)
-break_bedrock = false
 
 [node name="Bombs2" parent="." instance=ExtResource("3_pm3rx")]
 position = Vector2(181, 253)
-break_bedrock = false
 
 [node name="Spikes" parent="." instance=ExtResource("4_bnx3j")]
 position = Vector2(124, 316)

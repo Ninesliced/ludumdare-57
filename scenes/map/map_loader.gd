@@ -84,7 +84,12 @@ func load_new_layer():
 			var source_id = mapMap.get_cell_source_id(relative_coords)
 			var alternative_tile = mapMap.get_cell_alternative_tile(relative_coords)
 			if mapcell && is_instance_of(mapcell, TileData) && Map:
-				Map.set_cell(Vector2i(pixelx, pixely+current_depth), source_id, atlas_coords, alternative_tile)
+				var is_bedrock = mapcell.get_collision_polygons_count(1) == 1
+				# Map.set_cells_terrain_connect([Vector2i(pixelx, pixely+current_depth)], 0, -1)
+				if source_id == 2: # Si on est sur la map des blocks
+					Map.set_cells_terrain_connect([Vector2i(pixelx, pixely+current_depth)], 0, 1 if is_bedrock else 0)
+				else: # Nimporte quoi d'autre comme le bonhomme de neige
+					Map.set_cell(Vector2i(pixelx, pixely+current_depth), source_id, atlas_coords, alternative_tile)
 				var random = get_random_ore()
 				# mapcell.get_collision_polygons_count(1) == 0 :: C'est un block placabke
 				if(random != null) && current_depth != 0 && mapcell.get_collision_polygons_count(1) == 0:
