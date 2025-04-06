@@ -43,6 +43,11 @@ func area_of_polygon(polygon: PackedVector2Array):
 	
 	return area
 
+func area_of_polygons(polygons: Array[PackedVector2Array]):
+	var sum = 0.0
+	for p in polygons:
+		sum += area_of_polygon(p)
+	return sum
 
 
 func get_polygon_center_of_mass(_polygon: PackedVector2Array) -> Vector2:
@@ -66,3 +71,21 @@ func get_polygon_center_of_mass(_polygon: PackedVector2Array) -> Vector2:
 
 	centroid /= (6.0 * area)
 	return centroid
+
+func polygons_to_merged_and_indexed(polygons: Array[PackedVector2Array]):
+	var merged = PackedVector2Array()
+	var indexed = []
+
+	var i_point = 0
+	var i_poly = 0
+	for poly in polygons:
+		indexed.append(PackedInt32Array([]))
+
+		for point in poly:
+			merged.append(point)
+			indexed[i_poly].append(i_point)
+
+			i_point += 1
+		i_poly += 1
+	
+	return [merged, indexed]

@@ -8,6 +8,10 @@ var _enable_movement: bool = true
 @export var acceleration: float = 80 * 12
 @export var deceleration: float = 80 * 12
 
+@export var air_decceleration: float = 80*12
+
+var _current_decceleration: float = 0
+
 @export var jump_height: float = 24.0
 @export var jump_time_to_peak: float = 0.4
 @export var jump_time_to_descent: float = 0.3
@@ -22,11 +26,16 @@ var gravity_enabled: bool = true
 
 func _ready() -> void:
 	pass
-
+func enter() -> void:
+	pass
 func set_enable_movement(enable: bool) -> void:
 	_enable_movement = enable
 
 func physics_process(delta: float) -> void:
+	if player.is_on_floor():
+		_current_decceleration = deceleration
+	else:
+		_current_decceleration = air_decceleration
 	if not _enable_movement:
 		return
 	var velocity = player.velocity
@@ -61,7 +70,9 @@ func _jump(velocity: Vector2) -> float:
 func _handle_movement(velocity: Vector2, delta: float) -> float:
 	var input_vector = get_input()
 	if input_vector.x != 0:
-		velocity.x = velocity.move_toward(input_vector * move_speed, acceleration * delta).x
+		if abs(input_vector.x * move_speed) > abs(velocity.x):
+			velocity.x = velocity.move_toward(input_vector * move_speed, acceleration * delta).x
 	else:
-		velocity.x = velocity.move_toward(Vector2.ZERO, deceleration * delta).x
+		var selected_deceleration = _current_decceleration
+		velocity.x = velocity.move_toward(Vector2.ZERO, selected_deceleration * delta).x
 	return velocity.x

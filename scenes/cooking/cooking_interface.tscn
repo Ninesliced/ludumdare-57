@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dx003ew6fg7xm"]
+[gd_scene load_steps=12 format=4 uid="uid://dx003ew6fg7xm"]
 
 [ext_resource type="PackedScene" uid="uid://82om1usnpvey" path="res://scenes/cooking/mouse_attractor.tscn" id="1_rtpj6"]
 [ext_resource type="Script" uid="uid://fu6rqmskchs3" path="res://scenes/cooking/cooking_interface.gd" id="1_vpk3n"]
+[ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="3_h8q77"]
 [ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="3_vpk3n"]
 [ext_resource type="Texture2D" uid="uid://cvdjvpknre0yu" path="res://assets/images/particle/ruby.png" id="4_e78jm"]
 [ext_resource type="Texture2D" uid="uid://jmacgn175a4d" path="res://assets/images/particle/emerald.png" id="5_h8q77"]
@@ -18,7 +19,15 @@ friction = 0.85
 script = ExtResource("1_vpk3n")
 
 [node name="IngredientSpawnLoc" type="Marker2D" parent="."]
-position = Vector2(193, 32)
+position = Vector2(287, 47)
+
+[node name="RefShapeLoc" type="Marker2D" parent="."]
+position = Vector2(155, 171)
+
+[node name="RefLine" type="Line2D" parent="."]
+z_index = 290
+closed = true
+width = 1.0
 
 [node name="MouseAttractor" parent="." instance=ExtResource("1_rtpj6")]
 
@@ -27,19 +36,24 @@ width = 2.0
 
 [node name="Walls" type="Node2D" parent="."]
 
+[node name="TileMapLayer" type="TileMapLayer" parent="Walls"]
+position = Vector2(-8, -5)
+tile_map_data = PackedByteArray("AAAAAAEAAgAEAAIAAAAAAAIAAgAAAAEAAAAAAAMAAgAAAAEAAAAAAAQAAgAAAAEAAAAAAAUAAgAAAAEAAAAAAAYAAgAAAAEAAAAAAAcAAgAAAAEAAAAAAAgAAgAAAAEAAAAAAAkAAgAAAAEAAAAAAAoAAgAAAAEAAAAAAAsAAgABAAIAAAABAAsAAgACAAMAAAACAAsAAgACAAMAAAADAAsAAgACAAMAAAAEAAsAAgACAAMAAAAFAAsAAgACAAMAAAAGAAsAAgACAAMAAAAHAAsAAgACAAMAAAAIAAsAAgACAAMAAAAJAAsAAgACAAMAAAAKAAsAAgACAAMAAAALAAsAAgACAAMAAAAMAAsAAgACAAMAAAANAAsAAgACAAMAAAAOAAsAAgACAAMAAAAPAAsAAgACAAMAAAAQAAsAAgACAAMAAAASAAsAAgACAAMAAAATAAsAAgACAAMAAAARAAsAAgACAAMAAAAUAAsAAgADAAIAAAAUAAoAAgAAAAEAAAAUAAkAAgAAAAEAAAAUAAgAAgAAAAEAAAAUAAYAAgAAAAEAAAAUAAMAAgAAAAEAAAAUAAQAAgAAAAEAAAAUAAUAAgAAAAEAAAAUAAcAAgAAAAEAAAAUAAIAAgAAAAEAAAAUAAEAAgAHAAIAAAAUAAAAAgALAAAAAAATAAAAAgAKAAAAAAASAAAAAgAKAAAAAAARAAAAAgAKAAAAAAAQAAAAAgAKAAAAAAAPAAAAAgAKAAAAAAAOAAAAAgAKAAAAAAANAAAAAgAKAAAAAAAMAAAAAgAKAAAAAAALAAAAAgAKAAAAAAAKAAAAAgAKAAAAAAAJAAAAAgAKAAAAAAAIAAAAAgAKAAAAAAAHAAAAAgAKAAAAAAAGAAAAAgAKAAAAAAAFAAAAAgAKAAAAAAAEAAAAAgAKAAAAAAADAAAAAgAKAAAAAAACAAAAAgAKAAAAAAABAAAAAgAKAAAAAAAAAAAAAgAIAAAAAAABAAEAAgAJAAMAAAACAAEAAgAJAAMAAAADAAEAAgAJAAMAAAAEAAEAAgAJAAMAAAAFAAEAAgAJAAMAAAAGAAEAAgAJAAMAAAAHAAEAAgAJAAMAAAAIAAEAAgAJAAMAAAAJAAEAAgAJAAMAAAAKAAEAAgAJAAMAAAALAAEAAgAJAAMAAAAMAAEAAgAJAAMAAAANAAEAAgAJAAMAAAAOAAEAAgAJAAMAAAAPAAEAAgAJAAMAAAAQAAEAAgAJAAMAAAARAAEAAgAJAAMAAAASAAEAAgAJAAMAAAATAAEAAgAJAAMAAAA=")
+tile_set = ExtResource("3_h8q77")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
 position = Vector2(161, 176)
 physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShapeTop" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(-7, -147)
+position = Vector2(-7, -149)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeBottom" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(-6, -3)
+position = Vector2(-6, -5)
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="Walls/StaticBody2D"]
@@ -53,6 +67,20 @@ unique_name_in_owner = true
 position = Vector2(151, -74)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = 131.0
+offset_top = 109.0
+offset_right = 171.0
+offset_bottom = 132.0
+
+[node name="PlusPreview" type="Polygon2D" parent="."]
+z_index = 185
+color = Color(0.0816666, 1, 0.05, 0.545098)
+
+[node name="MinusPreview" type="Polygon2D" parent="."]
+z_index = 185
+color = Color(0.62, 0, 0, 0.54902)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

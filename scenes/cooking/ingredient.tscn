@@ -21,6 +21,10 @@ script = ExtResource("1_hwoxp")
 texture_repeat = 2
 texture = ExtResource("2_6wbjr")
 
+[node name="Outline" type="Line2D" parent="."]
+closed = true
+width = 1.0
+
 [node name="DebugPolygon" type="Polygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-4, 0, 0, -4, 4, 0, 0, 4)
