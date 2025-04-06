@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=31 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
 [ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
+[ext_resource type="Script" uid="uid://b8ba8ntl5hfxw" path="res://scenes/entities/player/collision_detector.gd" id="13_r4dfn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
 atlas = ExtResource("2_r4dfn")
@@ -119,6 +120,9 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sj0x"]
 size = Vector2(20, 17)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy2vv"]
+size = Vector2(16, 17)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 3
@@ -141,7 +145,8 @@ entity = NodePath("..")
 
 [node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector", "staminaComponent") instance=ExtResource("5_1murt")]
 script = ExtResource("6_5sj0x")
-exit_force = 1.4
+jump_force = 1.4
+hold_to_jump = false
 playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
 collisionShape = NodePath("../../CollisionShape2D")
 groundedDetector = NodePath("../../GroundedDetector")
@@ -206,6 +211,16 @@ script = ExtResource("9_5sj0x")
 shape = SubResource("RectangleShape2D_5sj0x")
 debug_color = Color(0.616123, 0.525215, 0.30918, 0.42)
 
+[node name="CollisionDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("13_r4dfn")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="CollisionDetector"]
+shape = SubResource("RectangleShape2D_xy2vv")
+debug_color = Color(0.97126, 0, 0.449169, 0.42)
+
 [node name="Camera" type="Camera2D" parent="." groups=["camera"]]
 limit_left = 0
 limit_right = 320
@@ -222,3 +237,5 @@ stamina_cost = 5.0
 
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
+[connection signal="body_entered" from="CollisionDetector" to="CollisionDetector" method="_on_body_entered"]
+[connection signal="body_exited" from="CollisionDetector" to="CollisionDetector" method="_on_body_exited"]
