@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=29 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
@@ -8,12 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dbvkuuuobxxxc" path="res://assets/images/characters/player_walk.png" id="4_yywfu"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
 [ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
+[ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
-[ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
+[ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
 atlas = ExtResource("2_r4dfn")
@@ -176,7 +175,8 @@ scale_amount_curve = SubResource("Curve_ovg4i")
 color = Color(0.211765, 0.2, 0.290196, 1)
 
 [node name="PlayerBurrowedComponent" parent="StateMachine/Burrowed" node_paths=PackedStringArray("player") instance=ExtResource("6_1murt")]
-rotation_speed = 10.0
+acceleration = 500.0
+rotation_speed = 6.0
 move_speed = 140.0
 player = NodePath("../../..")
 
@@ -189,6 +189,11 @@ sprite = NodePath("../../PlayerSprite")
 min_run_speed_animation = 40.0
 
 [node name="PlayerGroundMovementComponent" parent="StateMachine/Grounded" node_paths=PackedStringArray("player") instance=ExtResource("2_635qg")]
+move_speed = 100.0
+acceleration = 500.0
+deceleration = 500.0
+air_decceleration = 250.0
+jump_height = 40.0
 player = NodePath("../../..")
 
 [node name="GroundedDetector" type="Area2D" parent="."]
