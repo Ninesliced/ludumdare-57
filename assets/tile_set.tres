@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://c5w2totwpyqw6"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://c5w2totwpyqw6"]
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_eslq1"]
 [ext_resource type="Texture2D" uid="uid://dus7hibpj57fc" path="res://assets/images/cave_tileset.png" id="2_ki5qi"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d20x2f4u441ix" path="res://scenes/entities/ores/diamond.tscn" id="7_581ag"]
 [ext_resource type="PackedScene" uid="uid://qwgw7vunncci" path="res://scenes/entities/ores/amethyst.tscn" id="8_uic34"]
 [ext_resource type="PackedScene" uid="uid://cyf4p8357feok" path="res://scenes/entities/blocks/bombs.tscn" id="9_prmj7"]
+[ext_resource type="PackedScene" uid="uid://dmqnc84xv3b4y" path="res://scenes/entities/blocks/spikes.tscn" id="10_dixdc"]
 [ext_resource type="PackedScene" uid="uid://matopqx7vb4c" path="res://scenes/entities/blocks/down_spikes.tscn" id="11_581ag"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e5f0g"]
@@ -1015,6 +1016,7 @@ scenes/5/scene = ExtResource("8_uic34")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sryw2"]
 scenes/1/scene = ExtResource("9_prmj7")
+scenes/4/scene = ExtResource("10_dixdc")
 scenes/5/scene = ExtResource("11_581ag")
 
 [resource]
