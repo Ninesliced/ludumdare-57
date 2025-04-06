@@ -34,6 +34,8 @@ func _process(delta):
 	if Input.is_action_just_released("burrow"):
 		unrequest_burrow()
 		return
+	if Input.is_action_just_pressed("jump"):
+		request_jump()
 	pass
 
 func _physics_process(delta):
@@ -58,7 +60,6 @@ func _set_burrow_buffer():
 
 func request_burrow() -> void:
 	burrow_requested = true
-	print("request_burrow")
 	if hold_to_burrow:
 		return
 	if not burrow_timer.is_stopped():
@@ -70,7 +71,6 @@ func request_burrow() -> void:
 func unrequest_burrow() -> void:
 	if hold_to_burrow:
 		burrow_requested = false
-		print("unrequest_burrow")
 		return
 	# if burrow_timer.is_stopped():
 	# 	burrow_timer.stop()
