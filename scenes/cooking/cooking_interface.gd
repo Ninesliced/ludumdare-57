@@ -9,6 +9,8 @@ signal end_slicing
 
 @onready var mouse_pin = $MouseAttractor
 @onready var knife_preview: Line2D = $KnifePreview
+@onready var plus_preview: Polygon2D = $PlusPreview
+@onready var minus_preview: Polygon2D = $MinusPreview
 
 var ingredient_prefab: PackedScene = preload("res://scenes/cooking/ingredient.tscn")
 
@@ -17,6 +19,13 @@ const SELECTION_PADDING = 2
 
 var is_slicing = false
 var slice_start: Vector2
+
+var ref_shapes_scene = preload("res://scenes/cooking/ref_shapes.tscn")
+var ref_shapes = []
+var ref_shape: Polygon2D = null
+@onready var ref_line = $RefLine
+
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +41,9 @@ func _ready():
 
 	knife_preview.hide()
 	knife_preview.points = PackedVector2Array([Vector2.ZERO, Vector2.ZERO])
+
+	_load_ref_shapes()
+	_set_ref_shape(rng.randi_range(0, ref_shapes.size()-1))
 
 
 func _connect_ingredient(ingredient: Ingredient):
@@ -87,7 +99,58 @@ func _physics_process(delta):
 		clamp(mouse_pos.x, padded_bounds.position.x, padded_bounds.end.x),
 		clamp(mouse_pos.y, padded_bounds.position.y, padded_bounds.end.y)
 	)
+
+	ref_line.points = ref_shape.polygon
+	_calculate_shape_score()
+
 	# padded_rect. 
+func _load_ref_shapes():
+	var ref_shapes_node: Node2D = ref_shapes_scene.instantiate()
+	ref_shapes_node.position = Vector2(0, -20000)
+	add_child(ref_shapes_node)
+
+	ref_shapes = []
+
+	for shape in ref_shapes_node.get_children():
+		ref_shapes.append(shape)
+
+func _set_ref_shape(shape_index):
+	ref_shape = ref_shapes[shape_index]
+	ref_shape.global_position.x = $RefShapeLoc.position.x
+	ref_shape.global_position.y = $RefShapeLoc.global_position.y + ref_shape.position.y
+
+	add_child(ref_shape)
+
+	ref_shape.hide()
+	ref_line.global_transform = ref_shape.global_transform
+	ref_line.points = ref_shape.polygon
+
+func _calculate_shape_score():
+	var ingredients = get_tree().get_nodes_in_group("ingredient")
+
+	if ingredients.is_empty():
+		return
+
+	var score = 0.0
+	for ing in ingredients:
+		ing.set_outline(false)
+		
+		var ref_shape_translated = ref_shape.global_transform * ref_shape.polygon
+		var ing_shape_translated = ing.global_transform * ing.shape
+
+		var inter = Geometry2D.intersect_polygons(ref_shape_translated, ing_shape_translated) 
+		if inter.is_empty():
+			continue
+
+		var diff = Geometry2D.clip_polygons(ing_shape_translated, ref_shape_translated) 
+
+		score += Global.area_of_polygons(inter)
+		score -= Global.area_of_polygons(diff)
+
+		ing.set_outline(true)
+
+	var ref_area = Global.area_of_polygon(ref_shape.polygon)
+	$DebugLabel.text = str(score / ref_area)
 
 
 func add_ingredient_node(ingredient: Ingredient):
