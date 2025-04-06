@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://global.gd"
+GameState="*res://scenes/game_state_manager.gd"
 
 [display]
 
@@ -39,6 +40,7 @@ InGameUI=""
 camera=""
 UpperLeftPosition=""
 cooking_table=""
+GameState=""
 
 [gui]
 

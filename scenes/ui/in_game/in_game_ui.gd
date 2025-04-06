@@ -15,7 +15,8 @@ func _ready():
 	inventory.inventory_changed.connect(update_text_icon)
 
 func _process(delta):
-	print("Global.money ", Global.money)
+	%TimeLeft.text = str(int(GameState.get_time_left())) + "s"
+	%MoneyNeeded.text = "€" + str(GameState.money_needed)
 
 func update_text_icon():
 	var inventory = player.inventory as Inventory
