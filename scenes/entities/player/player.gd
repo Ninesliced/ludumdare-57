@@ -40,16 +40,19 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	if !is_colliding():
+	if !is_colliding_burrowable():
 		velocity_before_collision = velocity
 	move_and_slide()
 
 	pass
 
-func is_colliding() -> bool: ## TEMPORARY
+func is_colliding_burrowable() -> bool: ## TEMPORARY
 	var grounded_detector_collisioned = grounded_detector.is_grounded()
 	# var player_collisioned = (is_on_floor() or is_on_wall() or is_on_ceiling())
 	return grounded_detector_collisioned
+
+func is_colling() -> bool:
+	return is_on_floor() or is_on_wall() or is_on_ceiling()
 
 
 func _set_burrow_buffer():

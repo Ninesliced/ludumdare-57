@@ -14,7 +14,7 @@ func process(delta: float) -> void:
 
 func physic_process(delta: float) -> void:
 	playerGroundMovement.physics_process(delta)
-	if player.burrow_requested and player.is_colliding():
+	if player.burrow_requested and player.is_colliding_burrowable():
 		emit_signal("state_finished", self, "burrowed")
 		return
 	pass
