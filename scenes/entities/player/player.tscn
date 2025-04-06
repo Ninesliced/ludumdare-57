@@ -176,7 +176,7 @@ scale_amount_curve = SubResource("Curve_ovg4i")
 color = Color(0.211765, 0.2, 0.290196, 1)
 
 [node name="PlayerBurrowedComponent" parent="StateMachine/Burrowed" node_paths=PackedStringArray("player") instance=ExtResource("6_1murt")]
-rotation_speed = 20.0
+rotation_speed = 10.0
 move_speed = 140.0
 player = NodePath("../../..")
 
