@@ -224,6 +224,7 @@ shape = SubResource("RectangleShape2D_xy2vv")
 debug_color = Color(0.97126, 0, 0.449169, 0.42)
 
 [node name="Camera" type="Camera2D" parent="." groups=["camera"]]
+offset = Vector2(0, 32)
 limit_left = 0
 limit_right = 320
 position_smoothing_enabled = true

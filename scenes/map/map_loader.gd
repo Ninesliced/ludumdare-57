@@ -144,11 +144,13 @@ func load_new_layer():
 	var bgMap: TileMapLayer = layerA.get_node("Background")
 	var bgDecMap: TileMapLayer = layerA.get_node("BackgroundDecoration")
 	var itemMap: TileMapLayer = layerA.get_node("Items")
+
+	var mapMapSizeY = mapMap.get_used_rect().size.y
 	
 	var bedrock_cell = []
 	var normal_cell = []
 	for pixelx in range(-1,MAP_SIZE_X):
-		for pixely in range(MAP_SIZE_Y):
+		for pixely in range(0, mapMapSizeY - 1):
 			var relative_coords = Vector2i(pixelx, pixely)
 			var mapcell = mapMap.get_cell_tile_data(relative_coords)
 			var atlas_coords = mapMap.get_cell_atlas_coords(relative_coords)
@@ -178,7 +180,7 @@ func load_new_layer():
 	Map.set_cells_terrain_connect(bedrock_cell, 0, 1)
 	Map.set_cells_terrain_connect(normal_cell, 0, 0)
 
-	current_depth += MAP_SIZE_Y
+	current_depth += mapMapSizeY - 1
 	# add_child(layerA)
 
 
