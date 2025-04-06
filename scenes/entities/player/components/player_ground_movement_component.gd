@@ -72,6 +72,8 @@ func _handle_movement(velocity: Vector2, delta: float) -> float:
 	if input_vector.x != 0:
 		if abs(input_vector.x * move_speed) > abs(velocity.x):
 			velocity.x = velocity.move_toward(input_vector * move_speed, acceleration * delta).x
+		elif velocity.x * input_vector.x < 0:
+			velocity.x = velocity.move_toward(input_vector * move_speed, acceleration * delta).x
 	else:
 		var selected_deceleration = _current_decceleration
 		velocity.x = velocity.move_toward(Vector2.ZERO, selected_deceleration * delta).x

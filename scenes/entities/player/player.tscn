@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=29 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
 [ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
-[ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
 atlas = ExtResource("2_r4dfn")
@@ -214,12 +213,6 @@ drag_right_margin = 1.0
 stamina_recovery_rate = 30.0
 stamina_on_use_cost = 10.0
 stamina_cost = 5.0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-range_item_cull_mask = 2
-texture = ExtResource("12_j0oqr")
 
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
