@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cil60o55mcimc"]
+
+[ext_resource type="Script" uid="uid://b7sjqkldjgwl6" path="res://scenes/entities/enemies/component/linear_movement_component.gd" id="1_jwi8b"]
+
+[node name="LinearMovementComponent" type="Node2D"]
+script = ExtResource("1_jwi8b")
+
+[node name="DownLeft" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-9, -1)
+target_position = Vector2(0, 16)
+collision_mask = 3
+
+[node name="Left" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-9, -1)
+target_position = Vector2(-8, 0)
+collision_mask = 3
+
+[node name="Right" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(9, -1)
+rotation = 3.14159
+target_position = Vector2(-8, 0)
+collision_mask = 3
+
+[node name="DownRight" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(9, -1)
+target_position = Vector2(0, 16)
+collision_mask = 3
