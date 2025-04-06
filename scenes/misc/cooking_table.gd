@@ -7,7 +7,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	$Label.text = str(touches_player)
+	$Label.visible = touches_player
 
 func _input(event):
 	if event.is_action_pressed("burrow") and touches_player:
