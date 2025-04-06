@@ -52,6 +52,7 @@ func physics_process(delta: float) -> void:
 		velocity.y = velocity.y * 0.5
 
 	player.velocity = velocity
+	player.move_and_slide()
 
 
 

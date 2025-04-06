@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=31 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
-[ext_resource type="SpriteFrames" uid="uid://0381grcjjofr" path="res://assets/tres/player.tres" id="2_j0oqr"]
+[ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
+[ext_resource type="Texture2D" uid="uid://dlnfme8qfn280" path="res://assets/images/characters/player_idle.png" id="2_r4dfn"]
+[ext_resource type="Texture2D" uid="uid://bh5apujx8hyid" path="res://assets/images/characters/player_jump.png" id="3_70kwc"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/state_machine/state_machine.tscn" id="4_bj7e2"]
+[ext_resource type="Texture2D" uid="uid://dbvkuuuobxxxc" path="res://assets/images/characters/player_walk.png" id="4_yywfu"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
 [ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
 [ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
@@ -11,8 +13,102 @@
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
 [ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
-[ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
-[ext_resource type="Script" uid="uid://cdeeq1sup7aru" path="res://scenes/entities/player/die_sprite.gd" id="13_xy2vv"]
+[ext_resource type="Script" uid="uid://b8ba8ntl5hfxw" path="res://scenes/entities/player/collision_detector.gd" id="13_r4dfn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
+atlas = ExtResource("2_r4dfn")
+region = Rect2(0, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70kwc"]
+atlas = ExtResource("2_r4dfn")
+region = Rect2(17, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yywfu"]
+atlas = ExtResource("2_r4dfn")
+region = Rect2(34, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcd0u"]
+atlas = ExtResource("2_r4dfn")
+region = Rect2(51, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3p2j"]
+atlas = ExtResource("3_70kwc")
+region = Rect2(0, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knby6"]
+atlas = ExtResource("4_yywfu")
+region = Rect2(0, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18p7g"]
+atlas = ExtResource("4_yywfu")
+region = Rect2(17, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg2wu"]
+atlas = ExtResource("4_yywfu")
+region = Rect2(34, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dqom"]
+atlas = ExtResource("4_yywfu")
+region = Rect2(51, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go8vc"]
+atlas = ExtResource("4_yywfu")
+region = Rect2(68, 0, 17, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wghkl"]
+atlas = ExtResource("4_yywfu")
+region = Rect2(85, 0, 17, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vs62q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4dfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70kwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yywfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcd0u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3p2j")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knby6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18p7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg2wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dqom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go8vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wghkl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 25.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(14.25, 15)
@@ -24,6 +120,9 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sj0x"]
 size = Vector2(20, 17)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy2vv"]
+size = Vector2(16, 17)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 3
@@ -31,11 +130,10 @@ script = ExtResource("1_58kc7")
 hold_to_burrow = true
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-process_mode = 3
 position = Vector2(0, -4)
-sprite_frames = ExtResource("2_j0oqr")
-animation = &"idle"
-frame_progress = 0.717233
+sprite_frames = SubResource("SpriteFrames_vs62q")
+animation = &"walk"
+frame_progress = 0.932773
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.125, 0)
@@ -47,7 +145,8 @@ entity = NodePath("..")
 
 [node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector", "staminaComponent") instance=ExtResource("5_1murt")]
 script = ExtResource("6_5sj0x")
-exit_force = 1.4
+jump_force = 1.4
+hold_to_jump = false
 playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
 collisionShape = NodePath("../../CollisionShape2D")
 groundedDetector = NodePath("../../GroundedDetector")
@@ -81,7 +180,8 @@ scale_amount_curve = SubResource("Curve_ovg4i")
 color = Color(0.211765, 0.2, 0.290196, 1)
 
 [node name="PlayerBurrowedComponent" parent="StateMachine/Burrowed" node_paths=PackedStringArray("player") instance=ExtResource("6_1murt")]
-rotation_speed = 10.0
+acceleration = 500.0
+rotation_speed = 6.0
 move_speed = 140.0
 player = NodePath("../../..")
 
@@ -94,6 +194,11 @@ sprite = NodePath("../../PlayerSprite")
 min_run_speed_animation = 40.0
 
 [node name="PlayerGroundMovementComponent" parent="StateMachine/Grounded" node_paths=PackedStringArray("player") instance=ExtResource("2_635qg")]
+move_speed = 100.0
+acceleration = 500.0
+deceleration = 500.0
+air_decceleration = 250.0
+jump_height = 40.0
 player = NodePath("../../..")
 
 [node name="GroundedDetector" type="Area2D" parent="."]
@@ -105,6 +210,16 @@ script = ExtResource("9_5sj0x")
 [node name="CollisionShape" type="CollisionShape2D" parent="GroundedDetector"]
 shape = SubResource("RectangleShape2D_5sj0x")
 debug_color = Color(0.616123, 0.525215, 0.30918, 0.42)
+
+[node name="CollisionDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("13_r4dfn")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="CollisionDetector"]
+shape = SubResource("RectangleShape2D_xy2vv")
+debug_color = Color(0.97126, 0, 0.449169, 0.42)
 
 [node name="Camera" type="Camera2D" parent="." groups=["camera"]]
 limit_left = 0
@@ -120,22 +235,7 @@ stamina_recovery_rate = 30.0
 stamina_on_use_cost = 10.0
 stamina_cost = 5.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-range_item_cull_mask = 2
-texture = ExtResource("12_j0oqr")
-
-[node name="DieSprite" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-top_level = true
-sprite_frames = ExtResource("2_j0oqr")
-animation = &"die_fall"
-script = ExtResource("13_xy2vv")
-
-[connection signal="animation_finished" from="PlayerSprite" to="." method="_on_player_sprite_animation_finished"]
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
-[connection signal="animation_finished" from="DieSprite" to="DieSprite" method="_on_animation_finished"]
+[connection signal="body_entered" from="CollisionDetector" to="CollisionDetector" method="_on_body_entered"]
+[connection signal="body_exited" from="CollisionDetector" to="CollisionDetector" method="_on_body_exited"]

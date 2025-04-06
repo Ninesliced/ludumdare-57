@@ -4,14 +4,6 @@ class_name Ingredient
 signal start_drag(ingredient: Node2D)
 signal end_drag(ingredient: Node2D)
 
-enum MineralType {
-	RUBY,
-	EMERALD,
-	TOPAZ,
-	DIAMOND,
-	AMETHYST
-}
-
 @export var drag_spring_force := 30000
 @export var texture: Texture2D:
 	set(value):
@@ -31,7 +23,7 @@ enum MineralType {
 @onready var collision_shape: CollisionPolygon2D = $CollisionPolygon2D
 @onready var outline: Line2D = $Outline
 
-var mineral_type: MineralType
+var mineral_type: Inventory.Minerals
 
 var dragged := false
 var drag_offset := Vector2.ZERO
@@ -159,53 +151,53 @@ func slice(global_start_pos: Vector2, global_end_pos: Vector2, knife_width = 2.0
 	queue_free()
 
 
-func set_mineral_type(_mineral_type: MineralType):
+func set_mineral_type(_mineral_type: Inventory.Minerals):
 	mineral_type = _mineral_type
 
-	if _mineral_type == MineralType.RUBY:
+	if _mineral_type == Inventory.Minerals.RUBY:
 		texture = texture_ruby
 
-	if _mineral_type == MineralType.EMERALD:
+	if _mineral_type == Inventory.Minerals.EMERALD:
 		texture = texture_emerald
 
-	if _mineral_type == MineralType.TOPAZ:
+	if _mineral_type == Inventory.Minerals.TOPAZ:
 		texture = texture_topaz
 
-	if _mineral_type == MineralType.DIAMOND:
+	if _mineral_type == Inventory.Minerals.DIAMOND:
 		texture = texture_diamond
 
-	if _mineral_type == MineralType.AMETHYST:
+	if _mineral_type == Inventory.Minerals.AMETHYST:
 		texture = texture_amethyst
 
 
-func generate_type(_mineral_type: MineralType):
+func generate_type(_mineral_type: Inventory.Minerals):
 	set_mineral_type(_mineral_type)
 
-	if _mineral_type == MineralType.RUBY:
+	if _mineral_type == Inventory.Minerals.RUBY:
 		min_angle_step = TAU/8 - 0.03	
 		max_angle_step = TAU/8 - 0.01
 		min_radius = 20
 		max_radius = 24	
 
-	if _mineral_type == MineralType.EMERALD:
+	if _mineral_type == Inventory.Minerals.EMERALD:
 		min_angle_step = TAU*0.05	
 		max_angle_step = TAU*0.1
 		min_radius = 10
 		max_radius = 20
 
-	if _mineral_type == MineralType.TOPAZ:
+	if _mineral_type == Inventory.Minerals.TOPAZ:
 		min_angle_step = TAU/6-0.01	
 		max_angle_step = TAU/6-0.01
 		min_radius = 15
 		max_radius = 17
 
-	if _mineral_type == MineralType.DIAMOND:
+	if _mineral_type == Inventory.Minerals.DIAMOND:
 		min_angle_step = TAU*0.02	
 		max_angle_step = TAU*0.2
 		min_radius = 10
 		max_radius = 15
 
-	if _mineral_type == MineralType.AMETHYST:
+	if _mineral_type == Inventory.Minerals.AMETHYST:
 		min_angle_step = TAU*0.01	
 		max_angle_step = TAU*0.2
 		min_radius = 10

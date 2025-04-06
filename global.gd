@@ -1,5 +1,7 @@
 extends Node
 
+const INVENTORY_SAVE_PATH = "user://inventory.tres"
+
 var can_pause = true
 var paused: bool = false
 
@@ -16,10 +18,22 @@ var minerals_icon = {
 
 @onready var menu_manager_scene = preload("res://scenes/ui/menu/menu_manager.tscn")
 
+var money = 0
+@onready var autosave_timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menu_manager = menu_manager_scene.instantiate()
 	add_child(menu_manager)
+	autosave_timer.wait_time = 60
+	autosave_timer.timeout.connect(_on_autosave_timeout)
+	autosave_timer.one_shot = false
+	add_child(autosave_timer)
+	autosave_timer.start()
+	
+	if FileAccess.file_exists(INVENTORY_SAVE_PATH):
+		load_inventory()
+	else:
+		save_inventory()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +42,33 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		return
 	pass
+
+
+
+func save_inventory():
+	var result = ResourceSaver.save(inventory, INVENTORY_SAVE_PATH)
+	print("Inventory saved to user://inventory.tres with result: ", result)
+
+func load_inventory():
+	print("Loading inventory...")
+	var loaded_inventory = ResourceLoader.load(INVENTORY_SAVE_PATH)
+	if loaded_inventory is Inventory:
+		print(loaded_inventory.minerals)
+		inventory = loaded_inventory
+		var player : Player = get_tree().get_first_node_in_group("player")
+		if player:
+			player.inventory = inventory
+	else:
+		print("Failed to load inventory.")
+	
+func _on_autosave_timeout():
+	print("Autosaving...")
+	save_inventory()
+
+func add_money(val):
+	money += val
+
+
 
 func triangle_area(a: Vector2, b: Vector2, c: Vector2) -> float:
 	return abs((a.x * (b.y - c.y) +

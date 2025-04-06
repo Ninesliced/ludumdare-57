@@ -12,6 +12,30 @@ signal end_slicing
 @onready var plus_preview: Polygon2D = $PlusPreview
 @onready var minus_preview: Polygon2D = $MinusPreview
 
+var mineral_values = {
+	Inventory.Minerals.RUBY: 1.5,
+	Inventory.Minerals.EMERALD: 3.0,
+	Inventory.Minerals.TOPAZ: 2.0,
+	Inventory.Minerals.DIAMOND: 4.0,
+	Inventory.Minerals.AMETHYST: 1.0
+}
+
+@onready var mineral_buttons = {
+	Inventory.Minerals.RUBY: %AddRuby,
+	Inventory.Minerals.EMERALD: %AddEmerald,
+	Inventory.Minerals.TOPAZ: %AddTopaz,
+	Inventory.Minerals.DIAMOND: %AddDiamond,
+	Inventory.Minerals.AMETHYST: %AddAmethyst,
+}
+
+@onready var mineral_tooltips = {
+	Inventory.Minerals.RUBY: %AddRubyTooltip,
+	Inventory.Minerals.EMERALD: %AddEmeraldTooltip,
+	Inventory.Minerals.TOPAZ: %AddTopazTooltip,
+	Inventory.Minerals.DIAMOND: %AddDiamondTooltip,
+	Inventory.Minerals.AMETHYST: %AddAmethystTooltip,
+}
+
 var ingredient_prefab: PackedScene = preload("res://scenes/cooking/ingredient.tscn")
 
 var bounds: Rect2
@@ -24,6 +48,9 @@ var ref_shapes_scene = preload("res://scenes/cooking/ref_shapes.tscn")
 var ref_shapes = []
 var ref_shape: Polygon2D = null
 @onready var ref_line = $RefLine
+
+var score := 0.0
+var highlighted_ingredients = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -43,8 +70,7 @@ func _ready():
 	knife_preview.points = PackedVector2Array([Vector2.ZERO, Vector2.ZERO])
 
 	_load_ref_shapes()
-	_set_ref_shape(rng.randi_range(0, ref_shapes.size()-1))
-
+	set_random_ref_shape()
 
 func _connect_ingredient(ingredient: Ingredient):
 	ingredient.start_drag.connect(_on_ingredient_start_drag)
@@ -62,7 +88,7 @@ func _on_start_slicing():
 	knife_preview.show()
 
 	slice_start = get_global_mouse_position()
-	knife_preview.points[0] = slice_start
+	knife_preview.points[0] = slice_start 
 
 
 func _on_end_slicing():
@@ -89,6 +115,8 @@ func _process(delta):
 	if is_slicing:
 		var mouse_pos = get_global_mouse_position()
 		knife_preview.points[1] = mouse_pos
+	
+	_update_ui()
 
 
 func _physics_process(delta):
@@ -115,23 +143,34 @@ func _load_ref_shapes():
 		ref_shapes.append(shape)
 
 func _set_ref_shape(shape_index):
-	ref_shape = ref_shapes[shape_index]
+	if ref_shape:
+		ref_shape.queue_free()
+
+	ref_shape = ref_shapes[shape_index].duplicate()
+
 	ref_shape.global_position.x = $RefShapeLoc.position.x
 	ref_shape.global_position.y = $RefShapeLoc.global_position.y + ref_shape.position.y
+	ref_shape.hide()
 
 	add_child(ref_shape)
 
-	ref_shape.hide()
 	ref_line.global_transform = ref_shape.global_transform
 	ref_line.points = ref_shape.polygon
 
+func set_random_ref_shape():
+	_set_ref_shape(rng.randi_range(0, ref_shapes.size()-1))
+
+
+
 func _calculate_shape_score():
+	highlighted_ingredients = []
+
 	var ingredients = get_tree().get_nodes_in_group("ingredient")
 
 	if ingredients.is_empty():
 		return
 
-	var score = 0.0
+	var sum = 0.0
 	for ing in ingredients:
 		ing.set_outline(false)
 		
@@ -144,13 +183,14 @@ func _calculate_shape_score():
 
 		var diff = Geometry2D.clip_polygons(ing_shape_translated, ref_shape_translated) 
 
-		score += Global.area_of_polygons(inter)
-		score -= Global.area_of_polygons(diff)
+		sum += Global.area_of_polygons(inter) * mineral_values[ing.mineral_type]
+		sum -= Global.area_of_polygons(diff) * mineral_values[ing.mineral_type]	
 
+		highlighted_ingredients.append(ing)
 		ing.set_outline(true)
 
-	var ref_area = Global.area_of_polygon(ref_shape.polygon)
-	$DebugLabel.text = str(score / ref_area)
+	var ref_area = Global.area_of_polygon(ref_shape.global_transform * ref_shape.polygon)
+	score = round(max(0, 100 * (sum / ref_area)))
 
 
 func add_ingredient_node(ingredient: Ingredient):
@@ -158,7 +198,10 @@ func add_ingredient_node(ingredient: Ingredient):
 	_connect_ingredient(ingredient)
 
 
-func add_ingredient(mineral_type: Ingredient.MineralType):
+func add_ingredient(mineral_type: Inventory.Minerals):
+	# if Global.inventory.get_mineral(mineral_type) <= 0:
+	# 	return
+
 	var ingredient: Ingredient = ingredient_prefab.instantiate()
 	ingredient.global_transform.origin = $IngredientSpawnLoc.global_position
 
@@ -167,17 +210,36 @@ func add_ingredient(mineral_type: Ingredient.MineralType):
 	ingredient.generate_type(mineral_type)
 
 
+func _on_sell_pressed():
+	Global.add_money(round(score))
+
+	for ing in highlighted_ingredients:
+		ing.queue_free()
+	
+	set_random_ref_shape()
+
+
 func _on_add_ruby_pressed():
-	add_ingredient(Ingredient.MineralType.RUBY)
+	add_ingredient(Inventory.Minerals.RUBY)
 
 func _on_add_emerald_pressed():
-	add_ingredient(Ingredient.MineralType.EMERALD)
+	add_ingredient(Inventory.Minerals.EMERALD)
 
 func _on_add_topaz_pressed():
-	add_ingredient(Ingredient.MineralType.TOPAZ)
+	add_ingredient(Inventory.Minerals.TOPAZ)
 
 func _on_add_diamond_pressed():
-	add_ingredient(Ingredient.MineralType.DIAMOND)
+	add_ingredient(Inventory.Minerals.DIAMOND)
 
 func _on_add_amethyst_pressed():
-	add_ingredient(Ingredient.MineralType.AMETHYST)
+	add_ingredient(Inventory.Minerals.AMETHYST)
+
+
+func _update_ui():
+	for mineral in Inventory.Minerals.values():
+		mineral_buttons[mineral].text = str(Global.inventory.get_mineral(mineral))
+		mineral_buttons[mineral].tooltip_text = "{0}".format([str(Inventory.Minerals.keys()[mineral])])
+		mineral_tooltips[mineral].text = "€{0}/g".format([mineral_values[mineral]])
+	
+	%ScoreLabel.text = "Estimated: +€" + str(int(score))
+	%MoneyLabel.text = "€" + str(int(Global.money))

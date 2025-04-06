@@ -98,8 +98,8 @@ var layers_ressources = [layerE_instance]
 var layers_ressources2 = [layerA_instance,layerA_instance, layerA_instance, 
 						layerC_instance, layerC_instance, 
 						layerD_instance,
-						layerE_instance,
-						layerB_instance]
+						layerB_instance,
+						layerE_instance]
 var rng = RandomNumberGenerator.new();
 
 """
