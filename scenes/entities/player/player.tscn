@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=16 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
 [ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
+[ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(14.25, 15)
@@ -111,6 +112,13 @@ drag_left_margin = 1.0
 drag_right_margin = 1.0
 
 [node name="StaminaComponent" parent="." instance=ExtResource("11_7wli1")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(136, 32)
+range_item_cull_mask = 2
+texture = ExtResource("12_j0oqr")
 
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]

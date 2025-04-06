@@ -997,6 +997,7 @@ texture = ExtResource("3_b4n3o")
 2:7/0/terrains_peering_bit/right_side = 1
 2:7/0/terrains_peering_bit/left_side = 1
 2:7/0/terrains_peering_bit/top_side = 1
+13:5/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_b4n3o"]
 resource_name = "ores"
