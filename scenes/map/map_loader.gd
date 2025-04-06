@@ -137,6 +137,8 @@ func load_new_layer():
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
 	var mapMap: TileMapLayer = layerA.get_node("Map")
 	var bgMap: TileMapLayer = layerA.get_node("Background")
+	var bgDecMap: TileMapLayer = layerA.get_node("BackgroundDecoration")
+	var itemMap: TileMapLayer = layerA.get_node("Items")
 	
 	var bedrock_cell = []
 	var normal_cell = []
@@ -163,6 +165,10 @@ func load_new_layer():
 					%Ores.set_cell(Vector2i(pixelx, pixely+current_depth) ,3 ,Vector2i(0,0), random.tile_id)#, Vector2(random.tile_y, 4))
 			if bgMap && bgMap.get_cell_tile_data(relative_coords) && is_instance_of(bgMap.get_cell_tile_data(relative_coords), TileData):
 				%Background.set_cell(Vector2i(pixelx, pixely+current_depth), bgMap.get_cell_source_id(relative_coords), bgMap.get_cell_atlas_coords(relative_coords), bgMap.get_cell_alternative_tile(relative_coords))
+			if bgDecMap && bgDecMap.get_cell_tile_data(relative_coords) && is_instance_of(bgDecMap.get_cell_tile_data(relative_coords), TileData):
+				%BackgroundDecoration.set_cell(Vector2i(pixelx, pixely+current_depth), bgDecMap.get_cell_source_id(relative_coords), bgDecMap.get_cell_atlas_coords(relative_coords), bgDecMap.get_cell_alternative_tile(relative_coords))
+			if itemMap && itemMap.get_cell_tile_data(relative_coords) && is_instance_of(itemMap.get_cell_tile_data(relative_coords), TileData):
+				%Items.set_cell(Vector2i(pixelx, pixely+current_depth), itemMap.get_cell_source_id(relative_coords), itemMap.get_cell_atlas_coords(relative_coords), itemMap.get_cell_alternative_tile(relative_coords))
 	# layerA.position.y = current_depth*16
 	Map.set_cells_terrain_connect(bedrock_cell, 0, 1)
 	Map.set_cells_terrain_connect(normal_cell, 0, 0)

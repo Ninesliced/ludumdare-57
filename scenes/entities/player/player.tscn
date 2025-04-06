@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=17 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
 [ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
 [ext_resource type="Script" uid="uid://cdeeq1sup7aru" path="res://scenes/entities/player/die_sprite.gd" id="13_xy2vv"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(14.25, 15)
