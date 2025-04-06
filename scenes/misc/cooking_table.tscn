@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmt1yg3lkgove"]
+
+[ext_resource type="Script" uid="uid://b2x1cxi2wo78t" path="res://scenes/misc/cooking_table.gd" id="1_5vce7"]
+[ext_resource type="Texture2D" uid="uid://vt5kr7onstc8" path="res://icon.svg" id="2_8b2fe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elmar"]
+size = Vector2(32, 32)
+
+[node name="CookingTable" type="Area2D" groups=["cooking_table"]]
+collision_mask = 17
+script = ExtResource("1_5vce7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_elmar")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 21.0
+offset_bottom = -17.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(0.265625, 0.25)
+texture = ExtResource("2_8b2fe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

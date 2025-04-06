@@ -9,7 +9,11 @@ func _ready():
 	player = players[0]
 	var inventory = player.inventory as Inventory
 	update_text_icon()
+
 	inventory.inventory_changed.connect(update_text_icon)
+
+func _process(delta):
+	%MoneyCounter.text = "€" + str(Global.money)
 
 func update_text_icon():
 	var inventory = player.inventory as Inventory
