@@ -18,7 +18,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	var globalPlayer: Player = get_tree().get_first_node_in_group("player")
 	if(!globalPlayer):
 		return
-	sprite.hide()
-	globalPlayer.remove_live("spike")
-	print("pik")
-	queue_free()
+	if globalPlayer.state_machine.current_state.name == "Grounded":
+		globalPlayer.remove_live("spike")
+		sprite.hide()
+		queue_free()
+		return

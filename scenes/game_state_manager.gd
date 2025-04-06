@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func start_timer():
     timer = Timer.new()
-    timer.wait_time = 5
+    timer.wait_time = 120
     timer.one_shot = false
     timer.timeout.connect(_on_timeout)
     add_child(timer)
