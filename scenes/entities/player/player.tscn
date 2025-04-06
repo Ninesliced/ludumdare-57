@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=15 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Texture2D" uid="uid://b1ys7nh5k6woe" path="res://assets/images/frost_spritesheet_16_globs.png" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
+[ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(14.25, 15)
@@ -35,12 +36,13 @@ shape = SubResource("RectangleShape2D_1hmtu")
 initial_state = NodePath("Grounded")
 entity = NodePath("..")
 
-[node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector") instance=ExtResource("5_1murt")]
+[node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector", "staminaComponent") instance=ExtResource("5_1murt")]
 script = ExtResource("6_5sj0x")
 exit_force = 1.4
 playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
 collisionShape = NodePath("../../CollisionShape2D")
 groundedDetector = NodePath("../../GroundedDetector")
+staminaComponent = NodePath("../../StaminaComponent")
 
 [node name="BurrowParticleTest" type="CPUParticles2D" parent="StateMachine/Burrowed"]
 unique_name_in_owner = true
@@ -74,10 +76,11 @@ rotation_speed = 20.0
 move_speed = 140.0
 player = NodePath("../../..")
 
-[node name="Grounded" parent="StateMachine" node_paths=PackedStringArray("player", "playerGroundMovement") instance=ExtResource("5_1murt")]
+[node name="Grounded" parent="StateMachine" node_paths=PackedStringArray("player", "playerGroundMovement", "staminaComponent") instance=ExtResource("5_1murt")]
 script = ExtResource("7_ovg4i")
 player = NodePath("../..")
 playerGroundMovement = NodePath("PlayerGroundMovementComponent")
+staminaComponent = NodePath("../../StaminaComponent")
 
 [node name="PlayerGroundMovementComponent" parent="StateMachine/Grounded" node_paths=PackedStringArray("player") instance=ExtResource("2_635qg")]
 player = NodePath("../../..")
@@ -85,7 +88,7 @@ player = NodePath("../../..")
 [node name="GroundedDetector" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("9_5sj0x")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="GroundedDetector"]
@@ -106,6 +109,8 @@ position_smoothing_speed = 8.0
 drag_horizontal_enabled = true
 drag_left_margin = 1.0
 drag_right_margin = 1.0
+
+[node name="StaminaComponent" parent="." instance=ExtResource("11_7wli1")]
 
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]

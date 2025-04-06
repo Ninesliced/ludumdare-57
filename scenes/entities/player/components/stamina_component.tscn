@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbfqheet23eng"]
+
+[ext_resource type="Script" uid="uid://c3nqdyhhelsg1" path="res://scenes/entities/player/components/stamina_component.gd" id="1_io87a"]
+[ext_resource type="Texture2D" uid="uid://ck2xnmyw1ei6o" path="res://assets/images/textures/amethyst_texture.png" id="2_kfibd"]
+
+[node name="StaminaComponent" type="Node2D"]
+script = ExtResource("1_io87a")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 17.0
+offset_top = -8.0
+offset_right = 49.0
+offset_bottom = 24.0
+scale = Vector2(0.1, 0.5)
+value = 100.0
+fill_mode = 3
+texture_progress = ExtResource("2_kfibd")
+
+[connection signal="stamina_changed" from="." to="." method="_on_stamina_changed"]

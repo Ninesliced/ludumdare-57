@@ -1,7 +1,25 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dwpcpa2uaps5o"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dwpcpa2uaps5o"]
 
 [ext_resource type="FontFile" uid="uid://mfhr8m3o8pcp" path="res://assets/fonts/Varnished.ttf" id="1_5x3i2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5x3i2"]
+bg_color = Color(0.6, 0.6, 0.6, 0.603922)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl1kw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lu33j"]
+bg_color = Color(0.71, 0.71, 0.71, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wycmq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2pqw"]
+bg_color = Color(0.37, 0.37, 0.37, 1)
 
 [resource]
 default_font = ExtResource("1_5x3i2")
 default_font_size = 8
+Button/styles/disabled = SubResource("StyleBoxFlat_5x3i2")
+Button/styles/focus = SubResource("StyleBoxEmpty_wl1kw")
+Button/styles/hover = SubResource("StyleBoxFlat_lu33j")
+Button/styles/normal = SubResource("StyleBoxFlat_wycmq")
+Button/styles/pressed = SubResource("StyleBoxFlat_x2pqw")
