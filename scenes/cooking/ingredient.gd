@@ -44,6 +44,8 @@ var texture_amethyst = preload("res://assets/images/textures/amethyst_texture.pn
 
 var ingredient_scene = preload("res://scenes/cooking/ingredient.tscn") as PackedScene
 
+var unfreeze_frame_count = 0
+
 func _ready():
 	if texture:
 		$Polygon2D.texture = texture 
@@ -91,9 +93,7 @@ func _convert_shape_to_concave(points):
 func _physics_process(delta):
 	pass
 	$DebugPolygon.position = Vector2.ZERO
-	# if dragged:
-	# 	var force = get_global_mouse_position() + drag_offset - global_transform.origin
-	# 	apply_central_force(drag_spring_force * force * delta)
+	$DebugPolygon2.position = get_point_average(shape)
 
 
 func _on_input_event(viewport:Node, event:InputEvent, shape_idx:int):
@@ -108,8 +108,7 @@ func _input(event):
 			end_drag.emit(self)
 	
 	if event.is_action_pressed("burrow"):
-		split(Vector2.ZERO, Vector2.DOWN)
-
+		recenter()
 
 func _on_start_drag(_ingredient):
 	dragged = true
@@ -119,13 +118,18 @@ func _on_end_drag(_ingredient):
 	dragged = false
 	# freeze = false
 
-func split(pos: Vector2, direction: Vector2):
+func slice(global_start_pos: Vector2, global_end_pos: Vector2, knife_width = 2.0):
+	var start_pos = to_local(global_start_pos)
+	var end_pos = to_local(global_end_pos)
+
+	var direction = (end_pos-start_pos).normalized()
+
 	var tangent = direction.orthogonal()
 	var knife_shape = [
-		pos - direction * 20000 + tangent, 
-		pos - direction * 20000 - tangent, 
-		pos + direction * 20000 - tangent,
-		pos + direction * 20000 + tangent,
+		start_pos + tangent * knife_width, 
+		start_pos - tangent * knife_width, 
+		end_pos - tangent * knife_width,
+		end_pos + tangent * knife_width,
 	]
 
 	var polygons = Geometry2D.clip_polygons(
@@ -138,6 +142,7 @@ func split(pos: Vector2, direction: Vector2):
 		new_ingredient.global_transform = global_transform
 		get_parent().add_ingredient_node(new_ingredient)
 
+		new_ingredient.polygon.texture_offset = Vector2(polygon.texture_offset)
 		new_ingredient.set_mineral_type(mineral_type)
 		new_ingredient.set_polygon(poly)
 	
@@ -223,3 +228,10 @@ func recenter():
 		shape[i] -= relative_center
 
 	update_polygons()
+
+	polygon.texture_offset += relative_center
+	relative_center = relative_center.rotated(rotation)
+
+	# unfreeze_frame_count = 1
+	# freeze = true
+	transform.origin += relative_center
