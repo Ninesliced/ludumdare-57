@@ -16,7 +16,6 @@ signal stamina_consumed(amount: float)
 
 
 func consume_stamina(amount: float) -> void:
-    print("consume_stamina", stamina)
     if amount <= 0:
         return
     if amount > stamina:

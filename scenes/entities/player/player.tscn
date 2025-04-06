@@ -116,7 +116,6 @@ drag_right_margin = 1.0
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(136, 32)
 range_item_cull_mask = 2
 texture = ExtResource("12_j0oqr")
 
