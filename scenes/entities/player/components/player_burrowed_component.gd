@@ -4,7 +4,7 @@ class_name PlayerBurrowedComponent
 @export var acceleration: float = 600.0
 @export var rotation_speed: float = 5.0
 @export var move_speed : float = 200.0
-@export var mode : MovementMode = MovementMode.Cardinal
+@export var mode : MovementMode = MovementMode.Directional
 
 
 enum MovementMode {
