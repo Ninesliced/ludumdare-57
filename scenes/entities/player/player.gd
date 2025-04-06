@@ -13,6 +13,9 @@ var burrow_timer: Timer = null
 @export var burrow_time: float = 0.1
 
 @export var hold_to_burrow: bool = false
+
+@onready var state_machine: StateMachine = $StateMachine
+
 const FALL_DAMAGE_VELLOCITY_Y = 400
 const MAX_LIFE = 1
 
