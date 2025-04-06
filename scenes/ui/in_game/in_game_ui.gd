@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var player : Player
 
+
 func _ready():
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() == 0:
@@ -14,6 +15,8 @@ func _ready():
 
 func _process(delta):
 	%MoneyCounter.text = "€" + str(Global.money)
+	%TimeLeft.text = str(int(GameState.get_time_left())) + "s"
+	%MoneyNeeded.text = "€" + str(GameState.money_needed)
 
 func update_text_icon():
 	var inventory = player.inventory as Inventory
