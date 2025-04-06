@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx003ew6fg7xm"]
+[gd_scene load_steps=11 format=3 uid="uid://dx003ew6fg7xm"]
 
 [ext_resource type="PackedScene" uid="uid://82om1usnpvey" path="res://scenes/cooking/mouse_attractor.tscn" id="1_rtpj6"]
 [ext_resource type="Script" uid="uid://fu6rqmskchs3" path="res://scenes/cooking/cooking_interface.gd" id="1_vpk3n"]
 [ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="3_vpk3n"]
+[ext_resource type="Texture2D" uid="uid://cvdjvpknre0yu" path="res://assets/images/particle/ruby.png" id="4_e78jm"]
+[ext_resource type="Texture2D" uid="uid://jmacgn175a4d" path="res://assets/images/particle/emerald.png" id="5_h8q77"]
+[ext_resource type="Texture2D" uid="uid://ccs8xg63h2p2y" path="res://assets/images/particle/topaz.png" id="6_0544a"]
+[ext_resource type="Texture2D" uid="uid://byqi1jewgjarj" path="res://assets/images/particle/diamond.png" id="7_461ev"]
+[ext_resource type="Texture2D" uid="uid://cn4jvfd6cg4ow" path="res://assets/images/particle/amethyst.png" id="8_uoswy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6bwup"]
 friction = 0.85
@@ -18,6 +23,7 @@ position = Vector2(193, 32)
 [node name="MouseAttractor" parent="." instance=ExtResource("1_rtpj6")]
 
 [node name="KnifePreview" type="Line2D" parent="."]
+width = 2.0
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -27,62 +33,70 @@ physics_material_override = SubResource("PhysicsMaterial_6bwup")
 
 [node name="CollisionShapeTop" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(32, -168)
+position = Vector2(-7, -147)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeBottom" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(44, -5)
+position = Vector2(-6, -3)
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(-67, -83)
+position = Vector2(-153, -77)
 rotation = 1.57079
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
 [node name="CollisionShapeRight" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 unique_name_in_owner = true
-position = Vector2(150, -83)
+position = Vector2(151, -74)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 5.0
-offset_top = 6.0
-offset_right = 74.0
-offset_bottom = 102.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="AddRuby" type="Button" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 96.0
+offset_bottom = 16.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="AddRuby" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
-text = "Add Ruby
-"
+icon = ExtResource("4_e78jm")
 
-[node name="AddEmerald" type="Button" parent="VBoxContainer"]
+[node name="AddEmerald" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
-text = "Add Emerald"
+icon = ExtResource("5_h8q77")
 
-[node name="AddTopaz" type="Button" parent="VBoxContainer"]
+[node name="AddTopaz" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
-text = "Add Topaz"
+icon = ExtResource("6_0544a")
 
-[node name="AddDiamond" type="Button" parent="VBoxContainer"]
+[node name="AddDiamond" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
-text = "Add Diamond
-"
+icon = ExtResource("7_461ev")
 
-[node name="AddAmethyst" type="Button" parent="VBoxContainer"]
+[node name="AddAmethyst" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
-text = "Add Amethyst"
+icon = ExtResource("8_uoswy")
 
-[connection signal="pressed" from="VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
-[connection signal="pressed" from="VBoxContainer/AddEmerald" to="." method="_on_add_emerald_pressed"]
-[connection signal="pressed" from="VBoxContainer/AddTopaz" to="." method="_on_add_topaz_pressed"]
-[connection signal="pressed" from="VBoxContainer/AddDiamond" to="." method="_on_add_diamond_pressed"]
-[connection signal="pressed" from="VBoxContainer/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
+[connection signal="end_slicing" from="." to="." method="_on_end_slicing"]
+[connection signal="start_slicing" from="." to="." method="_on_start_slicing"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddEmerald" to="." method="_on_add_emerald_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddTopaz" to="." method="_on_add_topaz_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddDiamond" to="." method="_on_add_diamond_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
