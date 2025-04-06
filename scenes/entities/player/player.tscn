@@ -144,6 +144,7 @@ initial_state = NodePath("Grounded")
 entity = NodePath("..")
 
 [node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector", "staminaComponent") instance=ExtResource("5_1murt")]
+position = Vector2(1, 0)
 script = ExtResource("6_5sj0x")
 jump_force = 1.6
 hold_to_jump = false

@@ -122,6 +122,7 @@ func _disable_coyote():
 #### Les points de vies
 var die_cause = ""
 func remove_live(cause):
+	print("mort")
 	die_cause = cause
 	life -= 1
 	
@@ -129,10 +130,10 @@ func life_update():
 	if (life <= 0):
 		life = MAX_LIFE
 		var dieSprite: AnimatedSprite2D = %dieSprite
-		print("t mort")
-		dieSprite.visible = true
+		if dieSprite != null:
+			dieSprite.visible = true
 		
-		dieSprite.play("die_fall" if die_cause == "fall" else "die_spike")
+			dieSprite.play("die_fall" if die_cause == "fall" else "die_spike")
 		is_player_freeze = true
 		%PlayerSprite.visible = false
 

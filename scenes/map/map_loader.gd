@@ -95,10 +95,11 @@ var layerE_instance = preload("res://scenes/map/layer/LayerE.tscn").instantiate(
 
 var layers_ressources2 = [layerE_instance] 
 
-var layers_ressources = [layerA_instance,layerA_instance, layerA_instance, 
-						layerC_instance, layerC_instance, 
-						layerD_instance,
-						layerB_instance,
+var layers_ressources = [
+						# layerA_instance,layerA_instance, layerA_instance, 
+						# layerC_instance, layerC_instance, 
+						# layerD_instance,
+						# layerB_instance,
 						layerE_instance]
 var rng = RandomNumberGenerator.new();
 
