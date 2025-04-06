@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6874b7ohinnk"]
+[gd_scene load_steps=11 format=3 uid="uid://c6874b7ohinnk"]
 
 [ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="1_3ggmv"]
 [ext_resource type="Script" uid="uid://cc23kcypv2dy8" path="res://scenes/entities/ores/ore.gd" id="1_goj4l"]
@@ -27,6 +27,66 @@ radius = 9.05539
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.250358), -1.1831, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_3vsk3"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.329877, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_mbd3u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mbd3u"]
+_data = {
+&"RESET": SubResource("Animation_mbd3u"),
+&"pop": SubResource("Animation_3vsk3")
+}
+
 [node name="Ore" type="Node2D"]
 script = ExtResource("1_goj4l")
 
@@ -39,6 +99,7 @@ collision_layer = 0
 collision_mask = 23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_3ggmv")
 
 [node name="DestroyParticle" type="CPUParticles2D" parent="."]
@@ -59,5 +120,12 @@ angular_velocity_min = 15.0
 angular_velocity_max = 200.0
 angle_max = 197.3
 scale_amount_curve = SubResource("Curve_3vsk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_mbd3u")
+}
+speed_scale = 5.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
