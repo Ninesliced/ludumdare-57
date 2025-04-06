@@ -10,9 +10,9 @@ signal stamina_consumed(amount: float)
 @export var stamina: float = 100.0
 @export var max_stamina: float = 100.0
 
-@export var stamina_recovery_rate: float = 40
-@export var stamina_on_use_cost: float = 25
-@export var stamina_cost: float = 15
+@export var stamina_recovery_rate: float = 10
+@export var stamina_on_use_cost: float = 30
+@export var stamina_cost: float = 0
 
 
 func consume_stamina(amount: float) -> void:
