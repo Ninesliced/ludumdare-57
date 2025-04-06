@@ -185,3 +185,14 @@ func reset_map():
 	%Ores.clear()
 	current_depth = 0
 	print("TODO")
+	
+func spawn_bomb(_position):
+	var bomb = preload("res://scenes/entities/blocks/bombs.tscn").instantiate()
+	bomb.position = _position
+	add_child(bomb)
+	
+func spawn_spikes(_position):
+	var spikes = preload("res://scenes/entities/blocks/spikes.tscn").instantiate()
+	spikes.position = _position
+	add_child(spikes)
+	
