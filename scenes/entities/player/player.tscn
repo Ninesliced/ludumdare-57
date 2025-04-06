@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dbvkuuuobxxxc" path="res://assets/images/characters/player_walk.png" id="4_yywfu"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
 [ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
+[ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
+[ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
 [ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
@@ -173,10 +173,10 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 40.0
 scale_amount_curve = SubResource("Curve_ovg4i")
-color = Color(0.14902, 0.168627, 0.266667, 1)
+color = Color(0.211765, 0.2, 0.290196, 1)
 
 [node name="PlayerBurrowedComponent" parent="StateMachine/Burrowed" node_paths=PackedStringArray("player") instance=ExtResource("6_1murt")]
-rotation_speed = 20.0
+rotation_speed = 10.0
 move_speed = 140.0
 player = NodePath("../../..")
 
@@ -201,7 +201,7 @@ script = ExtResource("9_5sj0x")
 shape = SubResource("RectangleShape2D_5sj0x")
 debug_color = Color(0.616123, 0.525215, 0.30918, 0.42)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." groups=["camera"]]
 limit_left = 0
 limit_right = 320
 position_smoothing_enabled = true
@@ -211,6 +211,9 @@ drag_left_margin = 1.0
 drag_right_margin = 1.0
 
 [node name="StaminaComponent" parent="." instance=ExtResource("11_7wli1")]
+stamina_recovery_rate = 30.0
+stamina_on_use_cost = 10.0
+stamina_cost = 5.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 0

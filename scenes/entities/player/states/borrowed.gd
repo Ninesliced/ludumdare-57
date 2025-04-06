@@ -22,6 +22,7 @@ func enter():
 	player.collision_mask = 1
 	player.velocity = player.velocity_before_collision.normalized() * playerBurrowedComponent.move_speed
 	playerBurrowedComponent.set_current_direction(player.velocity.normalized())
+	playerBurrowedComponent.enter()
 	pass
 
 
@@ -30,7 +31,7 @@ func physic_process(delta: float) -> void:
 	playerBurrowedComponent.physics_process(delta)
 	if (not groundedDetector.is_grounded()):
 		var player = entity as Player
-		if player.burrow_requested:
+		if player.burrow_requested or player.jump_requested:
 			entity.velocity *= exit_force
 		else:
 			entity.velocity *= 0.1

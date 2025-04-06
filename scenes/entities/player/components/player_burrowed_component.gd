@@ -4,21 +4,41 @@ class_name PlayerBurrowedComponent
 @export var acceleration: float = 600.0
 @export var rotation_speed: float = 5.0
 @export var move_speed : float = 200.0
+@export var mode : MovementMode = MovementMode.Directional
+
+
+enum MovementMode {
+	Directional,
+	Cardinal
+}
+
 var current_direction: Vector2 = Vector2.ZERO
 var last_input_vector: Vector2 = Vector2.ZERO
-
+var list_last_input_vector: Array = []
 func set_current_direction(direction: Vector2) -> void:
+	if mode == MovementMode.Cardinal:
+		var angle = rad_to_deg(direction.angle())
+		var roundedAngle = round(angle / 90) * 90
+		angle = deg_to_rad(roundedAngle)
+		direction = Vector2(cos(angle), sin(angle))
+		last_input_vector = direction
+	else:
+		last_input_vector = direction
+	
 	current_direction = direction
+
+func enter() -> void:
+	list_last_input_vector.clear()
 
 func physics_process(delta: float) -> void:
 	var velocity = player.velocity
-	var input_vector = get_input()
+	
+	if mode == MovementMode.Cardinal:
+		handle_cardinal()
+	elif mode == MovementMode.Directional:
+		handle_directional()
 
-	if input_vector != Vector2.ZERO:
-		last_input_vector = input_vector
-
-	# current_direction = current_direction.move_toward(last_input_vector, acceleration * delta)
-		# current_direction = input_vector.normalized()
+	
 
 	var angle = rotate_toward(current_direction.angle(), last_input_vector.angle(),rotation_speed * delta)
 	current_direction = Vector2(cos(angle), sin(angle)).normalized()
@@ -28,3 +48,26 @@ func physics_process(delta: float) -> void:
 
 	player.velocity = velocity
 	pass
+
+func handle_directional():
+	var input_vector = get_input()
+	if input_vector != Vector2.ZERO:
+		last_input_vector = input_vector
+
+func handle_cardinal() -> void:
+	var direction_mode = {
+		"up": Vector2.UP,
+		"down": Vector2.DOWN,
+		"left": Vector2.LEFT,
+		"right": Vector2.RIGHT
+	}
+
+	for direction in direction_mode.keys():
+		if Input.is_action_just_pressed(direction):
+			list_last_input_vector.append(direction_mode[direction])
+
+		if Input.is_action_just_released(direction):
+			list_last_input_vector.erase(direction_mode[direction])
+
+	if list_last_input_vector.size() != 0:
+		last_input_vector = list_last_input_vector[list_last_input_vector.size() - 1]
