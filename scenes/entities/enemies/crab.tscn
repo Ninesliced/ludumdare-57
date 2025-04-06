@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://5muhuqejed0h"]
+
+[ext_resource type="PackedScene" uid="uid://c20vx4c0hbc06" path="res://scenes/entities/enemies/enemy.tscn" id="1_5xaet"]
+[ext_resource type="Texture2D" uid="uid://cmhxoh2uf3jph" path="res://assets/images/enemies/crab.png" id="2_q43f5"]
+[ext_resource type="Script" uid="uid://cmwlg2wtqixbp" path="res://scenes/entities/enemies/crab.gd" id="2_siqkl"]
+[ext_resource type="PackedScene" uid="uid://cil60o55mcimc" path="res://scenes/entities/enemies/component/linear_movement_component.tscn" id="3_nptaj"]
+[ext_resource type="Script" uid="uid://gdp6v6keqk8w" path="res://scenes/entities/enemies/crab/state/patrol.gd" id="4_da5s0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q43f5"]
+size = Vector2(16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q43f5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q43f5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" instance=ExtResource("1_5xaet")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_siqkl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_q43f5")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+unique_name_in_owner = true
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_q43f5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_q43f5")
+
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state", "entity")]
+initial_state = NodePath("Patrol")
+entity = NodePath("..")
+
+[node name="Patrol" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("linearMovementComponent")]
+script = ExtResource("4_da5s0")
+linearMovementComponent = NodePath("LinearMovementComponent")
+metadata/_custom_type_script = "uid://cnigx0jnsyk33"
+
+[node name="LinearMovementComponent" parent="StateMachine/Patrol" index="0" node_paths=PackedStringArray("body") instance=ExtResource("3_nptaj")]
+unique_name_in_owner = true
+body = NodePath("../../..")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
