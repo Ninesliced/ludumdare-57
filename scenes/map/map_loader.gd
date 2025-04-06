@@ -37,10 +37,17 @@ func get_random_ore():
 			return proba_val
 	return null
 
-var top_layer = "top_layer.tscn"
-var layers = ["LayerA.tscn","LayerA.tscn","LayerA.tscn","LayerC.tscn","LayerC.tscn","LayerB.tscn"]
+
+
+var top_layer_ressources = preload("res://scenes/map/layer/top_layer.tscn").instantiate()
+var layerA_instance = preload("res://scenes/map/layer/LayerA.tscn").instantiate()
+var layerB_instance = preload("res://scenes/map/layer/LayerA.tscn").instantiate()
+var layerC_instance = preload("res://scenes/map/layer/LayerA.tscn").instantiate()
+
+var layers_ressources = [layerA_instance,layerA_instance, layerA_instance, layerC_instance, layerC_instance, layerB_instance]
 var rng = RandomNumberGenerator.new();
 
+"""
 func load_new_layer_old():
 	if current_depth == 0:
 		var layerA_ressources = load("res://scenes/map/layer/top_layer.tscn")
@@ -63,18 +70,20 @@ func load_new_layer_old():
 	layerA.position.y = current_depth*16
 	current_depth += MAP_SIZE_Y
 	add_child(layerA)
+"""
 
 var Map: TileMapLayer;
 
 func load_new_layer():
-	var layerA_ressources
+	var layerA
 	if current_depth == 0:
-		layerA_ressources = load("res://scenes/map/layer/top_layer.tscn")
+		layerA = top_layer_ressources
 	else:
-		layerA_ressources = load("res://scenes/map/layer/"+layers.pick_random())
-	var layerA: Node2D = layerA_ressources.instantiate()
+		layerA = layers_ressources.pick_random()
+	#var layerA: Node2D = layerA_ressources.instantiate()
 	var oresMap: TileMapLayer = layerA.get_node("Ores")
 	var mapMap: TileMapLayer = layerA.get_node("Map")
+	var bgMap: TileMapLayer = layerA.get_node("Background")
 	
 	for pixelx in range(-1,MAP_SIZE_X):
 		for pixely in range(MAP_SIZE_Y):
@@ -94,6 +103,9 @@ func load_new_layer():
 				# mapcell.get_collision_polygons_count(1) == 0 :: C'est un block placabke
 				if(random != null) && current_depth != 0 && mapcell.get_collision_polygons_count(1) == 0:
 					%Ores.set_cell(Vector2i(pixelx, pixely+current_depth) ,3 ,Vector2i(0,0), random.tile_id)#, Vector2(random.tile_y, 4))
+			if bgMap && bgMap.get_cell_tile_data(relative_coords) && is_instance_of(bgMap.get_cell_tile_data(relative_coords), TileData):
+					print("H")
+					%Background.set_cell(Vector2i(pixelx, pixely+current_depth), bgMap.get_cell_source_id(relative_coords), bgMap.get_cell_atlas_coords(relative_coords), bgMap.get_cell_alternative_tile(relative_coords))
 	# layerA.position.y = current_depth*16
 	current_depth += MAP_SIZE_Y
 	# add_child(layerA)
