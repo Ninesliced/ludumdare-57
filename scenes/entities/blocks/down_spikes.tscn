@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://matopqx7vb4c"]
+
+[ext_resource type="PackedScene" uid="uid://dmqnc84xv3b4y" path="res://scenes/entities/blocks/spikes.tscn" id="1_1o7ci"]
+[ext_resource type="Texture2D" uid="uid://d2se3f7y7v6od" path="res://assets/images/cave_spritesheet.png" id="2_jmqoe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6aod"]
+atlas = ExtResource("2_jmqoe")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sicfh"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6aod")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}]
+
+[node name="Spikes" instance=ExtResource("1_1o7ci")]
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_sicfh")
+
+[node name="Area2D" parent="." index="1"]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 3.5)
