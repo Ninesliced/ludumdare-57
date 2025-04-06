@@ -45,7 +45,7 @@ func _physics_process(delta):
 	var delta_vel = get_real_velocity()
 	if(velocity_before_collision != Vector2(0.,0.) && delta_vel != Vector2(0.,0.)):
 		if(velocity_before_collision.y > FALL_DAMAGE_VELLOCITY_Y && is_on_floor()):
-			remove_live()
+			remove_live("fall")
 			print("AIE degat chute")
 	move_and_slide()
 
@@ -113,13 +113,19 @@ func _disable_coyote():
 	
 	
 #### Les points de vies
-
-func remove_live():
+var die_cause = ""
+func remove_live(cause):
+	die_cause = cause
 	life -= 1
 	
 func life_update():
 	if (life <= 0):
 		life = MAX_LIFE
+		var dieSprite: AnimatedSprite2D = %DieSprite
+		# dieSprite.visible = true
+
+		# dieSprite.die_animation(die_cause)
+		
 		global_position = inital_position
 		var MapLoader = get_tree().get_first_node_in_group("MapLoader")
 		if(MapLoader):

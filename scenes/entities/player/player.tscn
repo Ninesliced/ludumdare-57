@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://tagu2jmfaknx"]
+[gd_scene load_steps=17 format=3 uid="uid://tagu2jmfaknx"]
 
 [ext_resource type="Script" uid="uid://cowhc0ik2u772" path="res://scenes/entities/player/player.gd" id="1_58kc7"]
 [ext_resource type="PackedScene" uid="uid://5ukx8xklkin4" path="res://scenes/entities/player/components/player_ground_movement_component.tscn" id="2_635qg"]
@@ -8,107 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dbvkuuuobxxxc" path="res://assets/images/characters/player_walk.png" id="4_yywfu"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
 [ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
+[ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
-[ext_resource type="PackedScene" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
-[ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="12_j0oqr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
-atlas = ExtResource("2_r4dfn")
-region = Rect2(0, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_70kwc"]
-atlas = ExtResource("2_r4dfn")
-region = Rect2(17, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yywfu"]
-atlas = ExtResource("2_r4dfn")
-region = Rect2(34, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pcd0u"]
-atlas = ExtResource("2_r4dfn")
-region = Rect2(51, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w3p2j"]
-atlas = ExtResource("3_70kwc")
-region = Rect2(0, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_knby6"]
-atlas = ExtResource("4_yywfu")
-region = Rect2(0, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_18p7g"]
-atlas = ExtResource("4_yywfu")
-region = Rect2(17, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fg2wu"]
-atlas = ExtResource("4_yywfu")
-region = Rect2(34, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dqom"]
-atlas = ExtResource("4_yywfu")
-region = Rect2(51, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_go8vc"]
-atlas = ExtResource("4_yywfu")
-region = Rect2(68, 0, 17, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wghkl"]
-atlas = ExtResource("4_yywfu")
-region = Rect2(85, 0, 17, 23)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vs62q"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r4dfn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_70kwc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yywfu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pcd0u")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w3p2j")
-}],
-"loop": true,
-"name": &"jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_knby6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_18p7g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fg2wu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dqom")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_go8vc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wghkl")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 25.0
-}]
+[ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
 size = Vector2(14.25, 15)
@@ -214,12 +118,6 @@ drag_right_margin = 1.0
 stamina_recovery_rate = 30.0
 stamina_on_use_cost = 10.0
 stamina_cost = 5.0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-range_item_cull_mask = 2
-texture = ExtResource("12_j0oqr")
 
 [connection signal="body_entered" from="GroundedDetector" to="GroundedDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="GroundedDetector" to="GroundedDetector" method="_on_body_exited"]
