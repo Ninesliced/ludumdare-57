@@ -25,6 +25,9 @@ var ref_shapes = []
 var ref_shape: Polygon2D = null
 @onready var ref_line = $RefLine
 
+var score := 0.0
+var highlighted_ingredients = []
+
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -62,7 +65,7 @@ func _on_start_slicing():
 	knife_preview.show()
 
 	slice_start = get_global_mouse_position()
-	knife_preview.points[0] = slice_start
+	knife_preview.points[0] = slice_start 
 
 
 func _on_end_slicing():
@@ -89,6 +92,9 @@ func _process(delta):
 	if is_slicing:
 		var mouse_pos = get_global_mouse_position()
 		knife_preview.points[1] = mouse_pos
+	
+	%ScoreLabel.text = "Estimated value: €" + str(int(score))
+	%MoneyLabel.text = "Balance: €" + str(int(Global.money))
 
 
 func _physics_process(delta):
@@ -126,12 +132,14 @@ func _set_ref_shape(shape_index):
 	ref_line.points = ref_shape.polygon
 
 func _calculate_shape_score():
+	highlighted_ingredients = []
+
 	var ingredients = get_tree().get_nodes_in_group("ingredient")
 
 	if ingredients.is_empty():
 		return
 
-	var score = 0.0
+	var sum = 0.0
 	for ing in ingredients:
 		ing.set_outline(false)
 		
@@ -144,13 +152,14 @@ func _calculate_shape_score():
 
 		var diff = Geometry2D.clip_polygons(ing_shape_translated, ref_shape_translated) 
 
-		score += Global.area_of_polygons(inter)
-		score -= Global.area_of_polygons(diff)
+		sum += Global.area_of_polygons(inter)
+		sum -= Global.area_of_polygons(diff)
 
+		highlighted_ingredients.append(ing)
 		ing.set_outline(true)
 
-	var ref_area = Global.area_of_polygon(ref_shape.polygon)
-	$DebugLabel.text = str(score / ref_area)
+	var ref_area = Global.area_of_polygon(ref_shape.global_transform * ref_shape.polygon)
+	score = round(max(0, 100 * (sum / ref_area)))
 
 
 func add_ingredient_node(ingredient: Ingredient):
@@ -165,6 +174,13 @@ func add_ingredient(mineral_type: Ingredient.MineralType):
 	add_ingredient_node(ingredient)	
 
 	ingredient.generate_type(mineral_type)
+
+
+func _on_sell_pressed():
+	Global.add_money(round(score))
+
+	for ing in highlighted_ingredients:
+		ing.queue_free()
 
 
 func _on_add_ruby_pressed():

@@ -16,6 +16,8 @@ var minerals_icon = {
 
 @onready var menu_manager_scene = preload("res://scenes/ui/menu/menu_manager.tscn")
 
+var money = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menu_manager = menu_manager_scene.instantiate()
@@ -28,6 +30,11 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		return
 	pass
+
+func add_money(val):
+	money += val
+
+
 
 func triangle_area(a: Vector2, b: Vector2, c: Vector2) -> float:
 	return abs((a.x * (b.y - c.y) +
