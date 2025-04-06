@@ -4,7 +4,7 @@ class_name PlayerBurrowedComponent
 @export var acceleration: float = 600.0
 @export var rotation_speed: float = 5.0
 @export var move_speed : float = 200.0
-@export var mode : MovementMode = MovementMode.Cardinal
+@export var mode : MovementMode = MovementMode.Directional
 
 
 enum MovementMode {
@@ -50,7 +50,7 @@ func physics_process(delta: float) -> void:
 	pass
 
 func handle_directional():
-	var input_vector = get_single_input()
+	var input_vector = get_input()
 	if input_vector != Vector2.ZERO:
 		last_input_vector = input_vector
 

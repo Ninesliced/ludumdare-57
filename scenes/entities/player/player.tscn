@@ -142,7 +142,7 @@ entity = NodePath("..")
 
 [node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector", "staminaComponent") instance=ExtResource("5_1murt")]
 script = ExtResource("6_5sj0x")
-exit_force = 1.4
+exit_force = 2.0
 playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
 collisionShape = NodePath("../../CollisionShape2D")
 groundedDetector = NodePath("../../GroundedDetector")
