@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=2 format=4 uid="uid://bjjobclaco066"]
-=======
 [gd_scene load_steps=2 format=4 uid="uid://bw0t0mjkm4p5d"]
->>>>>>> 09dc9ee7ad97949494dfd9c3b8940aa2c9b56114
 
 [ext_resource type="PackedScene" uid="uid://ms7xkeqtox0t" path="res://scenes/map/layer/main_layer.tscn" id="1_624ld"]
 
