@@ -92,15 +92,17 @@ var layerB_instance = preload("res://scenes/map/layer/LayerB.tscn").instantiate(
 var layerC_instance = preload("res://scenes/map/layer/LayerC.tscn").instantiate()
 var layerD_instance = preload("res://scenes/map/layer/LayerD.tscn").instantiate()
 var layerE_instance = preload("res://scenes/map/layer/LayerE.tscn").instantiate()
+var layerF_instance = preload("res://scenes/map/layer/LayerF.tscn").instantiate()
 
 var layers_ressources2 = [layerE_instance] 
 
 var layers_ressources = [
-						# layerA_instance,layerA_instance, layerA_instance, 
-						# layerC_instance, layerC_instance, 
-						# layerD_instance,
-						# layerB_instance,
-						layerE_instance]
+						layerA_instance,layerA_instance, layerA_instance, 
+						layerC_instance, layerC_instance, 
+						layerD_instance,
+						layerB_instance,
+						layerE_instance,
+						layerF_instance,]
 var rng = RandomNumberGenerator.new();
 
 """
