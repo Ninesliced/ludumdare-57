@@ -1,7 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://ms7xkeqtox0t"]
 
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="1_pbu7g"]
-[ext_resource type="Shader" path="res://scenes/map/layer/main_layer.gdshader" id="2_6rryf"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pbu7g"]
 polygon = PackedVector2Array(0, 0, 320, 0, 320, 208, 0, 208)
