@@ -86,6 +86,7 @@ func load_new_layer():
 			if mapcell && is_instance_of(mapcell, TileData) && Map:
 				Map.set_cell(Vector2i(pixelx, pixely+current_depth), source_id, atlas_coords, alternative_tile)
 				var random = get_random_ore()
+				# mapcell.get_collision_polygons_count(1) == 0 :: C'est un block placabke
 				if(random != null) && current_depth != 0 && mapcell.get_collision_polygons_count(1) == 0:
 					%Ores.set_cell(Vector2i(pixelx, pixely+current_depth) ,3 ,Vector2i(0,0), random.tile_id)#, Vector2(random.tile_y, 4))
 	# layerA.position.y = current_depth*16
