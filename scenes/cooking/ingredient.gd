@@ -24,6 +24,9 @@ enum MineralType {
 @export var min_radius := 10
 @export var max_radius := 30
 
+@export_category("Slicing")
+@export var min_sliced_polygon_area = 5.0
+
 @onready var polygon: Polygon2D = $Polygon2D
 @onready var collision_shape: CollisionPolygon2D = $CollisionPolygon2D
 
@@ -91,10 +94,10 @@ func _convert_shape_to_concave(points):
 
 
 func _physics_process(delta):
-	$Label.text = str(get_area())
+	$Label.text = str(int(get_area()))
 
 	$DebugPolygon.position = Vector2.ZERO
-	$DebugPolygon2.position = get_polygon_center_of_mass(shape)
+	$DebugPolygon2.position = Global.get_polygon_center_of_mass(shape)
 	$DebugPolygon3.position = get_point_average(shape)
 
 
@@ -140,6 +143,10 @@ func slice(global_start_pos: Vector2, global_end_pos: Vector2, knife_width = 2.0
 	print("splti ", polygons)
 	
 	for poly in polygons:
+		var area = Global.area_of_polygon(poly)
+		if area < min_sliced_polygon_area:
+			continue
+
 		var new_ingredient: Ingredient = ingredient_scene.instantiate()
 		new_ingredient.global_transform = global_transform
 		get_parent().add_ingredient_node(new_ingredient)
@@ -226,31 +233,9 @@ func get_point_average(_shape: PackedVector2Array):
 
 	return sum / _shape.size()	
 
-func get_polygon_center_of_mass(_polygon: PackedVector2Array) -> Vector2:
-	var area = 0.0
-	var centroid = Vector2()
-
-	var n = _polygon.size()
-	if n < 3:
-		return Vector2()  # Not a polygon
-
-	for i in range(n):
-		var current = _polygon[i]
-		var next = _polygon[(i + 1) % n]
-		var cross = current.x * next.y - next.x * current.y
-		area += cross
-		centroid += (current + next) * cross
-
-	area *= 0.5
-	if area == 0.0:
-		return Vector2()  # Degenerate polygon
-
-	centroid /= (6.0 * area)
-	return centroid
-
 
 func recenter():
-	var relative_center = get_polygon_center_of_mass(shape)
+	var relative_center = Global.get_polygon_center_of_mass(shape)
 	
 	for i in range(shape.size()):
 		shape[i] -= relative_center

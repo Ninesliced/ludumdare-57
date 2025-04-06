@@ -48,7 +48,6 @@ width = 1.0
 default_color = Color(0.833333, 1, 0, 1)
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
