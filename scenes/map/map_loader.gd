@@ -93,7 +93,9 @@ var layerC_instance = preload("res://scenes/map/layer/LayerC.tscn").instantiate(
 var layerD_instance = preload("res://scenes/map/layer/LayerD.tscn").instantiate()
 var layerE_instance = preload("res://scenes/map/layer/LayerE.tscn").instantiate()
 
-var layers_ressources = [layerA_instance,layerA_instance, layerA_instance, 
+var layers_ressources = [layerE_instance] 
+
+var layers_ressources2 = [layerA_instance,layerA_instance, layerA_instance, 
 						layerC_instance, layerC_instance, 
 						layerD_instance,
 						layerE_instance,
@@ -167,8 +169,8 @@ func load_new_layer():
 				%Background.set_cell(Vector2i(pixelx, pixely+current_depth), bgMap.get_cell_source_id(relative_coords), bgMap.get_cell_atlas_coords(relative_coords), bgMap.get_cell_alternative_tile(relative_coords))
 			if bgDecMap && bgDecMap.get_cell_tile_data(relative_coords) && is_instance_of(bgDecMap.get_cell_tile_data(relative_coords), TileData):
 				%BackgroundDecoration.set_cell(Vector2i(pixelx, pixely+current_depth), bgDecMap.get_cell_source_id(relative_coords), bgDecMap.get_cell_atlas_coords(relative_coords), bgDecMap.get_cell_alternative_tile(relative_coords))
-			if itemMap && itemMap.get_cell_tile_data(relative_coords) && is_instance_of(itemMap.get_cell_tile_data(relative_coords), TileData):
-				%Items.set_cell(Vector2i(pixelx, pixely+current_depth), itemMap.get_cell_source_id(relative_coords), itemMap.get_cell_atlas_coords(relative_coords), itemMap.get_cell_alternative_tile(relative_coords))
+			if itemMap && itemMap.get_cell_alternative_tile(relative_coords) != -1:# && is_instance_of(itemMap.get_cell_tile_data(relative_coords), TileData):
+				%Items.set_cell(Vector2i(pixelx, pixely+current_depth), 4, Vector2i(0,0), itemMap.get_cell_alternative_tile(relative_coords))
 	# layerA.position.y = current_depth*16
 	Map.set_cells_terrain_connect(bedrock_cell, 0, 1)
 	Map.set_cells_terrain_connect(normal_cell, 0, 0)
@@ -191,6 +193,10 @@ func _process(delta):
 func reset_map():
 	%GlobalTileMap.clear()
 	%Ores.clear()
+	%Background.clear()
+	%BackgroundDecoration.clear()
+	%Items.clear()
+
 	current_depth = 0
 	print("TODO")
 	

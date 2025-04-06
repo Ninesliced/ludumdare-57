@@ -9,6 +9,8 @@ var collected : bool = false
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
+	if !is_instance_of(body, Player):
+		return
 	if collected:
 		return
 	collected = true
