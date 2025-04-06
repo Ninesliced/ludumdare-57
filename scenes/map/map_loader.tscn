@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cp7f16ojy0ko5" path="res://scenes/map/map_loader.gd" id="1_3hcf8"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="2_bpn34"]
+[ext_resource type="PackedScene" uid="uid://cmt1yg3lkgove" path="res://scenes/misc/cooking_table.tscn" id="3_pm3rx"]
 
 [sub_resource type="Curve" id="Curve_bpn34"]
 _limits = [0.0, 1.0, 0.0, 3.0]
@@ -65,3 +66,6 @@ tile_set = ExtResource("2_bpn34")
 [node name="Items" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 tile_set = ExtResource("2_bpn34")
+
+[node name="CookingTable" parent="." instance=ExtResource("3_pm3rx")]
+position = Vector2(61, 112)

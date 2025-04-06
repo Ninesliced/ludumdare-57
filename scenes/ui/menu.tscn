@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1oajh4mcee13"]
 
-[ext_resource type="Script" path="res://scenes/ui/menu.gd" id="1_7w7rl"]
-[ext_resource type="Texture2D" uid="uid://vt5kr7onstc8" path="res://icon.svg" id="2_wedc3"]
+[ext_resource type="Script" uid="uid://dsjf3yc6rfic" path="res://scenes/ui/menu/menu.gd" id="1_wedc3"]
+[ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="2_c2n5p"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -10,8 +10,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7w7rl")
+script = ExtResource("1_wedc3")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(544, 193)
-texture = ExtResource("2_wedc3")
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c2n5p")
+text = "Resume"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c2n5p")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

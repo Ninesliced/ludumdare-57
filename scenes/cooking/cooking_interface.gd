@@ -199,8 +199,10 @@ func add_ingredient_node(ingredient: Ingredient):
 
 
 func add_ingredient(mineral_type: Inventory.Minerals):
-	# if Global.inventory.get_mineral(mineral_type) <= 0:
-	# 	return
+	if Global.inventory.get_mineral(mineral_type) <= 0:
+		return
+
+	Global.inventory.add_mineral(mineral_type, -1)
 
 	var ingredient: Ingredient = ingredient_prefab.instantiate()
 	ingredient.global_transform.origin = $IngredientSpawnLoc.global_position
@@ -217,6 +219,9 @@ func _on_sell_pressed():
 		ing.queue_free()
 	
 	set_random_ref_shape()
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_add_ruby_pressed():

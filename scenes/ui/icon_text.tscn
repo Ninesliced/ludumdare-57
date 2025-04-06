@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://3x037kudxk1e"]
+[gd_scene load_steps=4 format=3 uid="uid://bshj5cukqdcee"]
 
 [ext_resource type="Texture2D" uid="uid://ccs8xg63h2p2y" path="res://assets/images/particle/topaz.png" id="1_bsp1p"]
-[ext_resource type="Script" uid="uid://dt2yx8d6swe5v" path="res://scenes/ui/icon_text.gd" id="1_m4781"]
+[ext_resource type="Script" path="res://scenes/ui/icon_text.gd" id="1_m4781"]
 [ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="2_q86e8"]
 
 [node name="IconText" type="HBoxContainer"]

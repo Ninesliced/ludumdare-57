@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxld2nuk7e0iq"]
+[gd_scene load_steps=4 format=3 uid="uid://cxld2nuk7e0iq"]
 
 [ext_resource type="Script" uid="uid://yala8kkerjl1" path="res://scenes/ui/in_game/in_game_ui.gd" id="1_4v0rk"]
-[ext_resource type="PackedScene" uid="uid://3x037kudxk1e" path="res://scenes/ui/icon_text.tscn" id="1_5dmfb"]
+[ext_resource type="PackedScene" uid="uid://bshj5cukqdcee" path="res://scenes/ui/icon_text.tscn" id="1_5dmfb"]
+[ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="3_i505a"]
 
 [node name="InGameUi" type="CanvasLayer"]
 script = ExtResource("1_4v0rk")
@@ -18,11 +19,45 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="Ruby" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Left"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Space" type="Label" parent="HBoxContainer/Left/HBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.1
+theme = ExtResource("3_i505a")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "  "
+horizontal_alignment = 3
+vertical_alignment = 2
+
+[node name="MoneyCounter" type="RichTextLabel" parent="HBoxContainer/Left/HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.1
+theme = ExtResource("3_i505a")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "0"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 3
+vertical_alignment = 2
+
+[node name="Amethyst" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Emerald" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
+[node name="Ruby" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -30,11 +65,11 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Diamond" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
+[node name="Emerald" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Amethyst" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
+[node name="Diamond" parent="HBoxContainer/Left" instance=ExtResource("1_5dmfb")]
 unique_name_in_owner = true
 layout_mode = 2
 
