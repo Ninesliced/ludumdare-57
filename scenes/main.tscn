@@ -13,4 +13,4 @@ script = ExtResource("1_tbgi4")
 [node name="MapLoader" parent="." instance=ExtResource("1_o5qli")]
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_0wfyh")]
-position = Vector2(252, -10)
+position = Vector2(251, 90)

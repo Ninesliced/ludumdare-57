@@ -24,6 +24,9 @@ enum MineralType {
 @export var min_radius := 10
 @export var max_radius := 30
 
+@export_category("Slicing")
+@export var min_sliced_polygon_area = 5.0
+
 @onready var polygon: Polygon2D = $Polygon2D
 @onready var collision_shape: CollisionPolygon2D = $CollisionPolygon2D
 
@@ -91,9 +94,11 @@ func _convert_shape_to_concave(points):
 
 
 func _physics_process(delta):
-	pass
+	$Label.text = str(int(get_area()))
+
 	$DebugPolygon.position = Vector2.ZERO
-	$DebugPolygon2.position = get_point_average(shape)
+	$DebugPolygon2.position = Global.get_polygon_center_of_mass(shape)
+	$DebugPolygon3.position = get_point_average(shape)
 
 
 func _on_input_event(viewport:Node, event:InputEvent, shape_idx:int):
@@ -138,6 +143,10 @@ func slice(global_start_pos: Vector2, global_end_pos: Vector2, knife_width = 2.0
 	print("splti ", polygons)
 	
 	for poly in polygons:
+		var area = Global.area_of_polygon(poly)
+		if area < min_sliced_polygon_area:
+			continue
+
 		var new_ingredient: Ingredient = ingredient_scene.instantiate()
 		new_ingredient.global_transform = global_transform
 		get_parent().add_ingredient_node(new_ingredient)
@@ -211,18 +220,22 @@ func update_polygons():
 func set_polygon(points):
 	shape = points
 	update_polygons()
+
+	mass = get_area()/100
+
 	recenter()
 
-func get_point_average(shape: PackedVector2Array):
+func get_point_average(_shape: PackedVector2Array):
 	var sum = Vector2.ZERO
 
-	for p in shape:
+	for p in _shape:
 		sum += p
 
-	return sum / shape.size()	
+	return sum / _shape.size()	
+
 
 func recenter():
-	var relative_center = get_point_average(shape)
+	var relative_center = Global.get_polygon_center_of_mass(shape)
 	
 	for i in range(shape.size()):
 		shape[i] -= relative_center
@@ -235,3 +248,7 @@ func recenter():
 	# unfreeze_frame_count = 1
 	# freeze = true
 	transform.origin += relative_center
+
+
+func get_area():
+	return Global.area_of_polygon(shape)

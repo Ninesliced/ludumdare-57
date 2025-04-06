@@ -21,12 +21,19 @@ script = ExtResource("1_hwoxp")
 texture_repeat = 2
 texture = ExtResource("2_6wbjr")
 
+[node name="DebugPolygon" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-4, 0, 0, -4, 4, 0, 0, 4)
+
 [node name="DebugPolygon2" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.646289, 0.520548, 3.85046e-07, 1)
 polygon = PackedVector2Array(-2, 0, 0, -2, 2, 0, 0, 2)
 
-[node name="DebugPolygon" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-4, 0, 0, -4, 4, 0, 0, 4)
+[node name="DebugPolygon3" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.166667, 1, 0, 1)
+polygon = PackedVector2Array(-2, 0, 0, -2, 2, 0, 0, 2)
 
 [node name="X" type="Line2D" parent="."]
 visible = false
@@ -39,6 +46,10 @@ visible = false
 points = PackedVector2Array(0, 55, 0, 0)
 width = 1.0
 default_color = Color(0.833333, 1, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="end_drag" from="." to="." method="_on_end_drag"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
