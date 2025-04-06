@@ -17,6 +17,6 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	if(!globalPlayer):
 		return
 	sprite.hide()
-	globalPlayer.remove_live()
+	globalPlayer.remove_live("spike")
 	print("pik")
 	queue_free()

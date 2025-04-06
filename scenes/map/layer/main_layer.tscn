@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bv62lum38cnu7" path="res://assets/images/particle/form/circle_32.png" id="1_aq1i1"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="1_pbu7g"]
-[ext_resource type="Shader" uid="uid://do525u4up0qr1" path="res://scenes/map/layer/main_layer.gdshader" id="2_6rryf"]
+[ext_resource type="Shader" path="res://scenes/map/layer/main_layer.gdshader" id="2_6rryf"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pbu7g"]
 polygon = PackedVector2Array(0, 0, 320, 0, 320, 208, 0, 208)
