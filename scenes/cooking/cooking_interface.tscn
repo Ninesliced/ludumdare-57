@@ -83,6 +83,16 @@ color = Color(0.0816666, 1, 0.05, 0.545098)
 z_index = 185
 color = Color(0.62, 0, 0, 0.54902)
 
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 3.0
+offset_top = 94.0
+offset_right = 315.0
+offset_bottom = 107.0
+label_settings = SubResource("LabelSettings_h8q77")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
@@ -102,41 +112,82 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="AddRuby" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_vpk3n")
-icon = ExtResource("4_e78jm")
 
-[node name="AddEmerald" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_vpk3n")
-icon = ExtResource("5_h8q77")
-
-[node name="AddTopaz" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_vpk3n")
-icon = ExtResource("6_0544a")
-
-[node name="AddDiamond" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_vpk3n")
-icon = ExtResource("7_461ev")
-
-[node name="AddAmethyst" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+[node name="AddAmethyst" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
 icon = ExtResource("8_uoswy")
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+[node name="AddAmethystTooltip" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer5"]
 unique_name_in_owner = true
 layout_mode = 2
-label_settings = SubResource("LabelSettings_h8q77")
-vertical_alignment = 1
+text = "€1/g"
 
-[node name="MoneyLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddRuby" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = "0"
+icon = ExtResource("4_e78jm")
+
+[node name="AddRubyTooltip" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "€1/g"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddTopaz" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+icon = ExtResource("6_0544a")
+
+[node name="AddTopazTooltip" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "€1/g"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddEmerald" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+icon = ExtResource("5_h8q77")
+
+[node name="AddEmeraldTooltip" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "€1/g"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddDiamond" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+icon = ExtResource("7_461ev")
+
+[node name="AddDiamondTooltip" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "€1/g"
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 0
 label_settings = SubResource("LabelSettings_h8q77")
 vertical_alignment = 1
 
@@ -157,9 +208,9 @@ text = " Sell! "
 
 [connection signal="end_slicing" from="." to="." method="_on_end_slicing"]
 [connection signal="start_slicing" from="." to="." method="_on_start_slicing"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddEmerald" to="." method="_on_add_emerald_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddTopaz" to="." method="_on_add_topaz_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddDiamond" to="." method="_on_add_diamond_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer5/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer3/AddTopaz" to="." method="_on_add_topaz_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer2/AddEmerald" to="." method="_on_add_emerald_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer4/AddDiamond" to="." method="_on_add_diamond_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer2/Sell" to="." method="_on_sell_pressed"]
