@@ -50,7 +50,7 @@ func physics_process(delta: float) -> void:
 	pass
 
 func handle_directional():
-	var input_vector = get_single_input()
+	var input_vector = get_input()
 	if input_vector != Vector2.ZERO:
 		last_input_vector = input_vector
 
