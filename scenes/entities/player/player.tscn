@@ -142,7 +142,7 @@ entity = NodePath("..")
 
 [node name="Burrowed" parent="StateMachine" node_paths=PackedStringArray("playerBurrowedComponent", "collisionShape", "groundedDetector", "staminaComponent") instance=ExtResource("5_1murt")]
 script = ExtResource("6_5sj0x")
-exit_force = 2.0
+exit_force = 1.4
 playerBurrowedComponent = NodePath("PlayerBurrowedComponent")
 collisionShape = NodePath("../../CollisionShape2D")
 groundedDetector = NodePath("../../GroundedDetector")
@@ -211,6 +211,9 @@ drag_left_margin = 1.0
 drag_right_margin = 1.0
 
 [node name="StaminaComponent" parent="." instance=ExtResource("11_7wli1")]
+stamina_recovery_rate = 30.0
+stamina_on_use_cost = 10.0
+stamina_cost = 5.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 0
