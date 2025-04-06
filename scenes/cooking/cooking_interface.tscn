@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dx003ew6fg7xm"]
+[gd_scene load_steps=13 format=4 uid="uid://dx003ew6fg7xm"]
 
 [ext_resource type="PackedScene" uid="uid://82om1usnpvey" path="res://scenes/cooking/mouse_attractor.tscn" id="1_rtpj6"]
 [ext_resource type="Script" uid="uid://fu6rqmskchs3" path="res://scenes/cooking/cooking_interface.gd" id="1_vpk3n"]
@@ -14,6 +14,11 @@
 friction = 0.85
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vpk3n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h8q77"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="CookingInterface" type="Node2D"]
 script = ExtResource("1_vpk3n")
@@ -32,14 +37,16 @@ width = 1.0
 [node name="MouseAttractor" parent="." instance=ExtResource("1_rtpj6")]
 
 [node name="KnifePreview" type="Line2D" parent="."]
+z_index = 285
 width = 2.0
 
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Walls"]
 position = Vector2(-8, -5)
-tile_map_data = PackedByteArray("AAAAAAEAAgAEAAIAAAAAAAIAAgAAAAEAAAAAAAMAAgAAAAEAAAAAAAQAAgAAAAEAAAAAAAUAAgAAAAEAAAAAAAYAAgAAAAEAAAAAAAcAAgAAAAEAAAAAAAgAAgAAAAEAAAAAAAkAAgAAAAEAAAAAAAoAAgAAAAEAAAAAAAsAAgABAAIAAAABAAsAAgACAAMAAAACAAsAAgACAAMAAAADAAsAAgACAAMAAAAEAAsAAgACAAMAAAAFAAsAAgACAAMAAAAGAAsAAgACAAMAAAAHAAsAAgACAAMAAAAIAAsAAgACAAMAAAAJAAsAAgACAAMAAAAKAAsAAgACAAMAAAALAAsAAgACAAMAAAAMAAsAAgACAAMAAAANAAsAAgACAAMAAAAOAAsAAgACAAMAAAAPAAsAAgACAAMAAAAQAAsAAgACAAMAAAASAAsAAgACAAMAAAATAAsAAgACAAMAAAARAAsAAgACAAMAAAAUAAsAAgADAAIAAAAUAAoAAgAAAAEAAAAUAAkAAgAAAAEAAAAUAAgAAgAAAAEAAAAUAAYAAgAAAAEAAAAUAAMAAgAAAAEAAAAUAAQAAgAAAAEAAAAUAAUAAgAAAAEAAAAUAAcAAgAAAAEAAAAUAAIAAgAAAAEAAAAUAAEAAgAHAAIAAAAUAAAAAgALAAAAAAATAAAAAgAKAAAAAAASAAAAAgAKAAAAAAARAAAAAgAKAAAAAAAQAAAAAgAKAAAAAAAPAAAAAgAKAAAAAAAOAAAAAgAKAAAAAAANAAAAAgAKAAAAAAAMAAAAAgAKAAAAAAALAAAAAgAKAAAAAAAKAAAAAgAKAAAAAAAJAAAAAgAKAAAAAAAIAAAAAgAKAAAAAAAHAAAAAgAKAAAAAAAGAAAAAgAKAAAAAAAFAAAAAgAKAAAAAAAEAAAAAgAKAAAAAAADAAAAAgAKAAAAAAACAAAAAgAKAAAAAAABAAAAAgAKAAAAAAAAAAAAAgAIAAAAAAABAAEAAgAJAAMAAAACAAEAAgAJAAMAAAADAAEAAgAJAAMAAAAEAAEAAgAJAAMAAAAFAAEAAgAJAAMAAAAGAAEAAgAJAAMAAAAHAAEAAgAJAAMAAAAIAAEAAgAJAAMAAAAJAAEAAgAJAAMAAAAKAAEAAgAJAAMAAAALAAEAAgAJAAMAAAAMAAEAAgAJAAMAAAANAAEAAgAJAAMAAAAOAAEAAgAJAAMAAAAPAAEAAgAJAAMAAAAQAAEAAgAJAAMAAAARAAEAAgAJAAMAAAASAAEAAgAJAAMAAAATAAEAAgAJAAMAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAgAGAAIAAAAAAAIAAgALAAIAAAAAAAMAAgALAAIAAAAAAAQAAgALAAIAAAAAAAUAAgALAAIAAAAAAAYAAgALAAIAAAAAAAcAAgALAAIAAAAAAAgAAgALAAIAAAAAAAkAAgALAAIAAAAAAAoAAgALAAIAAAAAAAsAAgAGAAEAAAABAAsAAgAKAAAAAAACAAsAAgAKAAAAAAADAAsAAgAKAAAAAAAEAAsAAgAKAAAAAAAFAAsAAgAKAAAAAAAGAAsAAgAKAAAAAAAHAAsAAgAKAAAAAAAIAAsAAgAKAAAAAAAJAAsAAgAKAAAAAAAKAAsAAgAKAAAAAAALAAsAAgAKAAAAAAAMAAsAAgAKAAAAAAANAAsAAgAKAAAAAAAOAAsAAgAKAAAAAAAPAAsAAgAKAAAAAAAQAAsAAgAKAAAAAAASAAsAAgAKAAAAAAATAAsAAgAKAAAAAAARAAsAAgAKAAAAAAAUAAsAAgAFAAEAAAAUAAoAAgAIAAEAAAAUAAkAAgAIAAEAAAAUAAgAAgAIAAEAAAAUAAYAAgAIAAEAAAAUAAMAAgAIAAEAAAAUAAQAAgAIAAEAAAAUAAUAAgAIAAEAAAAUAAcAAgAIAAEAAAAUAAIAAgAIAAEAAAAUAAEAAgAFAAIAAAAUAAAAAgAJAAIAAAATAAAAAgAJAAIAAAASAAAAAgAJAAIAAAARAAAAAgAJAAIAAAAQAAAAAgAJAAIAAAAPAAAAAgAJAAIAAAAOAAAAAgAJAAIAAAANAAAAAgAJAAIAAAAMAAAAAgAJAAIAAAALAAAAAgAJAAIAAAAKAAAAAgAJAAIAAAAJAAAAAgAJAAIAAAAIAAAAAgAJAAIAAAAHAAAAAgAJAAIAAAAGAAAAAgAJAAIAAAAFAAAAAgAJAAIAAAAEAAAAAgAJAAIAAAADAAAAAgAJAAIAAAACAAAAAgAJAAIAAAABAAAAAgAJAAIAAAAAAAAAAgAJAAIAAAABAAEAAgAJAAMAAAACAAEAAgAJAAMAAAADAAEAAgAJAAMAAAAEAAEAAgAJAAMAAAAFAAEAAgAJAAMAAAAGAAEAAgAJAAMAAAAHAAEAAgAJAAMAAAAIAAEAAgAJAAMAAAAJAAEAAgAJAAMAAAAKAAEAAgAJAAMAAAALAAEAAgAJAAMAAAAMAAEAAgAJAAMAAAANAAEAAgAJAAMAAAAOAAEAAgAJAAMAAAAPAAEAAgAJAAMAAAAQAAEAAgAJAAMAAAARAAEAAgAJAAMAAAASAAEAAgAJAAMAAAATAAEAAgAJAAMAAAAVAAwAAgALAAMAAAAUAAwAAgAJAAMAAAATAAwAAgAJAAMAAAASAAwAAgAJAAMAAAARAAwAAgAJAAMAAAAQAAwAAgAJAAMAAAAPAAwAAgAJAAMAAAAOAAwAAgAJAAMAAAANAAwAAgAJAAMAAAAMAAwAAgAJAAMAAAALAAwAAgAJAAMAAAAKAAwAAgAJAAMAAAAJAAwAAgAJAAMAAAAIAAwAAgAJAAMAAAAHAAwAAgAJAAMAAAAGAAwAAgAJAAMAAAAFAAwAAgAJAAMAAAAEAAwAAgAJAAMAAAADAAwAAgAJAAMAAAACAAwAAgAJAAMAAAABAAwAAgAJAAMAAAAAAAwAAgAJAAMAAAD//wwAAgAIAAMAAAAVAAsAAgALAAIAAAAVAAoAAgALAAIAAAAVAAkAAgALAAIAAAAVAAgAAgALAAIAAAAVAAcAAgALAAIAAAAVAAYAAgALAAIAAAAVAAUAAgALAAIAAAAVAAQAAgALAAIAAAAVAAMAAgALAAIAAAAVAAIAAgALAAIAAAAVAAEAAgALAAIAAAAVAAAAAgALAAIAAAAVAP//AgALAAAAAAAUAP//AgAKAAAAAAATAP//AgAKAAAAAAASAP//AgAKAAAAAAARAP//AgAKAAAAAAAQAP//AgAKAAAAAAAPAP//AgAKAAAAAAAOAP//AgAKAAAAAAANAP//AgAKAAAAAAAMAP//AgAKAAAAAAALAP//AgAKAAAAAAAKAP//AgAKAAAAAAAJAP//AgAKAAAAAAAIAP//AgAKAAAAAAAHAP//AgAKAAAAAAAGAP//AgAKAAAAAAAFAP//AgAKAAAAAAAEAP//AgAKAAAAAAADAP//AgAKAAAAAAACAP//AgAKAAAAAAABAP//AgAKAAAAAAAAAP//AgAKAAAAAAD//wAAAgAIAAEAAAD/////AgAIAAAAAAD//wsAAgAIAAEAAAD//woAAgAIAAEAAAD//wkAAgAIAAEAAAD//wgAAgAIAAEAAAD//wcAAgAIAAEAAAD//wYAAgAIAAEAAAD//wUAAgAIAAEAAAD//wQAAgAIAAEAAAD//wMAAgAIAAEAAAD//wIAAgAIAAEAAAD//wEAAgAIAAEAAAABAAIAAgAJAAcAAAACAAIAAgAJAAcAAAADAAIAAgAJAAcAAAAEAAMAAgAJAAcAAAAFAAQAAgAJAAcAAAAGAAQAAgAJAAcAAAAHAAQAAgAJAAcAAAAHAAUAAgAJAAcAAAAIAAUAAgAJAAcAAAAJAAUAAgAJAAcAAAAKAAUAAgAJAAcAAAALAAUAAgAJAAcAAAAMAAYAAgAJAAcAAAANAAYAAgAJAAcAAAABAAMAAgAJAAcAAAABAAQAAgAJAAcAAAABAAUAAgAJAAcAAAABAAYAAgAJAAcAAAABAAcAAgAJAAcAAAABAAgAAgAJAAcAAAABAAkAAgAJAAcAAAABAAoAAgAJAAcAAAACAAMAAgAJAAcAAAACAAQAAgAJAAcAAAACAAUAAgAJAAcAAAACAAYAAgAJAAcAAAACAAcAAgAJAAcAAAACAAgAAgAJAAcAAAACAAkAAgAJAAcAAAACAAoAAgAJAAcAAAADAAMAAgAJAAcAAAADAAQAAgAJAAcAAAADAAUAAgAJAAcAAAADAAYAAgAJAAcAAAADAAcAAgAJAAcAAAADAAgAAgAJAAcAAAADAAkAAgAJAAcAAAADAAoAAgAJAAcAAAAEAAIAAgAJAAcAAAAEAAQAAgAJAAcAAAAEAAUAAgAJAAcAAAAEAAYAAgAJAAcAAAAEAAcAAgAJAAcAAAAEAAgAAgAJAAcAAAAEAAkAAgAJAAcAAAAEAAoAAgAJAAcAAAAFAAIAAgAJAAcAAAAFAAMAAgAJAAcAAAAFAAUAAgAJAAcAAAAFAAYAAgAJAAcAAAAFAAcAAgAJAAcAAAAFAAgAAgAJAAcAAAAFAAkAAgAJAAcAAAAFAAoAAgAJAAcAAAAGAAIAAgAJAAcAAAAGAAMAAgAJAAcAAAAGAAUAAgAJAAcAAAAGAAYAAgAJAAcAAAAGAAcAAgAJAAcAAAAGAAgAAgAJAAcAAAAGAAkAAgAJAAcAAAAGAAoAAgAJAAcAAAAHAAIAAgAJAAcAAAAHAAMAAgAJAAcAAAAHAAYAAgAJAAcAAAAHAAcAAgAJAAcAAAAHAAgAAgAJAAcAAAAHAAkAAgAJAAcAAAAHAAoAAgAJAAcAAAAIAAIAAgAJAAcAAAAIAAMAAgAJAAcAAAAIAAQAAgAJAAcAAAAIAAYAAgAJAAcAAAAIAAcAAgAJAAcAAAAIAAgAAgAJAAcAAAAIAAkAAgAJAAcAAAAIAAoAAgAJAAcAAAAJAAIAAgAJAAcAAAAJAAMAAgAJAAcAAAAJAAQAAgAJAAcAAAAJAAYAAgAJAAcAAAAJAAcAAgAJAAcAAAAJAAgAAgAJAAcAAAAJAAkAAgAJAAcAAAAJAAoAAgAJAAcAAAAKAAIAAgAJAAcAAAAKAAMAAgAJAAcAAAAKAAQAAgAJAAcAAAAKAAYAAgAJAAcAAAAKAAcAAgAJAAcAAAAKAAgAAgAJAAcAAAAKAAkAAgAJAAcAAAAKAAoAAgAJAAcAAAALAAIAAgAJAAcAAAALAAMAAgAJAAcAAAALAAQAAgAJAAcAAAALAAYAAgAJAAcAAAALAAcAAgAJAAcAAAALAAgAAgAJAAcAAAALAAkAAgAJAAcAAAALAAoAAgAJAAcAAAAMAAIAAgAJAAcAAAAMAAMAAgAJAAcAAAAMAAQAAgAJAAcAAAAMAAUAAgAJAAcAAAAMAAcAAgAJAAcAAAAMAAgAAgAJAAcAAAAMAAkAAgAJAAcAAAAMAAoAAgAJAAcAAAANAAIAAgAJAAcAAAANAAMAAgAJAAcAAAANAAQAAgAJAAcAAAANAAUAAgAJAAcAAAANAAcAAgAJAAcAAAANAAgAAgAJAAcAAAANAAkAAgAJAAcAAAANAAoAAgAJAAcAAAAOAAIAAgAJAAcAAAAOAAMAAgAJAAcAAAAOAAQAAgAJAAcAAAAOAAUAAgAJAAcAAAAOAAYAAgAJAAcAAAAOAAcAAgAJAAcAAAAOAAgAAgAJAAcAAAAOAAkAAgAJAAcAAAAOAAoAAgAJAAcAAAAPAAIAAgAJAAcAAAAPAAMAAgAJAAcAAAAPAAQAAgAJAAcAAAAPAAUAAgAJAAcAAAAPAAYAAgAJAAcAAAAPAAcAAgAJAAcAAAAPAAgAAgAJAAcAAAAPAAkAAgAJAAcAAAAPAAoAAgAJAAcAAAAQAAIAAgAJAAcAAAAQAAMAAgAJAAcAAAAQAAQAAgAJAAcAAAAQAAUAAgAJAAcAAAAQAAYAAgAJAAcAAAAQAAcAAgAJAAcAAAAQAAgAAgAJAAcAAAAQAAkAAgAJAAcAAAAQAAoAAgAJAAcAAAARAAIAAgAJAAcAAAARAAMAAgAJAAcAAAARAAQAAgAJAAcAAAARAAUAAgAJAAcAAAARAAYAAgAJAAcAAAARAAcAAgAJAAcAAAARAAgAAgAJAAcAAAARAAkAAgAJAAcAAAARAAoAAgAJAAcAAAASAAIAAgAJAAcAAAASAAMAAgAJAAcAAAASAAQAAgAJAAcAAAASAAUAAgAJAAcAAAASAAYAAgAJAAcAAAASAAcAAgAJAAcAAAASAAgAAgAJAAcAAAASAAkAAgAJAAcAAAASAAoAAgAJAAcAAAATAAIAAgAJAAcAAAATAAMAAgAJAAcAAAATAAQAAgAJAAcAAAATAAUAAgAJAAcAAAATAAYAAgAJAAcAAAATAAcAAgAJAAcAAAATAAgAAgAJAAcAAAATAAkAAgAJAAcAAAATAAoAAgAJAAcAAAA=")
 tile_set = ExtResource("3_h8q77")
+collision_enabled = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
 position = Vector2(161, 176)
@@ -68,12 +75,6 @@ position = Vector2(151, -74)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_vpk3n")
 
-[node name="DebugLabel" type="Label" parent="."]
-offset_left = 131.0
-offset_top = 109.0
-offset_right = 171.0
-offset_bottom = 132.0
-
 [node name="PlusPreview" type="Polygon2D" parent="."]
 z_index = 185
 color = Color(0.0816666, 1, 0.05, 0.545098)
@@ -85,46 +86,80 @@ color = Color(0.62, 0, 0, 0.54902)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-offset_right = 96.0
-offset_bottom = 16.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="AddRuby" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="AddRuby" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
 icon = ExtResource("4_e78jm")
 
-[node name="AddEmerald" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="AddEmerald" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
 icon = ExtResource("5_h8q77")
 
-[node name="AddTopaz" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="AddTopaz" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
 icon = ExtResource("6_0544a")
 
-[node name="AddDiamond" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="AddDiamond" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
 icon = ExtResource("7_461ev")
 
-[node name="AddAmethyst" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="AddAmethyst" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_vpk3n")
 icon = ExtResource("8_uoswy")
 
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_h8q77")
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_h8q77")
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Back" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = " Back "
+
+[node name="Sell" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_vpk3n")
+text = " Sell! "
+
 [connection signal="end_slicing" from="." to="." method="_on_end_slicing"]
 [connection signal="start_slicing" from="." to="." method="_on_start_slicing"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddEmerald" to="." method="_on_add_emerald_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddTopaz" to="." method="_on_add_topaz_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddDiamond" to="." method="_on_add_diamond_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddRuby" to="." method="_on_add_ruby_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddEmerald" to="." method="_on_add_emerald_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddTopaz" to="." method="_on_add_topaz_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddDiamond" to="." method="_on_add_diamond_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/AddAmethyst" to="." method="_on_add_amethyst_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer2/Sell" to="." method="_on_sell_pressed"]

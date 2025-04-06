@@ -2,12 +2,6 @@
 
 [node name="RefShapes" type="Node2D"]
 
-[node name="RefShape" type="Polygon2D" parent="."]
-clip_children = 2
-position = Vector2(-46, -7)
-scale = Vector2(2.55911, 2.47656)
-polygon = PackedVector2Array(0, 0, 5.07988, 2.8265, 11.332, 2.8265, 14, -2, 22, -2, 26.8387, 2.66666, 32, -1.06667, 25, -5, 30.4516, -10.1333, 26.3226, -12.8, 22, -7, 15, -7, 12, -11, 7, -13, 1, -11, -2, -5)
-
 [node name="RefShape2" type="Polygon2D" parent="."]
 clip_children = 2
 position = Vector2(74, -10)
@@ -109,8 +103,3 @@ clip_children = 2
 position = Vector2(1366, -11)
 scale = Vector2(0.796402, 0.770711)
 polygon = PackedVector2Array(-26.2837, 14.5499, 12.2031, 14.5499, 4.69348, -10.6699, 16.8966, -9.69994, 29.0997, -25.2198, -11.2644, -67.8996, -40.3643, -27.1598, -33.7933, -11.6399, -15.958, -11.6399)
-
-[node name="RefShape17" type="Polygon2D" parent="."]
-clip_children = 2
-position = Vector2(1289, 7)
-scale = Vector2(0.796402, 0.770711)

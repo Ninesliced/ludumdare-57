@@ -17,6 +17,8 @@ var minerals_icon = {
 }
 
 @onready var menu_manager_scene = preload("res://scenes/ui/menu/menu_manager.tscn")
+
+var money = 0
 @onready var autosave_timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -62,6 +64,11 @@ func load_inventory():
 func _on_autosave_timeout():
 	print("Autosaving...")
 	save_inventory()
+
+func add_money(val):
+	money += val
+
+
 
 func triangle_area(a: Vector2, b: Vector2, c: Vector2) -> float:
 	return abs((a.x * (b.y - c.y) +
