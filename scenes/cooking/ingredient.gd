@@ -29,6 +29,7 @@ enum MineralType {
 
 @onready var polygon: Polygon2D = $Polygon2D
 @onready var collision_shape: CollisionPolygon2D = $CollisionPolygon2D
+@onready var outline: Line2D = $Outline
 
 var mineral_type: MineralType
 
@@ -158,7 +159,6 @@ func slice(global_start_pos: Vector2, global_end_pos: Vector2, knife_width = 2.0
 	queue_free()
 
 
-
 func set_mineral_type(_mineral_type: MineralType):
 	mineral_type = _mineral_type
 
@@ -217,6 +217,9 @@ func update_polygons():
 	polygon.polygon = shape
 	collision_shape.polygon = shape
 
+	outline.points = shape.duplicate()
+	outline.points.append(shape[0])
+
 func set_polygon(points):
 	shape = points
 	update_polygons()
@@ -252,3 +255,6 @@ func recenter():
 
 func get_area():
 	return Global.area_of_polygon(shape)
+
+func set_outline(val: bool):
+	outline.visible = val
