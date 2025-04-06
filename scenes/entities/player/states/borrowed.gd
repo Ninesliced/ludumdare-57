@@ -30,7 +30,7 @@ func physic_process(delta: float) -> void:
 	playerBurrowedComponent.physics_process(delta)
 	if (not groundedDetector.is_grounded()):
 		var player = entity as Player
-		if player.burrow_requested:
+		if player.burrow_requested or player.jump_requested:
 			entity.velocity *= exit_force
 		else:
 			entity.velocity *= 0.1
