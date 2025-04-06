@@ -21,6 +21,13 @@ enum Minerals
 	Minerals.AMETHYST: 0
 }
 
+func get_mineral(mineral: Minerals) -> int:
+	if mineral in minerals:
+		return minerals[mineral]
+	
+	push_error("Invalid mineral type.")
+	return 0
+
 func add_mineral(mineral: Minerals, amount: int) -> void:
 	if mineral in minerals:
 		minerals[mineral] += amount
