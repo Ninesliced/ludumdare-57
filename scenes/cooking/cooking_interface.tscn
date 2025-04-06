@@ -213,4 +213,5 @@ text = " Sell! "
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer3/AddTopaz" to="." method="_on_add_topaz_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer2/AddEmerald" to="." method="_on_add_emerald_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer3/VBoxContainer/VBoxContainer4/AddDiamond" to="." method="_on_add_diamond_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer2/Sell" to="." method="_on_sell_pressed"]

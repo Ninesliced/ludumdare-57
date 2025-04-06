@@ -1,13 +1,43 @@
-[gd_scene load_steps=4 format=4 uid="uid://lcxbby8vf4wh"]
+[gd_scene load_steps=9 format=4 uid="uid://lcxbby8vf4wh"]
 
 [ext_resource type="Script" uid="uid://cp7f16ojy0ko5" path="res://scenes/map/map_loader.gd" id="1_3hcf8"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="2_bpn34"]
+[ext_resource type="PackedScene" uid="uid://cmt1yg3lkgove" path="res://scenes/misc/cooking_table.tscn" id="3_pm3rx"]
+
+[sub_resource type="Curve" id="Curve_bpn34"]
+_limits = [0.0, 1.0, 0.0, 3.0]
+_data = [Vector2(0, 0.00140822), 0.0, 0.0, 0, 0, Vector2(0.757329, 0.500999), 0.0, 0.0, 0, 0, Vector2(1.49674, 0.939175), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_pm3rx"]
+_limits = [0.0, 1.0, 0.0, 15.0]
+_data = [Vector2(0.179153, 0.0166353), 0.0, 0.0, 0, 0, Vector2(5.08143, 0.0203053), 0.0, 0.0, 0, 0, Vector2(6.28664, 0.41301), 0.0, 0.0, 0, 0, Vector2(6.56352, 0.276006), 0.0, 0.0, 0, 0, Vector2(6.57166, 0.137821), 0.0, 0.0, 0, 0, Vector2(8.31433, 0.239393), 0.0, 0.0, 0, 0, Vector2(9.92671, 0.467929), 0.0, 0.0, 0, 0, Vector2(10.7736, 0.563596), 0.0, 0.0, 0, 0, Vector2(11.2052, 0.349232), 0.0, 0.0, 0, 0, Vector2(11.987, 0.547061), 0.0, 0.0, 0, 0, Vector2(12.1498, 0.811029), 0.0, 0.0, 0, 0, Vector2(12.3697, 0.698828), 0.0, 0.0, 0, 0, Vector2(12.5977, 0.923821), 0.0, 0.0, 0, 0, Vector2(13.5423, 0.9563), 0.0, 0.0, 0, 0, Vector2(14.2264, 0.997047), 0.0, 0.0, 0, 0]
+point_count = 15
+
+[sub_resource type="Curve" id="Curve_bnx3j"]
+_limits = [0.0, 1.0, 0.0, 10.0]
+_data = [Vector2(0.114007, 0.0148866), 0.0, 0.0, 0, 0, Vector2(2.50271, 0.237031), 0.0, 0.0, 0, 0, Vector2(5.01629, 0.496275), 0.0, 0.0, 0, 0, Vector2(7.49186, 0.934451), 0.0, 0.0, 0, 0, Vector2(9.98371, 0.991733), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_d7i3l"]
+_limits = [0.0, 1.0, 0.0, 20.73]
+_data = [Vector2(0.0675244, 0.00849462), 0.0, 0.0, 0, 0, Vector2(5.26691, 0.00731349), 0.0, 0.0, 0, 0, Vector2(10.3763, 0.496866), 0.0, 0.0, 0, 0, Vector2(15.5419, 0.495094), 0.0, 0.0, 0, 0, Vector2(20.73, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_7cqmd"]
+_data = [Vector2(0.00162867, 0.995337), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnx3j"]
 polygon = PackedVector2Array(0, 0, 320, 0, 320, 208, 0, 208)
 
 [node name="MapLoader" type="Node2D" groups=["MapLoader"]]
 script = ExtResource("1_3hcf8")
+proba_ruby = SubResource("Curve_bpn34")
+proba_emerald = SubResource("Curve_pm3rx")
+proba_topaz = SubResource("Curve_bnx3j")
+proba_diamond = SubResource("Curve_d7i3l")
+proba_amethyst = SubResource("Curve_7cqmd")
 
 [node name="Background" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
@@ -36,3 +66,6 @@ tile_set = ExtResource("2_bpn34")
 [node name="Items" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 tile_set = ExtResource("2_bpn34")
+
+[node name="CookingTable" parent="." instance=ExtResource("3_pm3rx")]
+position = Vector2(61, 112)

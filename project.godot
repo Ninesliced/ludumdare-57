@@ -38,6 +38,7 @@ MapLoader=""
 InGameUI=""
 camera=""
 UpperLeftPosition=""
+cooking_table=""
 
 [gui]
 

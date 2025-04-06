@@ -28,6 +28,8 @@ var life = MAX_LIFE:
 var velocity_before_collision : Vector2 = Vector2.ZERO
 var inital_position;
 
+var is_player_freeze = false
+
 func _ready():
 	_set_coyote()
 	_set_burrow_buffer()
@@ -126,12 +128,22 @@ func remove_live(cause):
 func life_update():
 	if (life <= 0):
 		life = MAX_LIFE
-		var dieSprite: AnimatedSprite2D = %DieSprite
-		# dieSprite.visible = true
-
-		# dieSprite.die_animation(die_cause)
+		var dieSprite: AnimatedSprite2D = %dieSprite
+		print("t mort")
+		dieSprite.visible = true
 		
-		global_position = inital_position
-		var MapLoader = get_tree().get_first_node_in_group("MapLoader")
-		if(MapLoader):
-			MapLoader.reset_map()
+		dieSprite.play("die_fall" if die_cause == "fall" else "die_spike")
+		is_player_freeze = true
+		%PlayerSprite.visible = false
+
+
+func _on_die_sprite_animation_finished():
+	print("unfreeze")
+	%PlayerSprite.visible = true
+	var dieSprite: AnimatedSprite2D = %dieSprite
+	is_player_freeze = false
+	dieSprite.visible = false
+	global_position = inital_position
+	var MapLoader = get_tree().get_first_node_in_group("MapLoader")
+	if(MapLoader):
+		MapLoader.reset_map()
