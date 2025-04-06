@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cp7f16ojy0ko5" path="res://scenes/map/map_loader.gd" id="1_3hcf8"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="2_bpn34"]
 [ext_resource type="PackedScene" uid="uid://cyf4p8357feok" path="res://scenes/entities/blocks/bombs.tscn" id="3_pm3rx"]
-[ext_resource type="PackedScene" path="res://scenes/entities/blocks/spikes.tscn" id="4_bnx3j"]
+[ext_resource type="PackedScene" uid="uid://dmqnc84xv3b4y" path="res://scenes/entities/blocks/spikes.tscn" id="4_bnx3j"]
 
 [node name="MapLoader" type="Node2D" groups=["MapLoader"]]
 script = ExtResource("1_3hcf8")
@@ -18,9 +18,11 @@ tile_set = ExtResource("2_bpn34")
 
 [node name="Bombs" parent="." instance=ExtResource("3_pm3rx")]
 position = Vector2(86, 257)
+break_bedrock = false
 
 [node name="Bombs2" parent="." instance=ExtResource("3_pm3rx")]
 position = Vector2(181, 253)
+break_bedrock = false
 
 [node name="Spikes" parent="." instance=ExtResource("4_bnx3j")]
 position = Vector2(124, 316)
