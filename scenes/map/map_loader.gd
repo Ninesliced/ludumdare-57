@@ -38,7 +38,7 @@ func get_random_ore():
 	return null
 
 var top_layer = "top_layer.tscn"
-var layers = ["LayerA.tscn"]
+var layers = ["LayerA.tscn","LayerA.tscn","LayerA.tscn","LayerC.tscn","LayerC.tscn","LayerB.tscn"]
 var rng = RandomNumberGenerator.new();
 
 func load_new_layer_old():

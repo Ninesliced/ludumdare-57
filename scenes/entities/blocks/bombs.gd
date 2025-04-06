@@ -14,7 +14,6 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	if(!globalMap):
 		return
 	sprite.hide()
-	print(sprite.global_position)
 	var int_position = Vector2i(sprite.global_position)/16
 	var cells = []
 	for dx in range(-BOMB_RADUIS, BOMB_RADUIS):
@@ -23,6 +22,5 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 				cells.append(int_position+Vector2i(dx, dy))
 	globalMap.set_cells_terrain_connect(cells, 0,-1)
 				# globalMap.set_cell(int_position+Vector2i(dx, dy), -1)
-	print("explode")
 	$OneShotParticle.play()
 	queue_free()

@@ -22,6 +22,5 @@ func decrement_queue():
 		queue_num = particles.size()
 		for particle in particles:
 			particle.emitting = false
-		print("free")
 		queue_free()
 	pass
