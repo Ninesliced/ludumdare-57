@@ -5,7 +5,7 @@ class_name PlayerBurrowedComponent
 @export var rotation_speed: float = 5.0
 @export var move_speed : float = 200.0
 @export var mode : MovementMode = MovementMode.Directional
-
+@export var bouncy: bool = true
 
 enum MovementMode {
 	Directional,
@@ -15,6 +15,7 @@ enum MovementMode {
 var current_direction: Vector2 = Vector2.ZERO
 var last_input_vector: Vector2 = Vector2.ZERO
 var list_last_input_vector: Array = []
+
 func set_current_direction(direction: Vector2) -> void:
 	if mode == MovementMode.Cardinal:
 		var angle = rad_to_deg(direction.angle())
@@ -47,6 +48,10 @@ func physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(current_direction * move_speed, acceleration * delta)
 
 	player.velocity = velocity
+	var collision = player.move_and_collide(player.velocity * delta)
+	if bouncy and collision:
+		player.velocity = velocity.bounce(collision.get_normal())
+		current_direction = player.velocity.normalized()
 	pass
 
 func handle_directional():

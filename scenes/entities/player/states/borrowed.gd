@@ -1,7 +1,7 @@
 extends State
 
-@export var exit_force: float = 0
-
+@export var jump_force: float = 0
+@export var hold_to_jump: bool = false
 @export var playerBurrowedComponent: PlayerBurrowedComponent = null
 @export var collisionShape: CollisionShape2D = null
 @export var groundedDetector : GroundedDetector = null
@@ -31,8 +31,10 @@ func physic_process(delta: float) -> void:
 	playerBurrowedComponent.physics_process(delta)
 	if (not groundedDetector.is_grounded()):
 		var player = entity as Player
-		if player.burrow_requested or player.jump_requested:
-			entity.velocity *= exit_force
+
+		
+		if !hold_to_jump or (player.burrow_requested or player.jump_requested):
+			entity.velocity *= jump_force
 		else:
 			entity.velocity *= 0.1
 		emit_signal("state_finished", self, "grounded")

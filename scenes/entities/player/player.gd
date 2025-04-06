@@ -15,6 +15,9 @@ var burrow_timer: Timer = null
 @export var hold_to_burrow: bool = false
 const FALL_DAMAGE_VELLOCITY_Y = 400
 const MAX_LIFE = 1
+
+signal on_collide()
+
 var life = MAX_LIFE:
 	set(value):
 		life = value
@@ -47,8 +50,7 @@ func _physics_process(delta):
 		if(velocity_before_collision.y > FALL_DAMAGE_VELLOCITY_Y && is_on_floor()):
 			remove_live("fall")
 			print("AIE degat chute")
-	move_and_slide()
-
+	
 	pass
 
 func is_colliding_burrowable() -> bool: ## TEMPORARY
