@@ -131,7 +131,8 @@ func life_update():
 		var dieSprite: AnimatedSprite2D = %dieSprite
 		print("t mort")
 		dieSprite.visible = true
-		dieSprite.play("die_fall")
+		
+		dieSprite.play("die_fall" if die_cause == "fall" else "die_spike")
 		is_player_freeze = true
 		%PlayerSprite.visible = false
 
