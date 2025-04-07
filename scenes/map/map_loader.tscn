@@ -69,3 +69,13 @@ tile_set = ExtResource("2_bpn34")
 
 [node name="CookingTable" parent="." instance=ExtResource("3_pm3rx")]
 position = Vector2(82, 112)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 231.0
+offset_top = 65.0
+offset_right = 380.0
+offset_bottom = 158.0
+text = "How to play:
+- WASD: move
+- Shift: burrow
+- Space: jump"

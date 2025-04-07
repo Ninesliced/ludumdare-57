@@ -32,11 +32,14 @@ func pause():
 	if not Global.can_pause:
 		return
 
-	set_menu("PauseMenu")
+	# %PauseMenu.show()
+	# set_menu("PauseMenu")
 
 
 func exit_menu():
-	menu_stack = []
+	# %PauseMenu.hide()
+
+	# menu_stack = []
 	Global.paused = false
 	
 	_animate_background(Color.TRANSPARENT, 0)

@@ -18,7 +18,7 @@ offset_left = -27.0
 offset_top = -31.0
 offset_right = 27.0
 offset_bottom = -18.0
-text = "[Ctrl] Open"
+text = "[Shift] Open"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
