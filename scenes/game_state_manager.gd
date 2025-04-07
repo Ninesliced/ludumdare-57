@@ -1,14 +1,17 @@
 extends Node2D
 var timer : Timer
 var money_needed : int = 300
+var door_opened : bool = false
 # var money_multiplier : float = 1.2
 
 var days : int = 0
 
 func _ready() -> void:
+    print("starting")
     start_timer()
 
 func start_timer():
+    print("test")
     timer = Timer.new()
     timer.wait_time = 60 * 3
     timer.one_shot = true
@@ -18,6 +21,7 @@ func start_timer():
 
 
 func _on_timeout():
+    door_opened = false
     days += 1
 
 

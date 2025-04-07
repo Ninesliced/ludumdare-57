@@ -3,9 +3,8 @@ extends TileMapLayer
 var required_money : int = 300
 
 func _ready() -> void:
-
-	GameState.timer.timeout.connect(_on_timeout)
 	close_gate()
+	GameState.timer.timeout.connect(_on_timeout)
 	pass
 
 func _process(delta: float) -> void:
@@ -16,6 +15,7 @@ func open_gate():
 	hide()
 	if GameState:
 		GameState.timer.start()
+		GameState.door_opened = true
 
 func close_gate():
 	collision_enabled = true
