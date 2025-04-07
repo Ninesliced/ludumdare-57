@@ -123,9 +123,12 @@ var die_cause = ""
 func remove_live(cause):
 	die_cause = cause
 	life -= 1
+
 	
 func life_update():
 	if (life <= 0):
+		$DeathSound.play()
+
 		life = MAX_LIFE
 		var dieSprite: AnimatedSprite2D = %dieSprite
 		if dieSprite != null:

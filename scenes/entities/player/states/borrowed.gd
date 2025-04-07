@@ -6,6 +6,7 @@ extends State
 @export var collisionShape: CollisionShape2D = null
 @export var groundedDetector : GroundedDetector = null
 @export var staminaComponent : StaminaComponent = null
+@export var sprite : AnimatedSprite2D = null
 
 @onready var burrowParticle : CPUParticles2D = %BurrowParticle
 
@@ -23,7 +24,9 @@ func enter():
 	player.velocity = player.velocity_before_collision.normalized() * playerBurrowedComponent.move_speed
 	playerBurrowedComponent.set_current_direction(player.velocity.normalized())
 	playerBurrowedComponent.enter()
-	pass
+
+	sprite.play("burrowing")
+	$BurrowSound.play()
 
 
 func physic_process(delta: float) -> void:
@@ -43,7 +46,7 @@ func physic_process(delta: float) -> void:
 
 func exit():
 	burrowParticle.emitting = false
-	pass
+	$BurrowSound.stop()
 
 func apply_direction(player):
 	direction = player.velocity
@@ -55,3 +58,4 @@ func apply_direction(player):
 	direction = Vector2(cos(angle), sin(angle))
 
 	playerBurrowedComponent.last_input_vector = direction
+	

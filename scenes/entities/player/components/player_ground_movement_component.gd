@@ -2,6 +2,8 @@ extends PlayerMovement
 
 class_name PlayerGroundMovement
 
+signal jumped
+
 var _enable_movement: bool = true
 
 @export var move_speed: float = 80.0
@@ -19,8 +21,6 @@ var _current_decceleration: float = 0
 @onready var jump_velocity: float = -(2.0 * jump_height) / jump_time_to_peak 
 @onready var jump_gravity: float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 @onready var fall_gravity: float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
-
-
 
 var gravity_enabled: bool = true
 
@@ -63,6 +63,7 @@ func get_gravity(velocity) -> float:
 ## JUMP functionnality
 
 func _jump(velocity: Vector2) -> float:
+	jumped.emit()
 	velocity.y = jump_velocity
 	return velocity.y
 

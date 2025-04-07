@@ -11,6 +11,7 @@ class_name GroundedState
 @export var min_run_speed_animation = 40.0
 
 var look_direction = false
+var sprite_animation = "idle"
 
 func enter() -> void:
 	entity.collision_mask = 3
@@ -39,8 +40,19 @@ func _update_sprite():
 	
 	if player.is_on_floor():
 		if abs(player.velocity.x) > min_run_speed_animation:
-			sprite.play("walk")
+			sprite_animation = "walk"
 		else:
-			sprite.play("idle")
+			sprite_animation = "idle"
 	else:
-		sprite.play("jump")
+		sprite_animation = "jump"
+	
+	sprite.play(sprite_animation)
+
+func _on_player_ground_movement_component_jumped():
+	# $JumpSound.play()
+	$JumpVoiceSound.play()
+
+
+func _on_player_sprite_animation_looped():
+	if sprite_animation == "walk":
+		$FootstepSoundDirt.play()

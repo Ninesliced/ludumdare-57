@@ -36,10 +36,18 @@ func _ready():
 		load_data()
 	else:
 		save_data()
+		
+	music_player = music_player_scene.instantiate()
+	add_child(music_player)
+	music_player.play()
+
+var music_player_scene = preload("res://scenes/music_player.tscn")
+var music_player = null
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 		return
