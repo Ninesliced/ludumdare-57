@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://lcxbby8vf4wh"]
+[gd_scene load_steps=11 format=4 uid="uid://lcxbby8vf4wh"]
 
 [ext_resource type="Script" uid="uid://cp7f16ojy0ko5" path="res://scenes/map/map_loader.gd" id="1_3hcf8"]
 [ext_resource type="TileSet" uid="uid://c5w2totwpyqw6" path="res://assets/tile_set.tres" id="2_bpn34"]
@@ -30,6 +30,9 @@ point_count = 1
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnx3j"]
 polygon = PackedVector2Array(0, 0, 320, 0, 320, 208, 0, 208)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pm3rx"]
+font_size = 8
 
 [node name="MapLoader" type="Node2D" groups=["MapLoader"]]
 script = ExtResource("1_3hcf8")
@@ -79,3 +82,12 @@ text = "How to play:
 - WASD: move
 - Shift: burrow
 - Space: jump"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 111.0
+offset_top = 120.0
+offset_right = 260.0
+offset_bottom = 139.0
+text = "Opening gate cost: €300
+Collect and refine gems then sell them to earn money!"
+label_settings = SubResource("LabelSettings_pm3rx")

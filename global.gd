@@ -22,7 +22,7 @@ var minerals_icon = {
 
 var money = 0:
 	set(value):
-		money = max(0, value)
+		money = value
 		inventory.changed.emit()
 
 @onready var autosave_timer = Timer.new()
