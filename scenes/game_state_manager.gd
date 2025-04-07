@@ -1,7 +1,7 @@
 extends Node2D
 var timer : Timer
-var money_needed : int = 400
-var money_multiplier : float = 1.2
+var money_needed : int = 300
+# var money_multiplier : float = 1.2
 
 var days : int = 0
 
@@ -10,19 +10,14 @@ func _ready() -> void:
 
 func start_timer():
     timer = Timer.new()
-    timer.wait_time = 120
-    timer.one_shot = false
+    timer.wait_time = 60 * 3
+    timer.one_shot = true
     timer.timeout.connect(_on_timeout)
     add_child(timer)
     timer.start()
 
 
 func _on_timeout():
-    Global.money -= money_needed
-    if Global.money < 0:
-        restart_game()
-        return
-    money_needed = money_needed * money_multiplier
     days += 1
 
 
