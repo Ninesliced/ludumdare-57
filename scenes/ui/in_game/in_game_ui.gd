@@ -5,6 +5,7 @@ var player : Player
 var euro_icon = preload("res:///assets/images/particle/euro.png")
 
 func _ready():
+	%Win.hide()
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() == 0:
 		return
@@ -16,7 +17,9 @@ func _ready():
 
 func _process(delta):
 	%TimeLeft.text = str(int(GameState.get_time_left())) + "s"
-	%MoneyNeeded.text = "€" + str(GameState.money_needed)
+	%MoneyNeeded.text = " need €" + str(3000)
+	if Global.money >= 3000:
+		%Win.show()
 
 func update_text_icon():
 	var inventory = player.inventory as Inventory
