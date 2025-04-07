@@ -1,12 +1,14 @@
 extends Node
 
-const INVENTORY_SAVE_PATH = "user://inventory.tres"
+const GAME_DATA_SAVE_PATH = "user://data.tres"
+const INVENTORY_VERSION = 2
 
 var can_pause = true
 var paused: bool = false
 
 var menu_manager: MenuManager
 var inventory: Inventory = Inventory.new()
+var game_data: GameData = GameData.new()
 
 var minerals_icon = {
 	Inventory.Minerals.RUBY: preload("res://assets/images/particle/ruby.png"),
@@ -30,10 +32,10 @@ func _ready():
 	add_child(autosave_timer)
 	autosave_timer.start()
 	
-	if FileAccess.file_exists(INVENTORY_SAVE_PATH):
-		load_inventory()
+	if FileAccess.file_exists(GAME_DATA_SAVE_PATH):
+		load_data()
 	else:
-		save_inventory()
+		save_data()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,17 +43,22 @@ func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 		return
-	pass
 
 
+func save_data():
+	game_data.inventory = inventory
+	game_data.money = money
 
-func save_inventory():
-	var result = ResourceSaver.save(inventory, INVENTORY_SAVE_PATH)
-	print("Inventory saved to user://inventory.tres with result: ", result)
+	var result = ResourceSaver.save(game_data, GAME_DATA_SAVE_PATH)
+	print("Data saved to " + GAME_DATA_SAVE_PATH + " with result: ", result)
 
-func load_inventory():
-	print("Loading inventory...")
-	var loaded_inventory = ResourceLoader.load(INVENTORY_SAVE_PATH)
+func load_data():
+	print("Loading data...")
+	var loaded_data: GameData = ResourceLoader.load(GAME_DATA_SAVE_PATH) 
+
+	money = loaded_data.money
+	
+	var loaded_inventory = loaded_data.inventory
 	if loaded_inventory is Inventory:
 		print(loaded_inventory.minerals)
 		inventory = loaded_inventory
@@ -59,11 +66,11 @@ func load_inventory():
 		if player:
 			player.inventory = inventory
 	else:
-		print("Failed to load inventory.")
+		print("Failed to load data.")
 	
 func _on_autosave_timeout():
 	print("Autosaving...")
-	save_inventory()
+	save_data()
 
 func add_money(val):
 	money += val

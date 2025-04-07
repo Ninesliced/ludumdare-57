@@ -203,7 +203,6 @@ func reset_map():
 	%Items.clear()
 
 	current_depth = 0
-	print("TODO")
 	
 func spawn_bomb(_position):
 	var bomb = preload("res://scenes/entities/blocks/bombs.tscn").instantiate()

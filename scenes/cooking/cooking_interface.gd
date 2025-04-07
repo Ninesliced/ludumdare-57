@@ -242,9 +242,10 @@ func _on_add_amethyst_pressed():
 
 func _update_ui():
 	for mineral in Inventory.Minerals.values():
-		mineral_buttons[mineral].text = str(Global.inventory.get_mineral(mineral))
-		mineral_buttons[mineral].tooltip_text = "{0}".format([str(Inventory.Minerals.keys()[mineral])])
-		mineral_tooltips[mineral].text = "€{0}/g".format([mineral_values[mineral]])
+		if mineral_buttons.has(mineral):
+			mineral_buttons[mineral].text = str(Global.inventory.get_mineral(mineral))
+			mineral_buttons[mineral].tooltip_text = "{0}".format([str(Inventory.Minerals.keys()[mineral])])
+			mineral_tooltips[mineral].text = "€{0}/g".format([mineral_values[mineral]])
 	
 	%ScoreLabel.text = "Estimated: +€" + str(int(score))
 	%MoneyLabel.text = "€" + str(int(Global.money))

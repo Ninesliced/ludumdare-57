@@ -10,7 +10,7 @@ enum Minerals
 	EMERALD = 1,
 	TOPAZ = 2,
 	DIAMOND = 3,
-	AMETHYST = 4
+	AMETHYST = 4,
 }
 
 @export var minerals: Dictionary[Minerals, int] = {
@@ -18,7 +18,7 @@ enum Minerals
 	Minerals.EMERALD: 0,
 	Minerals.TOPAZ: 0,
 	Minerals.DIAMOND: 0,
-	Minerals.AMETHYST: 0
+	Minerals.AMETHYST: 0,
 }
 
 func get_mineral(mineral: Minerals) -> int:
@@ -27,6 +27,14 @@ func get_mineral(mineral: Minerals) -> int:
 	
 	push_error("Invalid mineral type.")
 	return 0
+
+func set_mineral(mineral: Minerals, amount: int) -> void:
+	if mineral in minerals:
+		minerals[mineral] += amount
+		emit_signal("inventory_changed")
+	else:
+		push_error("Invalid mineral type.")
+
 
 func add_mineral(mineral: Minerals, amount: int) -> void:
 	if mineral in minerals:

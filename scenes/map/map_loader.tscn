@@ -68,4 +68,4 @@ unique_name_in_owner = true
 tile_set = ExtResource("2_bpn34")
 
 [node name="CookingTable" parent="." instance=ExtResource("3_pm3rx")]
-position = Vector2(61, 112)
+position = Vector2(82, 112)

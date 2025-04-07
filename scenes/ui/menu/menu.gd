@@ -7,8 +7,8 @@ func _on_back_button_pressed():
 	menu_manager.back()
 
 
-
 func _on_quit_pressed():
+	Global.save_data()
 	get_tree().quit()
 
 func _on_resume_pressed():

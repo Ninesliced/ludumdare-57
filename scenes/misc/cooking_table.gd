@@ -7,7 +7,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	$Label.text = str(touches_player)
+	$Label.visible = touches_player
 
 func _input(event):
 	if event.is_action_pressed("burrow") and touches_player:
@@ -15,7 +15,6 @@ func _input(event):
 
 
 func _on_body_entered(body:Node2D):
-	print(body)
 	if body is Player:
 		touches_player = true
 

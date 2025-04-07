@@ -9,12 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dbvkuuuobxxxc" path="res://assets/images/characters/player_walk.png" id="4_yywfu"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/state_machine/state.tscn" id="5_1murt"]
 [ext_resource type="Texture2D" uid="uid://dl50tcx701p1m" path="res://assets/images/particle/form/circle_16.png" id="5_ovg4i"]
-[ext_resource type="PackedScene" uid="uid://cftaabj0iyqv5" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
+[ext_resource type="PackedScene" path="res://scenes/entities/player/components/player_burrowed_component.tscn" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c3g8y5730vrjl" path="res://scenes/entities/player/states/borrowed.gd" id="6_5sj0x"]
 [ext_resource type="Script" uid="uid://j8o233wa8k7s" path="res://scenes/entities/player/states/grounded.gd" id="7_ovg4i"]
 [ext_resource type="Script" uid="uid://bbtpx3uely5l6" path="res://scenes/entities/player/grounded_detector.gd" id="9_5sj0x"]
-[ext_resource type="PackedScene" uid="uid://dbfqheet23eng" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
-[ext_resource type="Script" uid="uid://b8ba8ntl5hfxw" path="res://scenes/entities/player/collision_detector.gd" id="13_r4dfn"]
+[ext_resource type="PackedScene" path="res://scenes/entities/player/components/stamina_component.tscn" id="11_7wli1"]
+[ext_resource type="Script" path="res://scenes/entities/player/collision_detector.gd" id="13_r4dfn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4dfn"]
 atlas = ExtResource("2_r4dfn")
