@@ -8,7 +8,7 @@ func _on_back_button_pressed():
 
 
 func _on_quit_pressed():
-	Global.save_inventory()
+	Global.save_data()
 	get_tree().quit()
 
 func _on_resume_pressed():

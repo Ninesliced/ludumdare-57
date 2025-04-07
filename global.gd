@@ -33,9 +33,9 @@ func _ready():
 	autosave_timer.start()
 	
 	if FileAccess.file_exists(GAME_DATA_SAVE_PATH):
-		load_inventory()
+		load_data()
 	else:
-		save_inventory()
+		save_data()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,15 +45,15 @@ func _process(delta):
 		return
 
 
-func save_inventory():
+func save_data():
 	game_data.inventory = inventory
 	game_data.money = money
 
 	var result = ResourceSaver.save(game_data, GAME_DATA_SAVE_PATH)
 	print("Data saved to " + GAME_DATA_SAVE_PATH + " with result: ", result)
 
-func load_inventory():
-	print("Loading inventory...")
+func load_data():
+	print("Loading data...")
 	var loaded_data: GameData = ResourceLoader.load(GAME_DATA_SAVE_PATH) 
 
 	money = loaded_data.money
@@ -70,7 +70,7 @@ func load_inventory():
 	
 func _on_autosave_timeout():
 	print("Autosaving...")
-	save_inventory()
+	save_data()
 
 func add_money(val):
 	money += val
