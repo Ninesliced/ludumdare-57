@@ -33,6 +33,5 @@ func die():
     $StateMachine.set_process(false)
     $AnimationPlayer.play("die")
 
-    print("die")
     await $AnimationPlayer.animation_finished
     queue_free()

@@ -11,8 +11,6 @@ enum Minerals
 	TOPAZ = 2,
 	DIAMOND = 3,
 	AMETHYST = 4,
-	
-	MONEY = 5,
 }
 
 @export var minerals: Dictionary[Minerals, int] = {
@@ -20,7 +18,7 @@ enum Minerals
 	Minerals.EMERALD: 0,
 	Minerals.TOPAZ: 0,
 	Minerals.DIAMOND: 0,
-	Minerals.AMETHYST: 0
+	Minerals.AMETHYST: 0,
 }
 
 func get_mineral(mineral: Minerals) -> int:

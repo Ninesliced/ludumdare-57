@@ -54,7 +54,6 @@ func _physics_process(delta):
 	if(velocity_before_collision != Vector2(0.,0.) && delta_vel != Vector2(0.,0.)):
 		if(velocity_before_collision.y > FALL_DAMAGE_VELLOCITY_Y && is_on_floor()):
 			remove_live("fall")
-			print("AIE degat chute")
 	
 	pass
 
@@ -122,7 +121,6 @@ func _disable_coyote():
 #### Les points de vies
 var die_cause = ""
 func remove_live(cause):
-	print("mort")
 	die_cause = cause
 	life -= 1
 	
@@ -139,7 +137,6 @@ func life_update():
 
 
 func _on_die_sprite_animation_finished():
-	print("unfreeze")
 	%PlayerSprite.visible = true
 	var dieSprite: AnimatedSprite2D = %dieSprite
 	is_player_freeze = false

@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxld2nuk7e0iq"]
 
 [ext_resource type="Script" uid="uid://yala8kkerjl1" path="res://scenes/ui/in_game/in_game_ui.gd" id="1_4v0rk"]
-[ext_resource type="PackedScene" uid="uid://3x037kudxk1e" path="res://scenes/ui/icon_text.tscn" id="1_5dmfb"]
-[ext_resource type="Theme" uid="uid://dwpcpa2uaps5o" path="res://assets/theme.tres" id="3_i505a"]
+[ext_resource type="PackedScene" uid="uid://bshj5cukqdcee" path="res://scenes/ui/icon_text.tscn" id="1_5dmfb"]
 
 [node name="InGameUi" type="CanvasLayer"]
 script = ExtResource("1_4v0rk")

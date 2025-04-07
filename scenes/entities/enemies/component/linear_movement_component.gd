@@ -11,21 +11,17 @@ var gravity: float = 7.0
  
 func physics_process(delta: float) -> void:
 	if !down_left.is_colliding() and !goes_right:
-		print("flip")
 		flip_direciton()
 
 	if !down_right.is_colliding() and goes_right:
-		print("flip2")
 		flip_direciton()
 
 	if left.is_colliding() and !right.is_colliding():
-		print("flip3")
 		if !goes_right:
 			flip_direciton()
 		goes_right = true
 
 	if right.is_colliding() and !left.is_colliding():
-		print("flip4")
 		if goes_right:
 			flip_direciton()
 		goes_right = false

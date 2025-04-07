@@ -15,7 +15,6 @@ func _input(event):
 
 
 func _on_body_entered(body:Node2D):
-	print(body)
 	if body is Player:
 		touches_player = true
 

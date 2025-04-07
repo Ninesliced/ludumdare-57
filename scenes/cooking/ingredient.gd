@@ -133,7 +133,6 @@ func slice(global_start_pos: Vector2, global_end_pos: Vector2, knife_width = 2.0
 	var polygons = Geometry2D.clip_polygons(
 		PackedVector2Array(shape), PackedVector2Array(knife_shape)
 	)
-	print("splti ", polygons)
 	
 	for poly in polygons:
 		var area = Global.area_of_polygon(poly)
