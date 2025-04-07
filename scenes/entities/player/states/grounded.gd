@@ -15,6 +15,7 @@ var sprite_animation = "idle"
 
 func enter() -> void:
 	entity.collision_mask = 3
+	playerGroundMovement.enter()
 
 func process(delta: float) -> void:
 	staminaComponent.recover_stamina(staminaComponent.stamina_recovery_rate * delta)
