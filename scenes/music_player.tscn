@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://cy1pyvmnbhk8" path="res://assets/sounds/music.mp3" id="1_jxdhu"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D"]
+position = Vector2(1, 1)
 stream = ExtResource("1_jxdhu")
 volume_db = -8.0
 attenuation = 0.000396608
