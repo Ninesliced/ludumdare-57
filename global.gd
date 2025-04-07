@@ -20,7 +20,11 @@ var minerals_icon = {
 
 @onready var menu_manager_scene = preload("res://scenes/ui/menu/menu_manager.tscn")
 
-var money = 0
+var money = 0:
+	set(value):
+		money = max(0, value)
+		inventory.changed.emit()
+
 @onready var autosave_timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,11 +36,11 @@ func _ready():
 	add_child(autosave_timer)
 	autosave_timer.start()
 	
-	if FileAccess.file_exists(GAME_DATA_SAVE_PATH):
-		load_data()
-	else:
-		save_data()
-		
+	# if FileAccess.file_exists(GAME_DATA_SAVE_PATH):
+	# 	load_data()
+	# else:
+	# 	save_data()
+
 	music_player = music_player_scene.instantiate()
 	add_child(music_player)
 	music_player.play()
